@@ -1,0 +1,13 @@
+application:
+  name: jira
+  createNamespace: ###ZARF_VAR_JIRA_CREATE_NAMESPACE###
+  namespace: jira
+  path: chart
+  repository: https://repo1.dso.mil/big-bang/product/community/jira.git
+  ref:
+    # renovate: datasource=gitlab-tags depName=big-bang/product/community/jira versioning=loose registryUrl=https://repo1.dso.mil
+    tag: 1.10.0-bb.1
+  values: |
+    ###ZARF_VAR_JIRA_VALUES###
+  dependsOn:
+    ###ZARF_VAR_JIRA_DEPENDS_ON###

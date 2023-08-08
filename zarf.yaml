@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: jira
+  description: "UDS jira capability deployed via flux"
+  version: "0.0.1"
+  architecture: amd64
+
+variables:
+  - name: JIRA_DEPENDS_ON
+    default: "[]"
+  - name: JIRA_CREATE_NAMESPACE
+    default: "true"
+
+components:
+  - name: jira-values
+    required: true
+    files:
+      - source: values-jira.yaml
+        target: values-jira.yaml
+  - name: jira
+    required: true
+    description: "Deploy jira via flux"
+    actions:
+      onDeploy:
+        before:
+          - cmd: cat values-jira.yaml
+            description: Read jira values into variable.
+            mute: true
+            setVariables:
+            - name: JIRA_VALUES
+              autoIndent: true
+              sensitive: true
+    charts:
+    # renovate: datasource=helm
+      - name: flux-app
+        url: https://defenseunicorns.github.io/uds-support-charts/
+        version: 1.0.5
+        namespace: jira
+        valuesFiles:
+          - jira-flux-values.yaml
+    repos:
+      - https://repo1.dso.mil/big-bang/product/community/jira.git
+    images:
+      - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.6.0
+      - registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.5

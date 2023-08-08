@@ -1,0 +1,28 @@
+ingress:
+  nginx: false
+proxyName: jira.bigbang.dev
+hostname: bigbang.dev
+istio:
+  enabled: true
+  gateways:
+    - istio-system/tenant
+jira:
+  resources:
+    container:
+      requests:
+        cpu: "100m"
+        memory: "2Gi"
+      limits:
+        cpu: "10"
+        memory: "6Gi"
+    jvm:
+      maxHeap: "4g"
+volumes:
+  localHome:
+    persistentVolumeClaim:
+      create: true
+      # storageClassName: your-storage-class-here
+      resources:
+        requests:
+          storage: 1Gi
+
