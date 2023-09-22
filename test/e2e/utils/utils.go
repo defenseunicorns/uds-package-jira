@@ -35,10 +35,6 @@ func SetupTestPlatform(t *testing.T, platform *types.TestPlatform) { //nolint:fu
 	require.NoError(t, err)
 	registry1Password, err := getEnvVar("REGISTRY1_PASSWORD")
 	require.NoError(t, err)
-	ghcrUsername, err := getEnvVar("GHCR_USERNAME")
-	require.NoError(t, err)
-	ghcrPassword, err := getEnvVar("GHCR_PASSWORD")
-	require.NoError(t, err)
 	awsAvailabilityZone := getAwsAvailabilityZone(awsRegion)
 	namespace := "uds-capability"
 	stage := "terratest"
@@ -113,19 +109,15 @@ func SetupTestPlatform(t *testing.T, platform *types.TestPlatform) { //nolint:fu
 		require.NoError(t, err, output)
 
 		// Copy zarf-config.toml to the build folder
-		output, err = platform.RunSSHCommandAsSudo(`cd ~/app && cp test/e2e/zarf-config.toml build/zarf-config.toml`)
+		output, err = platform.RunSSHCommandAsSudo(`cd ~/app && cp test/e2e/zarf-config.yaml build/zarf-config.yaml`)
 		require.NoError(t, err, output)
 
 		// Log into registry1.dso.mil
 		output, err = platform.RunSSHCommandAsSudo(fmt.Sprintf(`~/app/build/zarf tools registry login registry1.dso.mil -u %v -p %v`, registry1Username, registry1Password))
 		require.NoError(t, err, output)
 
-		// Log into ghcr.io
-		output, err = platform.RunSSHCommandAsSudo(fmt.Sprintf(`~/app/build/zarf tools registry login ghcr.io -u %v -p %v`, ghcrUsername, ghcrPassword))
-		require.NoError(t, err, output)
-
 		// Create cluster build and deploy
-		output, err = platform.RunSSHCommandAsSudo(`cd ~/app && make cluster/full`)
+		output, err = platform.RunSSHCommandAsSudo(`cd ~/app && make all`)
 		require.NoError(t, err, output)
 
 	})

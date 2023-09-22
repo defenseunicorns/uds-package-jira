@@ -3,44 +3,49 @@ kind: ZarfPackageConfig
 metadata:
   name: jira
   description: "UDS jira capability deployed via flux"
-  version: "0.0.1"
+  version: "0.0.2"
   architecture: amd64
 
 variables:
   - name: JIRA_DEPENDS_ON
     default: "[]"
   - name: JIRA_CREATE_NAMESPACE
-    default: "true"
+    default: "false"
+  - name: DOMAIN
+    default: "bigbang.dev"
 
 components:
-  - name: jira-values
+  - name: istio-version
     required: true
-    files:
-      - source: values-jira.yaml
-        target: values-jira.yaml
-  - name: jira
-    required: true
-    description: "Deploy jira via flux"
     actions:
       onDeploy:
         before:
-          - cmd: cat values-jira.yaml
-            description: Read jira values into variable.
-            mute: true
-            setVariables:
-            - name: JIRA_VALUES
-              autoIndent: true
-              sensitive: true
+          - cmd: kubectl get deployment -n monitoring monitoring-monitoring-kube-operator -o=jsonpath='{.spec.template.metadata.annotations.bigbang\.dev/istioVersion}'
+            setVariable: ISTIO_VERSION
+  - name: jira
+    required: true
+    description: "Deploy jira via flux"
     charts:
     # renovate: datasource=helm
       - name: flux-app
         url: https://defenseunicorns.github.io/uds-support-charts/
-        version: 1.0.5
+        version: 1.0.7
         namespace: jira
         valuesFiles:
           - jira-flux-values.yaml
     repos:
       - https://repo1.dso.mil/big-bang/product/community/jira.git
     images:
-      - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.6.0
-      - registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.5
+      - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.10.0
+      - registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.8
+    actions:
+      onDeploy:
+        after:
+          - wait:
+              cluster:
+                kind: helmRelease
+                name: jira
+                condition: Ready
+                namespace: bigbang
+            maxTotalSeconds: 900
+            description: Jira HelmRelease to be Ready
