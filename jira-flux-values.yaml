@@ -13,7 +13,7 @@ application:
     ingress:
       nginx: false
     proxyName: jira.###ZARF_VAR_DOMAIN###
-    domian: ###ZARF_VAR_DOMAIN###
+    domain: ###ZARF_VAR_DOMAIN###
     istio:
       enabled: true
       jira:
