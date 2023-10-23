@@ -34,7 +34,7 @@ components:
         valuesFiles:
           - jira-flux-values.yaml
     repos:
-      - https://repo1.dso.mil/big-bang/product/community/jira.git@1.16.0-bb.4
+      - https://repo1.dso.mil/big-bang/product/community/jira.git@1.16.0-bb.5
     images:
       - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.10.0
       - registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.8
