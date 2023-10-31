@@ -11,6 +11,8 @@ variables:
     default: "[]"
   - name: JIRA_CREATE_NAMESPACE
     default: "false"
+  - name: JIRA_DB_NAME
+    default: "jiradb"
   - name: JIRA_DB_USERNAME
     default: "jira"
   - name: DOMAIN

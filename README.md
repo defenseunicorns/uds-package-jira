@@ -15,11 +15,11 @@ Bigbang [Jira](https://repo1.dso.mil/big-bang/product/community/jira) deployed v
 #### Database
 
 - A Postgres database is running on port `5432` and accessible to the cluster
-- This database can be logged into via the username `jira`
-- The `jira` user has read/write access to the above mentioned database
-- This database instance has a psql database created named `jiradb`
+- This database can be logged into via the user configured with the zarf var `JIRA_DB_USERNAME`. Default is `jira`
+- This database instance has a psql database configured with the zarf var `JIRA_DB_NAME`. Default is `jiradb`
+- The user has read/write access to the above mentioned database
 - Create `jira-postgres` service in `jira` namespace that points to the psql database
-- Create `jira-postgres` secret in `jira` namespace with the key `password` that contains the password to the `jira` user for the psql database
+- Create `jira-postgres` secret in `jira` namespace with the key `password` that contains the password to the user for the psql database
 
 ## Deploy
 

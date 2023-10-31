@@ -36,7 +36,7 @@ application:
         - name: ATL_DB_DRIVER
           value: "org.postgresql.Driver"
         - name: ATL_JDBC_URL
-          value: "jdbc:postgresql://jira-postgres.jira.svc.cluster.local:5432/jiradb"
+          value: "jdbc:postgresql://jira-postgres.jira.svc.cluster.local:5432/###ZARF_VAR_JIRA_DB_NAME###"
         - name: ATL_JDBC_USER
           value: ###ZARF_VAR_JIRA_DB_USERNAME###
         - name: ATL_JDBC_PASSWORD
