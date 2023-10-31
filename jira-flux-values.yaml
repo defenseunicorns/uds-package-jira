@@ -6,7 +6,7 @@ application:
   repository: https://repo1.dso.mil/big-bang/product/community/jira.git
   ref:
     # renovate: datasource=gitlab-tags depName=big-bang/product/community/jira versioning=loose registryUrl=https://repo1.dso.mil
-    tag: 1.16.0-bb.5
+    tag: 1.16.5-bb.0
   dependsOn:
     ###ZARF_VAR_JIRA_DEPENDS_ON###
   baseValues:
@@ -38,7 +38,7 @@ application:
         - name: ATL_JDBC_URL
           value: "jdbc:postgresql://jira-postgres.jira.svc.cluster.local:5432/jiradb"
         - name: ATL_JDBC_USER
-          value: "jira"
+          value: ###ZARF_VAR_JIRA_DB_USERNAME###
         - name: ATL_JDBC_PASSWORD
           valueFrom:
             secretKeyRef:
