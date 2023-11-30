@@ -73,6 +73,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      ####
+      # Build and publish packages
+      ####
+      - name: Build and publish dev-dependency jira-postgres package
+        run: cd utils/pkg-deps/jira/postgres && zarf package create --confirm --no-progress --output oci://ghcr.io/defenseunicorns/uds-capability/jira/dev-dependency
 
       - name: Publish jira package
         run: zarf package publish zarf-package-jira-amd64-*.tar.zst oci://ghcr.io/defenseunicorns/uds-capability --no-progress
