@@ -3,7 +3,9 @@ kind: ZarfPackageConfig
 metadata:
   name: jira
   description: "UDS jira capability deployed via flux"
+  # x-release-please-start-version
   version: "0.0.5"
+  # x-release-please-end
   architecture: amd64
 
 variables:

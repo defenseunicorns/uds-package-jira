@@ -62,5 +62,5 @@ zarf-packages:
   # Jira
   - name: jira
     repository: ghcr.io/defenseunicorns/uds-capability/jira
-    ref: 0.0.2
+    ref: x.x.x
 ```
