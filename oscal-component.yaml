@@ -1,0 +1,100 @@
+component-definition:
+  uuid: 2ddea5f5-128a-4b39-a29e-07c2e9e5ecd6
+  metadata:
+    title: UDS Capability Jira
+    last-modified: "2023-11-30T14:11:40Z"
+    version: "20231130"
+    oscal-version: 1.1.1
+    parties:
+      - uuid: f3cf70f8-ba44-4e55-9ea3-389ef24847d3
+        type: organization
+        name: Defense Unicorns
+        links:
+          - href: https://defenseunicorns.com
+            rel: website
+  components:
+    - uuid: 7dbe25d3-f166-4ce1-8dcb-c2f341812ffe
+      type: software
+      title: Jira
+      description: |
+        Jira is a project management tool developed by Atlassian, primarily used for issue tracking and agile project management. It enables teams to plan, track, and manage software development projects with various customizable workflows and reporting features.
+      purpose: Provides users with secure project management and issue tracking capabilities.
+      responsible-roles:
+        - role-id: provider
+          party-uuids:
+            - f3cf70f8-ba44-4e55-9ea3-389ef24847d3
+      control-implementations:
+        - uuid: d2afb4c4-2cd8-5305-a6cc-d1bc7b388d0c
+          source: https://raw.githubusercontent.com/GSA/fedramp-automation/93ca0e20ff5e54fc04140613476fba80f08e3c7d/dist/content/rev5/baselines/json/FedRAMP_rev5_HIGH-baseline-resolved-profile_catalog.json
+          description: Controls partially implemented by Jira for inheritance by applications that adheres to FedRAMP High Baseline and DoD IL 6.
+          implemented-requirements:
+            - uuid: f64a213c-0cb6-4433-b61e-e966c457837f
+              control-id: au-2
+              description: >-
+                Jira creates event logs.  
+            - uuid: e0e8da6e-efdb-4fbe-8b54-7ef5704332ec
+              control-id: au-3
+              description: >-
+                Jira creates event logs.  
+            - uuid: 5810008a-8754-4fab-87ac-a42c689e85fd
+              control-id: au-3.1
+              description: >-
+                Jira creates event logs.  
+            - uuid: 4966cf6e-d042-4e6c-b481-2582e859e265
+              control-id: au-8
+              description: >-
+                Jira event logs contain NIST compliant timestamps.
+            - uuid: 5049a88c-e8b9-41de-9416-a3511d853992
+              control-id: cp-2
+              description: >-
+                Jira partially addreses this control by aiding in the coordination of the contingency plan, tracking updates, and execution. Also aides in incorporating lessons learned through project management.  
+            - uuid: 47f77cba-6619-446d-bb42-1acaeff49913
+              control-id: cp-2.1
+              description: >-
+                Jira partially meets this control by providing a platform for coordination of the contingency plan development.
+              props:
+                - name: implemented
+                  ns: https://lula.dev/ns/oscal
+                  value: partially
+            - uuid: cfe111ec-50bb-4422-9310-1e79568899db
+              control-id: cp-4.1
+              description: >-
+                Jira partially meets this control by providing a platform for coordination of the contingency plan development.
+              props:
+                - name: implemented
+                  ns: https://lula.dev/ns/oscal
+                  value: partially
+            - uuid: bccfac9c-2afe-4252-afb7-4819936b3bbe
+              control-id: cm-3.6
+              description: >-
+                Jira utilizes the underlying istio for FIPs encryption in transit. Jira stores data in an encrypted PostgreSQL database.
+            - uuid: 7bf3f55a-5b2c-45f3-ba5e-240c5d4850c6
+              control-id: ir-3
+              description: >-
+                Jira partially meets this control by providing a platform for coordination of the incident response process.
+              props:
+                - name: implemented
+                  ns: https://lula.dev/ns/oscal
+                  value: partially
+            - uuid: a81493bf-22da-45ea-bf79-e57bf1aeb2ce
+              control-id: ir-3.2
+              description: >-
+                Jira partially meets this control by providing a platform for coordination of the incident response process.
+              props:
+                - name: implemented
+                  ns: https://lula.dev/ns/oscal
+                  value: partially
+            - uuid: a662f681-5772-44b3-8e64-b77b4e3406a4
+              control-id: ir-5
+              description: >-
+                Jira partially meets this control by providing a platform for tracking incidents.
+              props:
+                - name: implemented
+                  ns: https://lula.dev/ns/oscal
+                  value: partially
+  back-matter:
+    resources:
+      - uuid: 1f88a599-61ea-4667-a453-8374d03cdeb0
+        title: UDS Capability Jira
+        rlinks:
+          - href: https://github.com/defenseunicorns/uds-capability-jira
