@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.3](https://github.com/defenseunicorns/uds-capability-jira/compare/v0.1.2...v0.1.3) (2023-12-06)
+
+
+### Miscellaneous
+
+* Upgrade DUBBD to 0.14.0 ([359a001](https://github.com/defenseunicorns/uds-capability-jira/commit/359a001eb3d771d5b479b59e7b1d8126e71c6366))
+* Upgrade Jira to 1.16.6-bb.3 ([#17](https://github.com/defenseunicorns/uds-capability-jira/issues/17)) ([359a001](https://github.com/defenseunicorns/uds-capability-jira/commit/359a001eb3d771d5b479b59e7b1d8126e71c6366))
+* Upgrade Zarf to 0.31.3 ([359a001](https://github.com/defenseunicorns/uds-capability-jira/commit/359a001eb3d771d5b479b59e7b1d8126e71c6366))
+
 ## [0.1.2](https://github.com/defenseunicorns/uds-capability-jira/compare/v0.1.1...v0.1.2) (2023-11-30)
 
 
