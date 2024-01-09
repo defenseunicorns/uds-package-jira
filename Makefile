@@ -164,6 +164,7 @@ build/dubbd-k3d: | build/zarf ## Download dubbd k3d oci package
 build/test-pkg-deps: | build/zarf ## Build package dependencies for testing
 	cd build && ./zarf package create ../utils/pkg-deps/namespaces/ --skip-sbom --confirm
 	cd build && ./zarf package create ../utils/pkg-deps/jira/postgres/ --skip-sbom --confirm
+	cd build && ./zarf package create ../utils/pkg-deps/jira/additional-policy-exceptions/ --skip-sbom --confirm
 
 build/uds-capability-jira: | build ## Build the jira capability
 	cd build && ./zarf package create ../ --skip-sbom --confirm
@@ -182,6 +183,7 @@ deploy/dubbd-k3d: | build/zarf ## Deploy the k3d flavor of DUBBD
 
 deploy/test-pkg-deps: | build/zarf ## Deploy the package dependencies needed for testing the jira capability
 	cd build && ./zarf package deploy zarf-package-jira-namespaces-* --confirm
+	cd build && ./zarf package deploy zarf-package-jira-additional* --confirm
 	cd build && ./zarf package deploy zarf-package-jira-postgres* --confirm
 
 deploy/uds-capability-jira: ## Deploy the jira capability
