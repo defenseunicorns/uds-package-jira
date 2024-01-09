@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.5](https://github.com/defenseunicorns/uds-capability-jira/compare/v0.1.4...v0.1.5) (2024-01-09)
+
+
+### Bug Fixes
+
+* non-root-user file ref ([5ee19ba](https://github.com/defenseunicorns/uds-capability-jira/commit/5ee19ba2e78712809590549ee5448830544eb7d0))
+
+
+### Miscellaneous
+
+* Decouple non root policy exception from dev db ([9d0c032](https://github.com/defenseunicorns/uds-capability-jira/commit/9d0c032f13198a39f669cbe8e5ecf7594a578f49))
+
 ## [0.1.4](https://github.com/defenseunicorns/uds-capability-jira/compare/v0.1.3...v0.1.4) (2024-01-09)
 
 
