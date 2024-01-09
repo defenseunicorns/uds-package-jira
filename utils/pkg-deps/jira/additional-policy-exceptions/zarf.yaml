@@ -13,4 +13,4 @@ components:
     manifests:
       - name: kyverno-exceptions
         files:
-          - policy-exceptions/non-root-user.yaml
+          - non-root-user.yaml
