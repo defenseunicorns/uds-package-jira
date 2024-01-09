@@ -58,7 +58,7 @@ metadata:
   version: 0.0.1
   architecture: amd64
 
-zarf-packages:
+packages:
   # Jira
   - name: jira
     repository: ghcr.io/defenseunicorns/uds-capability/jira

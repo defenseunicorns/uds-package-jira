@@ -14,6 +14,7 @@ components:
       - name: kyverno-exceptions
         files:
           - policy-exceptions/externalName.yaml
+          - policy-exceptions/non-root-user.yaml
           - policy-exceptions/registry.yaml
   - name: db-istio-exceptions
     required: true
