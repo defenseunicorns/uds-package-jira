@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4](https://github.com/defenseunicorns/uds-capability-jira/compare/v0.1.3...v0.1.4) (2024-01-09)
+
+
+### Features
+
+* initial oscal component definition ([#16](https://github.com/defenseunicorns/uds-capability-jira/issues/16)) ([06575d7](https://github.com/defenseunicorns/uds-capability-jira/commit/06575d7dea0c373a70adf2f875bdad1feb9677f4))
+
+
+### Miscellaneous
+
+* Update DUBBD to 0.16.0 ([b62e879](https://github.com/defenseunicorns/uds-capability-jira/commit/b62e87941a1fb74d88fc07f91e120bac5ddf962a))
+* Update Jira to 1.7.0-bb.0 ([#21](https://github.com/defenseunicorns/uds-capability-jira/issues/21)) ([b62e879](https://github.com/defenseunicorns/uds-capability-jira/commit/b62e87941a1fb74d88fc07f91e120bac5ddf962a))
+* Update Zarf to 0.31.4 ([b62e879](https://github.com/defenseunicorns/uds-capability-jira/commit/b62e87941a1fb74d88fc07f91e120bac5ddf962a))
+
 ## [0.1.3](https://github.com/defenseunicorns/uds-capability-jira/compare/v0.1.2...v0.1.3) (2023-12-06)
 
 
