@@ -1,0 +1,3 @@
+variables:
+  jira:
+    jira_db_endpoint: "postgresql.jira-db.svc.cluster.local"

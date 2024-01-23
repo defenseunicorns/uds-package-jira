@@ -2,9 +2,9 @@
 kind: ZarfPackageConfig
 metadata:
   name: jira
-  description: "UDS jira capability deployed via flux"
+  description: "UDS Jira package"
   # x-release-please-start-version
-  version: "0.1.5"
+  version: "1.17.0-uds.0"
   # x-release-please-end
   architecture: amd64
 
@@ -17,41 +17,55 @@ variables:
     default: "jiradb"
   - name: JIRA_DB_USERNAME
     default: "jira"
+  - name: JIRA_DB_ENDPOINT
+    default: "postgres"
   - name: DOMAIN
-    default: "bigbang.dev"
+    default: "uds.dev"
 
 components:
-  - name: istio-version
-    required: true
-    actions:
-      onDeploy:
-        before:
-          - cmd: kubectl get deployment -n monitoring monitoring-monitoring-kube-operator -o=jsonpath='{.spec.template.metadata.annotations.bigbang\.dev/istioVersion}'
-            setVariable: ISTIO_VERSION
   - name: jira
     required: true
-    description: "Deploy jira via flux"
+    description: "Deploy jira"
+    only:
+      flavor: registry1
     charts:
-    # renovate: datasource=helm
-      - name: flux-app
-        url: https://defenseunicorns.github.io/uds-support-charts/
-        version: 1.0.7
-        namespace: jira
-        valuesFiles:
-          - jira-flux-values.yaml
-    repos:
-      - https://repo1.dso.mil/big-bang/product/community/jira.git@1.17.0-bb.0
+    - name: jira
+      namespace: jira
+      url: https://repo1.dso.mil/big-bang/product/community/jira.git
+      gitPath: chart
+      version: "1.17.0-bb.0"
+      valuesFiles:
+        - values/jira-values.yaml
+    - name: uds-jira-config
+      namespace: jira
+      version: 0.1.0
+      localPath: chart
     images:
       - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node-lts:9.12.0
       - registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.9
-    actions:
-      onDeploy:
-        after:
-          - wait:
-              cluster:
-                kind: helmRelease
-                name: jira
-                condition: Ready
-                namespace: bigbang
-            maxTotalSeconds: 900
-            description: Jira HelmRelease to be Ready
+
+  # Note: upstream-ce flavor is experimental
+  - name: jira
+    required: true
+    description: "Deploy jira"
+    only:
+      flavor: upstream-ce
+    charts:
+    - name: jira
+      namespace: jira
+      url: https://atlassian.github.io/data-center-helm-charts/
+      version: 1.17.0
+      repoName: jira
+      releaseName: jira
+      valuesFiles:
+        - values/jira-values.yaml
+        - values/upstream.yaml
+        - values/ce.yaml
+    - name: uds-jira-config
+      namespace: jira
+      version: 0.1.0
+      localPath: chart
+    images:
+      - alpine:latest
+      - atlassian/jira-software:9.12.0
+      - debian:stable-slim

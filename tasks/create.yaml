@@ -1,0 +1,24 @@
+variables:
+  - name: FLAVOR
+    default: "registry1"
+
+tasks:
+  - name: jira-test-bundle
+    description: Create the UDS bundle with Jira and its dependencies
+    actions:
+      - task: jira-package
+      - task: dependency-package
+      - cmd: uds create bundle --confirm --no-progress --architecture=${UDS_ARCH}
+
+  - name: jira-package
+    description: Create the UDS Jira Zarf Package
+    actions:
+      - cmd: zarf package create --confirm --no-progress --architecture=${ZARF_ARCHITECTURE} --flavor ${FLAVOR}
+
+  - name: dependency-package
+    description: Create the Dependency Zarf Package(s)
+    actions:
+      - cmd: |
+          for dependency in postgres; do
+            zarf package create test/${dependency}/ --confirm --no-progress --architecture=${UDS_ARCH} --skip-sbom
+          done

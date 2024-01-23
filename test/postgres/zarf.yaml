@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: jira-postgres
+  # x-release-please-start-version
+  version: "12.6.6-0"
+  # x-release-please-end
+  architecture: amd64
+
+components:
+  - name: postgres-istio-exceptions
+    required: true
+    manifests:
+      - name: istio-exceptions
+        files:
+          - "peerauth.yaml"
+  - name: postgres
+    required: true
+    charts:
+      - name: postgresql
+        version: 12.6.6
+        namespace: jira-db
+        url: https://charts.bitnami.com/bitnami
+        valuesFiles:
+          - "values.yaml"
+    images:
+      - docker.io/bitnami/postgresql:15.3.0-debian-11-r24
+    actions:
+      onDeploy:
+        after:
+          - wait:
+              cluster:
+                kind: Pod
+                name: postgresql-0
+                condition: Ready
+                namespace: jira-db
+  - name: postgres-secret
+    required: true
+    actions:
+      onDeploy:
+        before:
+          - cmd: kubectl get secret -n jira-db postgresql --template={{.data.password}} | base64 -d
+            mute: true
+            setVariables:
+              - name: POSTGRES_DB_PASSWORD
+                sensitive: true
+  - name: jira-postgres-credentials-secret
+    required: true
+    manifests:
+      - name: jira-postgres
+        namespace: jira
+        files:
+          - secret.yaml
+  - name: postgres-service
+    required: true
+    manifests:
+      - name: service for jira
+        files:
+          - service.yaml

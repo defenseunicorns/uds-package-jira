@@ -1,0 +1,19 @@
+tasks:
+  - name: health-check
+    actions:
+      - description: Jira StatefulSet Health Check
+        wait:
+          cluster:
+            kind: StatefulSet
+            # TODO Confirm this
+            name: jira-0
+            namespace: jira
+
+  - name: ingress
+    actions:
+      - description: Jira UI Health Check
+        wait:
+          network:
+            protocol: https
+            address: jira.uds.dev
+            code: 200

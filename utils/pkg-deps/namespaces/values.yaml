@@ -1,7 +1,0 @@
-namespaces:
-  - name: jira
-    labels:
-      istio-injection: enabled
-  - name: jira-db
-    labels:
-      istio-injection: enabled

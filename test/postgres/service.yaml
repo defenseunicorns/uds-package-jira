@@ -1,0 +1,8 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: jira-postgres
+#   namespace: jira
+# spec:
+#   type: ExternalName
+#   externalName: postgresql.jira-db.svc.cluster.local

@@ -1,7 +1,7 @@
 component-definition:
   uuid: 2ddea5f5-128a-4b39-a29e-07c2e9e5ecd6
   metadata:
-    title: UDS Capability Jira
+    title: UDS Package Jira
     last-modified: "2023-11-30T14:11:40Z"
     version: "20231130"
     oscal-version: 1.1.1
@@ -95,6 +95,6 @@ component-definition:
   back-matter:
     resources:
       - uuid: 1f88a599-61ea-4667-a453-8374d03cdeb0
-        title: UDS Capability Jira
+        title: UDS Package Jira
         rlinks:
-          - href: https://github.com/defenseunicorns/uds-capability-jira
+          - href: https://github.com/defenseunicorns/uds-package-jira
