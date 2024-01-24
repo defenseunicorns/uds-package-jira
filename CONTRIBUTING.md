@@ -1,8 +1,8 @@
-# Welcome to the Jira UDS Capability
+# Welcome to the Jira UDS Package
 
-Thank you for your interest in this Defense Unicorns UDS Capability!
+Thank you for your interest in this Defense Unicorns UDS Package!
 
-This document describes the process and requirements for contributing to this UDS Capability.
+This document describes the process and requirements for contributing to this UDS Package.
 
 ## Developer Experience
 

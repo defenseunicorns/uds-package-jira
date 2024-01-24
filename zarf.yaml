@@ -9,10 +9,6 @@ metadata:
   architecture: amd64
 
 variables:
-  - name: JIRA_DEPENDS_ON
-    default: "[]"
-  - name: JIRA_CREATE_NAMESPACE
-    default: "false"
   - name: JIRA_DB_NAME
     default: "jiradb"
   - name: JIRA_DB_USERNAME

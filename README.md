@@ -1,4 +1,4 @@
-# uds-capability-jira
+# uds-package-jira
 Bigbang [Jira](https://repo1.dso.mil/big-bang/product/community/jira) deployed via flux by zarf
 
 ## Deployment Prerequisites
@@ -61,6 +61,6 @@ metadata:
 packages:
   # Jira
   - name: jira
-    repository: ghcr.io/defenseunicorns/uds-capability/jira
+    repository: ghcr.io/defenseunicorns/uds/jira
     ref: x.x.x
 ```
