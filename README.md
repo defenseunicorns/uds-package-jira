@@ -1,9 +1,11 @@
 # uds-package-jira
+
 Bigbang [Jira](https://repo1.dso.mil/big-bang/product/community/jira) deployed via flux by zarf
 
 ## Deployment Prerequisites
 
 ### Resources
+
 - Minimum compute requirements for single node deployment are at LEAST 64 GB RAM and 32 virtual CPU threads (aws `m6i.8xlarge` instance type should do)
 - k3d installed on machine
 
@@ -48,6 +50,7 @@ make all
 ```
 
 ## Declare This Package In Your UDS Bundle
+
 Below is an example of how to use this projects zarf package in your UDS Bundle
 
 ```yaml
