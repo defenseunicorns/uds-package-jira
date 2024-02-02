@@ -40,12 +40,12 @@ components:
       - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node-lts:9.12.0
       - registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.9
 
-  # Note: upstream-ce flavor is experimental
+  # Note: upstream flavor is experimental
   - name: jira
     required: true
     description: "Deploy jira"
     only:
-      flavor: upstream-ce
+      flavor: upstream
     charts:
     - name: jira
       namespace: jira

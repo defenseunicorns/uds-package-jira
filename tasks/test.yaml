@@ -5,8 +5,7 @@ tasks:
         wait:
           cluster:
             kind: StatefulSet
-            # TODO Confirm this
-            name: jira-0
+            name: jira
             namespace: jira
 
   - name: ingress
