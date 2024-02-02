@@ -10,7 +10,7 @@ packages:
   - name: jira-postgres
     path: ../
     ref: 12.6.6-0
-  
+
   - name: jira
     path: ../
     # x-release-please-start-version

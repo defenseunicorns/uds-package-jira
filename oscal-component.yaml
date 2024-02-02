@@ -31,15 +31,15 @@ component-definition:
             - uuid: f64a213c-0cb6-4433-b61e-e966c457837f
               control-id: au-2
               description: >-
-                Jira creates event logs.  
+                Jira creates event logs.
             - uuid: e0e8da6e-efdb-4fbe-8b54-7ef5704332ec
               control-id: au-3
               description: >-
-                Jira creates event logs.  
+                Jira creates event logs.
             - uuid: 5810008a-8754-4fab-87ac-a42c689e85fd
               control-id: au-3.1
               description: >-
-                Jira creates event logs.  
+                Jira creates event logs.
             - uuid: 4966cf6e-d042-4e6c-b481-2582e859e265
               control-id: au-8
               description: >-
@@ -47,7 +47,7 @@ component-definition:
             - uuid: 5049a88c-e8b9-41de-9416-a3511d853992
               control-id: cp-2
               description: >-
-                Jira partially addreses this control by aiding in the coordination of the contingency plan, tracking updates, and execution. Also aides in incorporating lessons learned through project management.  
+                Jira partially addreses this control by aiding in the coordination of the contingency plan, tracking updates, and execution. Also aides in incorporating lessons learned through project management.
             - uuid: 47f77cba-6619-446d-bb42-1acaeff49913
               control-id: cp-2.1
               description: >-
