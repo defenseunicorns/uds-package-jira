@@ -11,7 +11,6 @@ spec:
           app.kubernetes.io/name: jira
         gateway: tenant
         host: jira
-        # TODO: change to Jira's port number
         port: 80
         targetPort: 8080
     allow:
