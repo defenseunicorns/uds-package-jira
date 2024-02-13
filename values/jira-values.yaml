@@ -27,6 +27,25 @@ jira:
         secretKeyRef:
           name: "jira-postgres"
           key: "password"
+  securityContext:
+    # -- The GID used by the Jira docker image
+    # GID will default to 2001 if not supplied and securityContextEnabled is set to true.
+    # This is intended to ensure that the shared-home volume is group-writeable by the GID used by the Jira container.
+    # However, this doesn't appear to work for NFS volumes due to a K8s bug: https://github.com/kubernetes/examples/issues/260
+    fsGroup: 2001
+    runAsNonRoot: true
+    runAsUser: 2001
+    runAsGroup: 2001
+  # -- Standard K8s field that holds security configurations that will be applied to a container.
+  # https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+  containerSecurityContext:
+    runAsNonRoot: true
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+      - ALL
+    runAsUser: 2001
+    runAsGroup: 2001
 volumes:
   localHome:
     persistentVolumeClaim:
@@ -38,15 +57,3 @@ volumes:
   sharedHome:
     nfsPermissionFixer:
       enabled: false
-# When istio injected, add an annotation with the istio version to the manager pods only
-# podAnnotations:
-#   bigbang.dev/istioVersion: ###ZARF_VAR_ISTIO_VERSION###
-# networkPolicies:
-#   enabled: true
-#   ingressLabels:
-#     app: tenant-ingressgateway
-#   controlPlaneCidr: 0.0.0.0/0
-
-commonLabels:
-  uds/user: "1001"
-  uds/group: "0"

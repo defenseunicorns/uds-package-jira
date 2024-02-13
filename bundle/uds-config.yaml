@@ -1,3 +1,6 @@
 variables:
   jira:
-    jira_db_endpoint: "postgresql.jira-db.svc.cluster.local"
+    jira_db_endpoint: "postgresql.dev-postgres.svc.cluster.local"
+  dev-postgres:
+    db_username: "jira"
+    db_name: "jiradb"
