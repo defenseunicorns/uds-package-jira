@@ -14,5 +14,5 @@ tasks:
         wait:
           network:
             protocol: https
-            address: jira.uds.dev
+            address: jira.uds.dev/secure/SetupApplicationProperties!default.jspa
             code: 200
