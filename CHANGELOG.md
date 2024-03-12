@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.17.2-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.17.0-uds.1...v1.17.0-uds.2) (2024-03-12)
+
+
+### Features
+
+* add sso config ([#6](https://github.com/defenseunicorns/uds-package-jira/issues/6)) ([4670a73](https://github.com/defenseunicorns/uds-package-jira/commit/4670a738924682cd290ea331ab4bbe1b2b723cfb))
+* use uds package dependencies ([#3](https://github.com/defenseunicorns/uds-package-jira/issues/3)) ([f84e098](https://github.com/defenseunicorns/uds-package-jira/commit/f84e0980b3173443f98c02551e69f6d1cb83d2ef))
+
 ## [1.17.0-uds.1](https://github.com/defenseunicorns/uds-package-jira/compare/v1.17.0-uds.0...v1.17.0-uds.1) (2024-02-05)
 
 
