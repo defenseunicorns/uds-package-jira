@@ -67,3 +67,10 @@ packages:
     repository: ghcr.io/defenseunicorns/uds/jira
     ref: x.x.x
 ```
+
+
+### Add OIDC
+
+The following is a guide for connecting jira to Keycloak for OpenID Connect:
+
+- [OpenID Connect for Atlassian Data Center applications](https://confluence.atlassian.com/enterprise/openid-connect-for-atlassian-data-center-applications-987142159.html)

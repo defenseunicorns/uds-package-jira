@@ -4,6 +4,13 @@ metadata:
   name: jira
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.sso }}
+  sso:
+    - name: Jira SSO
+      clientId: uds-core-jira
+      redirectUris:
+        - "https://jira.{{ .Values.domain }}/plugins/servlet/oidc/callback"
+  {{- end }}
   network:
     expose:
       - service: jira
