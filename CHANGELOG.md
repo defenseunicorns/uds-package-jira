@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.17.0-uds.2](https://github.com/defenseunicorns/uds-package-jira/compare/v1.17.0-uds.1...v1.17.0-uds.2) (2024-03-12)
+## [1.17.2-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.17.0-uds.1...v1.17.0-uds.2) (2024-03-12)
 
 
 ### Features
