@@ -37,7 +37,7 @@ components:
       valuesFiles:
         - values/jira-values.yaml
     images:
-      - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node-lts:9.12.4
+      - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.15.1
       - registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.9
 
   # Note: upstream flavor is experimental
