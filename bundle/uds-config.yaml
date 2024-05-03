@@ -1,6 +1,18 @@
 variables:
   jira:
-    jira_db_endpoint: "postgresql.dev-postgres.svc.cluster.local"
-  dev-postgres:
-    db_username: "jira"
-    db_name: "jiradb"
+    jira_db_endpoint: "pg-cluster.postgres.svc.cluster.local"
+    JIRA_DB_USERNAME: "jira.jira"
+  postgres-operator:
+    postgresql:
+      enabled: true  # Set to false to not create the PostgreSQL resource
+      teamId: "uds"
+      volume:
+        size: "10Gi"
+      numberOfInstances: 2
+      users:
+        jira.jira: []  # database owner
+      databases:
+        jiradb: jira.jira
+      version: "13"
+      ingress:
+        remoteGenerated: Anywhere
