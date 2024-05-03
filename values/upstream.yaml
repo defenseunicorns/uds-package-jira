@@ -1,3 +1,0 @@
-# image:
-#   repository: jira
-#   tag: 9.12.2-{{ .Values.edition }}

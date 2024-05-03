@@ -3,10 +3,10 @@ kind: ZarfPackageConfig
 metadata:
   name: dev-secrets
   version: "0.1.0"
-  architecture: amd64
+
 
 components:
-  - name: postgres-secret
+  - name: postgres-password
     required: true
     actions:
       onDeploy:
@@ -14,12 +14,12 @@ components:
           - cmd: kubectl get secret -n dev-postgres postgresql --template={{.data.password}} | base64 -d
             mute: true
             setVariables:
-              - name: DB_PASSWORD
+              - name: POSTGRES_DB_PASSWORD
                 sensitive: true
-  - name: jira-postgres-credentials-secret
+  - name: jira-postgres
     required: true
     manifests:
       - name: jira-postgres
         namespace: jira
         files:
-          - secret.yaml
+          - postgres-secret.yaml
