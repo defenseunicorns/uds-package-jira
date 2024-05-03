@@ -25,17 +25,17 @@ components:
     only:
       flavor: registry1
     charts:
-    - name: uds-jira-config
-      namespace: jira
-      version: 0.1.0
-      localPath: chart
-    - name: jira
-      namespace: jira
-      url: https://repo1.dso.mil/big-bang/product/community/jira.git
-      gitPath: chart
-      version: "1.19.0-bb.2"
-      valuesFiles:
-        - values/jira-values.yaml
+      - name: uds-jira-config
+        namespace: jira
+        version: 0.1.0
+        localPath: chart
+      - name: jira
+        namespace: jira
+        url: https://repo1.dso.mil/big-bang/product/community/jira.git
+        gitPath: chart
+        version: "1.19.0-bb.2"
+        valuesFiles:
+          - values/jira-values.yaml
     images:
       - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.15.1
       - registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.9

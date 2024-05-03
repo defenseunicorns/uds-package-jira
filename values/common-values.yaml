@@ -43,7 +43,7 @@ jira:
     allowPrivilegeEscalation: false
     capabilities:
       drop:
-      - ALL
+        - ALL
     runAsUser: 2001
     runAsGroup: 2001
 volumes:
