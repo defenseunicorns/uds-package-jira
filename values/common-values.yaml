@@ -1,6 +1,3 @@
-image:
-  repository: registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node
-  tag: "9.15.1"
 ingress:
   nginx: false
 proxyName: jira.###ZARF_VAR_DOMAIN###
@@ -46,7 +43,7 @@ jira:
     allowPrivilegeEscalation: false
     capabilities:
       drop:
-      - ALL
+        - ALL
     runAsUser: 2001
     runAsGroup: 2001
 volumes:
@@ -56,7 +53,7 @@ volumes:
       # storageClassName: your-storage-class-here
       resources:
         requests:
-          storage: 1Gi
+          storage: 10Gi
   sharedHome:
     nfsPermissionFixer:
       enabled: false
