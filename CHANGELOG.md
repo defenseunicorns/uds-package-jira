@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.19.0-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.17.2-uds.1...v1.19.0-uds.0) (2024-05-08)
+
+
+### Features
+
+* update jira and chart, and cleanup repo ([711d62d](https://github.com/defenseunicorns/uds-package-jira/commit/711d62d57bd768d2cc9cdf99ffc1ed8ba1ffd7c3))
+
+
+### Miscellaneous
+
+* release 1.19.0-uds.0 ([2faec99](https://github.com/defenseunicorns/uds-package-jira/commit/2faec99bb3eadbb88436842c0f0e8d6c921fcb1b))
+
 ## [1.17.2-uds.1](https://github.com/defenseunicorns/uds-package-jira/compare/v1.17.2-uds.0...v1.17.2-uds.1) (2024-04-30)
 
 

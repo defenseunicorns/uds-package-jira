@@ -4,7 +4,7 @@ metadata:
   name: jira
   description: "UDS Jira package"
   # x-release-please-start-version
-  version: "1.17.2-uds.1"
+  version: "1.19.0-uds.0"
   # x-release-please-end
   architecture: amd64
 
