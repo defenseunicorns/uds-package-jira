@@ -10,19 +10,19 @@
   "schedule": ["after 7am and before 9am every weekday"],
   "packageRules": [
     {
-      "groupName": "Gitlab Support Dependencies",
+      "groupName": "Jira Support Dependencies",
       "labels": ["support-deps"],
       "commitMessageTopic": "support-deps",
       "packagePatterns": ["*"]
     },
     {
-      "groupName": "Gitlab Package Dependencies",
+      "groupName": "Jira Package Dependencies",
       "labels": ["package-deps"],
       "commitMessageTopic": "package-deps",
       "matchDatasources": ["docker", "helm", "git-tags"]
     },
     {
-      "matchPackageNames": ["https://repo1.dso.mil/big-bang/product/packages/gitlab.git"],
+      "matchPackageNames": ["https://repo1.dso.mil/big-bang/product/community/jira.git"],
       "allowedVersions": "/.+-bb.+/"
     }
   ]
