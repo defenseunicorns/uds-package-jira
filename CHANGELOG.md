@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.19.0-uds.1](https://github.com/defenseunicorns/uds-package-jira/compare/v1.19.0-uds.0...v1.19.0-uds.1) (2024-05-16)
+
+
+### Bug Fixes
+
+* copypasta renovate ([9022c3e](https://github.com/defenseunicorns/uds-package-jira/commit/9022c3e7a4b37a1bce688ded0f422f73f27e9e5a))
+
+
+### Miscellaneous
+
+* **deps:** update jira package dependencies ([2128442](https://github.com/defenseunicorns/uds-package-jira/commit/2128442d6fa56dcec2a3d0cb854326342fd83694))
+* **deps:** update jira support dependencies ([7b8d0e9](https://github.com/defenseunicorns/uds-package-jira/commit/7b8d0e9959cd9f4293149883ef62cd25ed6f15fb))
+* release 1.19.0-uds.1 ([0e1f1b8](https://github.com/defenseunicorns/uds-package-jira/commit/0e1f1b81a28ce17306c0c8ac957fdb88b86af3b4))
+
 ## [1.19.0-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.17.2-uds.1...v1.19.0-uds.0) (2024-05-08)
 
 
