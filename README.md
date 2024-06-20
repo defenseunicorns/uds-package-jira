@@ -1,76 +1,51 @@
-# uds-package-jira
+# 🚚 UDS Jira Zarf Package
 
-Bigbang [Jira](https://repo1.dso.mil/big-bang/product/community/jira) deployed via flux by zarf
+[![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-jira)](https://github.com/defenseunicorns/uds-package-jira/releases)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-jira/tag-and-release.yaml)](https://github.com/defenseunicorns/uds-package-jira/actions/workflows/tag-and-release.yaml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-jira/badge)](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-jira)
 
-## Deployment Prerequisites
+This package is designed to be deployed on [UDS Core](https://github.com/defenseunicorns/uds-core), and is based on the upstream [Jira](https://github.com/jfrog/charts/tree/master/stable/jira) chart.
 
-### Resources
+## Pre-requisites
 
-- Minimum compute requirements for single node deployment are at LEAST 64 GB RAM and 32 virtual CPU threads (aws `m6i.8xlarge` instance type should do)
-- k3d installed on machine
+The Jira Package expects to be deployed on top of [UDS Core](https://github.com/defenseunicorns/uds-core) with the dependencies listed below being configured prior to deployment.
 
-#### General
+> [!IMPORTANT]
+> **NOTE**: Many features are locked behind a license. Some notable features include:
+> - In place upgrades
+> - Single sign-on capabilities
 
-- Create `jira` namespace
-- Label `jira` namespace with `istio-injection: enabled`
+Jira is configured by default to assume the internal dependencies that are used for testing (see postgres in the [bundle](bundle/uds-bundle.yaml)).
 
 #### Database
 
-- A Postgres database is running on port `5432` and accessible to the cluster
-- This database can be logged into via the user configured with the zarf var `JIRA_DB_USERNAME`. Default is `jira`
-- This database instance has a psql database configured with the zarf var `JIRA_DB_NAME`. Default is `jiradb`
+- A Postgres database is running on port `5432` and accessible to the cluster via the `JIRA_DB_ENDPOINT` Zarf var.
+- This database can be logged into via the username configured with the Zarf var `JIRA_DB_USERNAME`. Default is `jira.jira`
+- This database instance has a psql database created matching what is defined in the Zarf var `JIRA_DB_NAME`. Default is `jiradb`
 - The user has read/write access to the above mentioned database
 - Create `jira-postgres` service in `jira` namespace that points to the psql database
 - Create `jira-postgres` secret in `jira` namespace with the key `password` that contains the password to the user for the psql database
 
-## Deploy
+## Flavors
 
-### Use zarf to login to the needed registries i.e. registry1.dso.mil
+| Flavor | Description | Example Creation |
+| ------ | ----------- | ---------------- |
+| registry1 | Uses images from registry1.dso.mil within the package. | `zarf package create . -f registry1` |
 
-```bash
-# Download Zarf
-make build/zarf
+> [!IMPORTANT]
+> **NOTE:** To create the registry1 flavor you will need to be logged into Iron Bank - you can find instructions on how to do this in the [Big Bang Zarf Tutorial](https://docs.zarf.dev/tutorials/6-big-bang/#setup).
 
-# Login to the registry
-set +o history
+## Releases
 
-# registry1.dso.mil (To access registry1 images needed during build time)
-export REGISTRY1_USERNAME="YOUR-USERNAME-HERE"
-export REGISTRY1_TOKEN="YOUR-TOKEN-HERE"
-echo $REGISTRY1_TOKEN | build/zarf tools registry login registry1.dso.mil --username $REGISTRY1_USERNAME --password-stdin
+The released packages can be found in [ghcr](https://github.com/defenseunicorns/uds-package-jira/pkgs/container/packages%2Fuds%2Fjira).
 
-set -o history
-```
+## UDS Tasks (for local dev and CI)
 
-### Build and Deploy Everything via Makefile and local package
+*For local dev, this requires you install [uds-cli](https://github.com/defenseunicorns/uds-cli?tab=readme-ov-file#install)
 
-```bash
-# This will run make build/all, make cluster/reset, and make deploy/all. Follow the breadcrumbs in the Makefile to see what and how its doing it.
-make all
-```
+> [!TIP]
+> To get a list of tasks to run you can use `uds run --list`!
 
-## Declare This Package In Your UDS Bundle
+## Contributing
 
-Below is an example of how to use this projects zarf package in your UDS Bundle
-
-```yaml
-kind: UDSBundle
-metadata:
-  name: example-bundle
-  description: An Example UDS Bundle
-  version: 0.0.1
-  architecture: amd64
-
-packages:
-  # Jira
-  - name: jira
-    repository: ghcr.io/defenseunicorns/uds/jira
-    ref: x.x.x
-```
-
-
-### Add OIDC
-
-The following is a guide for connecting jira to Keycloak for OpenID Connect:
-
-- [OpenID Connect for Atlassian Data Center applications](https://confluence.atlassian.com/enterprise/openid-connect-for-atlassian-data-center-applications-987142159.html)
+Please see the [CONTRIBUTING.md](./CONTRIBUTING.md)
