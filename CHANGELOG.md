@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.20.0-uds.1](https://github.com/defenseunicorns/uds-package-jira/compare/v1.20.0-uds.0...v1.20.0-uds.1) (2024-06-27)
+
+
+### Features
+
+* update uds-common tasks and added a local-all task ([#22](https://github.com/defenseunicorns/uds-package-jira/issues/22)) ([c883f0d](https://github.com/defenseunicorns/uds-package-jira/commit/c883f0d36064f49b1e39ea069da438cf7112bed8))
+
+
+### Miscellaneous
+
+* release 1.20.0-uds.1 ([7be8b78](https://github.com/defenseunicorns/uds-package-jira/commit/7be8b78db33ffb27712522599f5af957f810f6d6))
+
 ## [1.20.0-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.19.0-uds.1...v1.20.0-uds.0) (2024-06-13)
 
 
