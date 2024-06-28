@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.20.0-uds.2](https://github.com/defenseunicorns/uds-package-jira/compare/v1.20.0-uds.1...v1.20.0-uds.2) (2024-06-28)
+
+
+### Features
+
+* add common file structure ([c569a7c](https://github.com/defenseunicorns/uds-package-jira/commit/c569a7c604b768004c27cfde2f04b92fca07f586))
+* add common file structure ([4e3e213](https://github.com/defenseunicorns/uds-package-jira/commit/4e3e213d6cb579c705be91227f7b86cfbc093a2c))
+* add common file structure ([ef41fc5](https://github.com/defenseunicorns/uds-package-jira/commit/ef41fc562b832ca6305c9b28521c2fe63566fbd8))
+
 ## [1.20.0-uds.1](https://github.com/defenseunicorns/uds-package-jira/compare/v1.20.0-uds.0...v1.20.0-uds.1) (2024-06-27)
 
 
