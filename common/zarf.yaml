@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: jira-common
+  description: "UDS Jira Common Package"
+
+components:
+  - name: jira
+    required: true
+    charts:
+      - name: uds-jira-config
+        namespace: jira
+        version: 0.1.0
+        localPath: ../chart
+      # renovate: datasource=helm
+      - name: jira
+        namespace: jira
+        url: https://repo1.dso.mil/big-bang/product/community/jira.git
+        version: "1.20.0-bb.0"
+        gitPath: chart
+        repoName: jira
+        releaseName: jira
+        valuesFiles:
+          - ../values/common-values.yaml
