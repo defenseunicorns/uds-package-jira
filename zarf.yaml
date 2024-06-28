@@ -6,8 +6,6 @@ metadata:
   # x-release-please-start-version
   version: "1.20.0-uds.1"
   # x-release-please-end
-  architecture: amd64
-
 variables:
   - name: JIRA_DB_NAME
     default: "jiradb"
@@ -22,20 +20,15 @@ components:
   - name: jira
     required: true
     description: "Deploy jira"
+    import:
+      path: common
     only:
       flavor: registry1
+      cluster:
+        architecture: amd64
     charts:
-      - name: uds-jira-config
-        namespace: jira
-        version: 0.1.0
-        localPath: chart
       - name: jira
-        namespace: jira
-        url: https://repo1.dso.mil/big-bang/product/community/jira.git
-        gitPath: chart
-        version: "1.20.0-bb.0"
         valuesFiles:
-          - values/common-values.yaml
           - values/registry1-values.yaml
     images:
       - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.16.1
