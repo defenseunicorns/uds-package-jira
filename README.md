@@ -43,4 +43,4 @@ The released packages can be found in [ghcr](https://github.com/defenseunicorns/
 
 ## Contributing
 
-Please see the [CONTRIBUTING.md](./CONTRIBUTING.md).
+Please see the [CONTRIBUTING.md](./CONTRIBUTING.md)
