@@ -22,3 +22,4 @@ components:
         releaseName: jira
         valuesFiles:
           - ../values/common-values.yaml
+
