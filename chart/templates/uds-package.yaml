@@ -6,8 +6,8 @@ metadata:
 spec:
   {{- if .Values.sso }}
   sso:
-    - name: Jira SSO
-      clientId: uds-core-jira
+    - name: Jira Login
+      clientId: uds-package-jira 
       redirectUris:
         - "https://jira.{{ .Values.domain }}/plugins/servlet/oidc/callback"
   {{- end }}
