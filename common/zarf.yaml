@@ -16,7 +16,7 @@ components:
       - name: jira
         namespace: jira
         url: https://repo1.dso.mil/big-bang/product/community/jira.git
-        version: "1.20.0-bb.0"
+        version: "1.20.0-bb.3"
         gitPath: chart
         repoName: jira
         releaseName: jira
