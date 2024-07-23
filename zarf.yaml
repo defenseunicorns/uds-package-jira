@@ -23,6 +23,22 @@ components:
     import:
       path: common
     only:
+      flavor: upstream
+      cluster:
+        architecture: amd64
+    charts:
+      - name: jira
+        valuesFiles:
+          - values/upstream-values.yaml
+    images:
+      - atlassian/jira-software:9.17.1
+
+  - name: jira
+    required: true
+    description: "Deploy jira"
+    import:
+      path: common
+    only:
       flavor: registry1
       cluster:
         architecture: amd64

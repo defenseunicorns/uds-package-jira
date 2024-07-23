@@ -15,10 +15,20 @@ components:
       # renovate: datasource=helm
       - name: jira
         namespace: jira
-        url: https://repo1.dso.mil/big-bang/product/community/jira.git
-        version: "1.20.0-bb.3"
-        gitPath: chart
+        url: https://atlassian.github.io/data-center-helm-charts
+        version: 1.20.1
         repoName: jira
         releaseName: jira
         valuesFiles:
           - ../values/common-values.yaml
+    actions:
+      onDeploy:
+        after:
+          - description: Validate Jira Package
+            maxTotalSeconds: 300
+            wait:
+              cluster:
+                kind: Packages
+                name: jira
+                namespace: jira
+                condition: "'{.status.phase}'=Ready"

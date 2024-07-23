@@ -1,2 +1,2 @@
 domain: "###ZARF_VAR_DOMAIN###"
-sso: true
+sso: false

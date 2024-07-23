@@ -1,0 +1,3 @@
+image:
+  repository: atlassian/jira-software
+  tag: "9.17.1"

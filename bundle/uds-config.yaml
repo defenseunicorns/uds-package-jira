@@ -1,7 +1,6 @@
 variables:
   jira:
     jira_db_endpoint: "pg-cluster.postgres.svc.cluster.local"
-    JIRA_DB_USERNAME: "jira.jira"
   postgres-operator:
     postgresql:
       enabled: true  # Set to false to not create the PostgreSQL resource
@@ -16,3 +15,6 @@ variables:
       version: "13"
       ingress:
         remoteGenerated: Anywhere
+
+shared:
+  JIRA_DB_USERNAME: "jira.jira"
