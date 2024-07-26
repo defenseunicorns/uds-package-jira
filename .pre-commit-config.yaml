@@ -22,7 +22,7 @@ repos:
       - id: check-yaml
         exclude: |
           (?x)^(
-            charts/raw/templates/resources.yaml
+            chart/templates/uds-package.yaml
           )$
         args:
           - "--allow-multiple-documents"

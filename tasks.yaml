@@ -44,7 +44,7 @@ tasks:
     actions:
       - task: setup:k3d-test-cluster
 
-  - name: local-all
+  - name: dev
     description: Create then deploy local jira bundle
     actions:
       - task: create-test-bundle

@@ -7,6 +7,11 @@ database:
     usernameSecretKey: username
     passwordSecretKey: password
 
+monitoring:
+  exposeJmxMetrics: true
+  jmxExporterInitContainer:
+    runAsRoot: false
+
 volumes:
   localHome:
     persistentVolumeClaim:
