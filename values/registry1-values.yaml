@@ -1,3 +1,8 @@
 image:
   repository: registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node
-  tag: "9.17.0"
+  tag: "9.17.1"
+
+
+monitoring:
+  jmxExporterImageRepo: registry1.dso.mil/ironbank/opensource/prometheus/jmx-exporter
+  jmxExporterImageTag: 0.18.0

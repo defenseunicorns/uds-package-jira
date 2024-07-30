@@ -48,5 +48,5 @@ components:
         valuesFiles:
           - values/registry1-values.yaml
     images:
-      - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.17.0
-      - registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.10
+      - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.17.1
+      - registry1.dso.mil/ironbank/opensource/prometheus/jmx-exporter:0.18.0
