@@ -1,14 +1,22 @@
 # UDS Jira Package
 
-This package is pulling in the [bigbang jira chart](https://repo1.dso.mil/big-bang/product/community/jira)
+This package is pulling in the [upstream jira chart](https://github.com/atlassian/data-center-helm-charts/tree/main/src/main/charts/jira)
 
 ## How to upgrade this package
 
-WIP
+To upgrade:
+
+1) Point `application.ref.tag` to the updated version of the chart.
+2) Update any base values if necessary.
+3) Update the `jira` component in the [zarf.yaml](../zarf.yaml) file to pull in the correct images needed for the updated version of the chart.
 
 ## How to test this package on your own cluster
 
-WIP
+1) Have a cluster running that has [UDS-Core](https://github.com/defenseunicorns/uds-core) and you have access to it
+2) Clone this repo to your local machine
+3) Migrate to the cloned repo
+4) Using `uds-cli` run the `dev` task in the repo. The task will build the current configuration in the repo and then deploy it to the cluster
+    - Example command: `uds run dev --set FLAVOR=<your-desired-flavor-here>`
 
 ## Creating Releases
 
@@ -33,4 +41,4 @@ When changes are merged to the `main` branch, the Release Please will evaluate a
 When the auto generated Release Please PR is merged the following steps will automatically happen.
 
 1) A new release will be created and tagged
-1) New artifact(s) will be published to the OCI registry
+2) New artifact(s) will be published to the OCI registry
