@@ -38,7 +38,7 @@ jobs:
     timeout-minutes: 25
     strategy:
       matrix:
-        flavor: [registry1]
+        flavor: [upstream, registry1]
         type: [install, upgrade]
 
     steps:
@@ -63,3 +63,33 @@ jobs:
         uses: defenseunicorns/uds-common/.github/actions/save-logs@91515ef86914334356c35ffb4b2c2c5fb4d19174 # v0.9.0
         with:
           suffix: ${{ matrix.type }}-${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Print cluster info
+        if: always()
+        shell: bash -e -o pipefail {0}
+        run: |
+          kubectl get nodes -o wide
+
+      - name: Print pod info
+        if: always()
+        shell: bash -e -o pipefail {0}
+        run: |
+          kubectl get pods -A -o wide
+
+      - name: Print service info
+        if: always()
+        shell: bash -e -o pipefail {0}
+        run: |
+          kubectl get svc -A -o wide
+
+      - name: Print events
+        if: always()
+        shell: bash -e -o pipefail {0}
+        run: |
+          kubectl get events -A -o wide
+
+      - name: Print jira pod logs
+        if: always()
+        shell: bash -e -o pipefail {0}
+        run: |
+          kubectl logs jira-0 -n jira
