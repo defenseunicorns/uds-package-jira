@@ -1,4 +1,4 @@
-# 🚚 UDS Jira Zarf Package
+# 🏪 UDS Jira Zarf Package
 
 [![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-jira)](https://github.com/defenseunicorns/uds-package-jira/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-jira/tag-and-release.yaml)](https://github.com/defenseunicorns/uds-package-jira/actions/workflows/tag-and-release.yaml)
