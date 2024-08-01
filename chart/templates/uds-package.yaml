@@ -24,6 +24,12 @@ spec:
       clientId: uds-package-jira-openid-connect
       protocol: openid-connect
 
+      defaultClientScopes:
+        - mapper-oidc-username-username
+        - openid
+        - profile
+        - roles
+        - groups
       redirectUris:
         - "https://jira.{{ .Values.domain }}/plugins/servlet/oidc/callback"
     {{- end }}

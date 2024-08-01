@@ -1,3 +1,6 @@
+shared:
+  JIRA_DB_USERNAME: "jira.jira"
+
 variables:
   jira:
     jira_db_endpoint: "pg-cluster.postgres.svc.cluster.local"
@@ -15,6 +18,3 @@ variables:
       version: "13"
       ingress:
         remoteGenerated: Anywhere
-
-shared:
-  JIRA_DB_USERNAME: "jira.jira"
