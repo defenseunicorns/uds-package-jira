@@ -24,12 +24,6 @@ spec:
       clientId: uds-package-jira-openid-connect
       protocol: openid-connect
 
-      defaultClientScopes:
-        - mapper-oidc-username-username
-        - openid
-        - profile
-        - roles
-        - groups
       redirectUris:
         - "https://jira.{{ .Values.domain }}/plugins/servlet/oidc/callback"
     {{- end }}
@@ -39,7 +33,7 @@ spec:
     - selector:
         app.kubernetes.io/name: jira
       targetPort: 9999
-      portName: http
+      portName: jmx
       path: /metrics/
       description: Metrics
 
