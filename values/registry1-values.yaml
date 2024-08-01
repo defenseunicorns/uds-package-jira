@@ -2,7 +2,6 @@ image:
   repository: registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node
   tag: "9.17.1"
 
-
 monitoring:
   # Pending an upstream pr to fix jar file location to not be hardcoded:
   exposeJmxMetrics: false
