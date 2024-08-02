@@ -49,5 +49,5 @@ components:
           - values/registry1-values.yaml
     images:
       - registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node:9.17.1
-      # Pending an upstream pr to fix jar file location to not be hardcoded:
+      # TODO: Pending an upstream pr to fix jar file location to not be hardcoded:
       # - registry1.dso.mil/ironbank/opensource/prometheus/jmx-exporter:0.18.0
