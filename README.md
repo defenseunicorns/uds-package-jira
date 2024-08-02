@@ -1,10 +1,10 @@
-# 🚚 UDS Jira Zarf Package
+# 🏪 UDS Jira Zarf Package
 
 [![Latest Release](https://img.shields.io/github/v/release/defenseunicorns/uds-package-jira)](https://github.com/defenseunicorns/uds-package-jira/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/defenseunicorns/uds-package-jira/tag-and-release.yaml)](https://github.com/defenseunicorns/uds-package-jira/actions/workflows/tag-and-release.yaml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-jira/badge)](https://api.securityscorecards.dev/projects/github.com/defenseunicorns/uds-package-jira)
 
-This package is designed to be deployed on [UDS Core](https://github.com/defenseunicorns/uds-core), and is based on the upstream [Jira](https://github.com/jfrog/charts/tree/master/stable/jira) chart.
+This package is designed to be deployed on [UDS Core](https://github.com/defenseunicorns/uds-core), and is based on the upstream [Jira](https://github.com/atlassian/data-center-helm-charts/tree/main/src/main/charts/jira) chart.
 
 ## Pre-requisites
 
@@ -23,8 +23,9 @@ Jira is configured by default to assume the internal dependencies that are used 
 
 ## Flavors
 
-| Flavor | Description | Example Creation |
-| ------ | ----------- | ---------------- |
+| Flavor    | Description                                            | Example Creation                     |
+| --------- | ------------------------------------------------------ | ------------------------------------ |
+| upstream  | Uses images from docker.io within the package.         | `zarf package create . -f upstream`  |
 | registry1 | Uses images from registry1.dso.mil within the package. | `zarf package create . -f registry1` |
 
 > [!IMPORTANT]

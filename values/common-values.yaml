@@ -1,51 +1,17 @@
-ingress:
-  nginx: false
-proxyName: jira.###ZARF_VAR_DOMAIN###
-domain: ###ZARF_VAR_DOMAIN###
-jira:
-  resources:
-    container:
-      requests:
-        cpu: "100m"
-        memory: "2Gi"
-      limits:
-        cpu: "10"
-        memory: "6Gi"
-    jvm:
-      maxHeap: "4g"
-  additionalEnvironmentVariables:
-    - name: ATL_DB_TYPE
-      value: "postgres72"
-    - name: ATL_DB_DRIVER
-      value: "org.postgresql.Driver"
-    - name: ATL_JDBC_URL
-      value: "jdbc:postgresql://###ZARF_VAR_JIRA_DB_ENDPOINT###:5432/###ZARF_VAR_JIRA_DB_NAME###"
-    - name: ATL_JDBC_USER
-      value: ###ZARF_VAR_JIRA_DB_USERNAME###
-    - name: ATL_JDBC_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: "jira-postgres"
-          key: "password"
-  securityContext:
-    # -- The GID used by the Jira docker image
-    # GID will default to 2001 if not supplied and securityContextEnabled is set to true.
-    # This is intended to ensure that the shared-home volume is group-writeable by the GID used by the Jira container.
-    # However, this doesn't appear to work for NFS volumes due to a K8s bug: https://github.com/kubernetes/examples/issues/260
-    fsGroup: 2001
-    runAsNonRoot: true
-    runAsUser: 2001
-    runAsGroup: 2001
-  # -- Standard K8s field that holds security configurations that will be applied to a container.
-  # https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-  containerSecurityContext:
-    runAsNonRoot: true
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-        - ALL
-    runAsUser: 2001
-    runAsGroup: 2001
+database:
+  type: postgres72
+  url: "jdbc:postgresql://###ZARF_VAR_JIRA_DB_ENDPOINT###:5432/###ZARF_VAR_JIRA_DB_NAME###"
+  driver: org.postgresql.Driver
+  credentials:
+    secretName: jira-postgres
+    usernameSecretKey: username
+    passwordSecretKey: password
+
+monitoring:
+  exposeJmxMetrics: true
+  jmxExporterInitContainer:
+    runAsRoot: false
+
 volumes:
   localHome:
     persistentVolumeClaim:
@@ -57,3 +23,35 @@ volumes:
   sharedHome:
     nfsPermissionFixer:
       enabled: false
+
+ingress:
+  nginx: false
+
+jira:
+  tomcatConfig:
+    generateByHelm: true
+  seraphConfig:
+    generateByHelm: true
+  resources:
+    container:
+      requests:
+        cpu: "500m"
+        memory: "2Gi"
+      limits:
+        cpu: "6"
+        memory: "6Gi"
+    jvm:
+      maxHeap: "4g"
+  securityContext:
+    fsGroup: 2001
+    runAsNonRoot: true
+    runAsUser: 2001
+    runAsGroup: 2001
+  containerSecurityContext:
+    runAsNonRoot: true
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    runAsUser: 2001
+    runAsGroup: 2001
