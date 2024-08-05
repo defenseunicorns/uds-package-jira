@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.20.1-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.20.0-uds.2...v1.20.1-uds.0) (2024-08-05)
+
+
+### Bug Fixes
+
+* removes arm copy pasta ([8f5fee6](https://github.com/defenseunicorns/uds-package-jira/commit/8f5fee6cda6e26d1cbf05b18b02106637b161886))
+
+
+### Miscellaneous
+
+* **deps:** update jira support dependencies ([f8d18d3](https://github.com/defenseunicorns/uds-package-jira/commit/f8d18d3aa3fcb365f1013e971061e1709f60cf35))
+* **deps:** update jira support dependencies ([#27](https://github.com/defenseunicorns/uds-package-jira/issues/27)) ([c025ff2](https://github.com/defenseunicorns/uds-package-jira/commit/c025ff2a96406ae708a344ffbcac2b4189a1c00b))
+* release 1.20.1-uds.0 ([4a91877](https://github.com/defenseunicorns/uds-package-jira/commit/4a9187712ec7a85c488eda4bcc983038e27cc05b))
+
 ## [1.20.0-uds.2](https://github.com/defenseunicorns/uds-package-jira/compare/v1.20.0-uds.1...v1.20.0-uds.2) (2024-07-15)
 
 
