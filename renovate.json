@@ -22,8 +22,20 @@
       "matchDatasources": ["docker", "helm", "git-tags"]
     },
     {
-      "matchPackageNames": ["https://repo1.dso.mil/big-bang/product/community/jira.git"],
-      "allowedVersions": "/.+-bb.+/"
+      "matchPackageNames": ["https://atlassian.github.io/data-center-helm-charts"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["bitnami/jmx-exporter", "registry1.dso.mil/ironbank/opensource/prometheus/jmx-exporter"],
+      "matchUpdateTypes": ["patch"]
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [ "\\.*\\.ya?ml$" ],
+      "matchStringsStrategy": "recursive",
+      "matchStrings": [ "(?m)jmxExporterImageRepo: (?<depName>.*)\n  jmxExporterImageTag: (?<currentValue>.*)\n$" ],
+      "datasourceTemplate": "docker"
     }
   ]
 }
