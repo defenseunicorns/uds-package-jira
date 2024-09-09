@@ -3,7 +3,7 @@ metadata:
   name: jira-test
   description: A UDS bundle for deploying jira and it's dependencies on a development cluster
   # x-release-please-start-version
-  version: 1.20.1-uds.0
+  version: 1.21.0-uds.0
   # x-release-please-end
 
 packages:
@@ -29,7 +29,7 @@ packages:
   - name: jira
     path: ../
     # x-release-please-start-version
-    ref: 1.20.1-uds.0
+    ref: 1.21.0-uds.0
     # x-release-please-end
     overrides:
       jira:
