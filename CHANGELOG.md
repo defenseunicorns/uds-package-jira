@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.21.2-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.21.1-uds.0...v1.21.2-uds.0) (2024-09-09)
+
+
+### Miscellaneous
+
+* **deps:** update jira package dependencies ([c356e79](https://github.com/defenseunicorns/uds-package-jira/commit/c356e79650658da6bd0659744ca92acb6b9cc5a9))
+* release 1.21.2-uds.0 ([f8a2a70](https://github.com/defenseunicorns/uds-package-jira/commit/f8a2a708778a59b461c1e2f5889ccb192f57ffce))
+
 ## [1.21.1-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.20.1-uds.0...v1.21.1-uds.0) (2024-09-09)
 
 
