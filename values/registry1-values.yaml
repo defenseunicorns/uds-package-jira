@@ -1,9 +1,13 @@
 image:
   repository: registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node
-  tag: "9.17.1"
+  tag: "9.17.2"
 
 monitoring:
   # TODO: Pending an upstream pr to fix jar file location to not be hardcoded:
   exposeJmxMetrics: false
+  # jmxExporterInitContainer:
+  #   jmxJarLocation: /var/atlassian/application-data/shared-home/jmx_prometheus_javaagent-0.18.0.jar
+  #   runAsRoot: false
   # jmxExporterImageRepo: registry1.dso.mil/ironbank/opensource/prometheus/jmx-exporter
   # jmxExporterImageTag: 0.18.0
+  # jmxExporterCustomJarLocation: /var/atlassian/application-data/shared-home/jmx_prometheus_javaagent-0.18.0.jar
