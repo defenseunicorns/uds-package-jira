@@ -15,7 +15,7 @@ Jira is configured by default to assume the internal dependencies that are used 
 #### Database
 
 - A Postgres database is running on port `5432` and accessible to the cluster via the `JIRA_DB_ENDPOINT` Zarf var.
-- This database can be logged into via the username configured with the Zarf var `JIRA_DB_USERNAME`. Default is `jira.jira`
+- This database can be logged into via the username & password given in the postgre connection secret (see `values/common-values.yaml`).
 - This database instance has a psql database created matching what is defined in the Zarf var `JIRA_DB_NAME`. Default is `jiradb`
 - The user has read/write access to the above mentioned database
 - Create `jira-postgres` service in `jira` namespace that points to the psql database

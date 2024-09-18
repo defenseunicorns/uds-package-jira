@@ -9,8 +9,6 @@ metadata:
 variables:
   - name: JIRA_DB_NAME
     default: "jiradb"
-  - name: JIRA_DB_USERNAME
-    default: "jira"
   - name: JIRA_DB_ENDPOINT
     default: "postgres"
   - name: DOMAIN
