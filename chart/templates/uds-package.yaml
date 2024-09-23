@@ -47,12 +47,6 @@ spec:
         port: 80
         targetPort: 8080
     allow:
-      - direction: Ingress
-        remoteGenerated: IntraNamespace
-
-      - direction: Egress
-        remoteGenerated: IntraNamespace
-
       - direction: Egress
         remoteNamespace: keycloak
         remoteSelector:
