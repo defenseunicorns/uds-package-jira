@@ -13,6 +13,12 @@ variables:
     default: "postgres"
   - name: DOMAIN
     default: "uds.dev"
+  - name: JIRA_DB_PASSWORD
+    description: "Password will be added to jira-postgres secret and loaded in for connection credentials."
+    default: "replace-me"
+  - name: JIRA_DB_USERNAME
+    description: "Username will be added to jira-postgres secret and loaded in for connection credentials."
+    default: "replace-me"
 
 components:
   - name: jira
