@@ -29,6 +29,7 @@ tasks:
       - task: create:package
         with:
           options: "--skip-sbom"
+          architecture: amd64
 
   - name: create-test-bundle
     description: Create a local UDS Jira bundle with dependencies
