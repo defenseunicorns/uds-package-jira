@@ -5,10 +5,10 @@ postgres:
   internal: true
   selector:
     cluster-name: pg-cluster
-  username: jira
-  password: ""
   namespace: postgres
   port: 5432
+  username: "###ZARF_VAR_JIRA_DB_USERNAME###"
+  password: "###ZARF_VAR_JIRA_DB_PASSWORD###"
 
 sso:
   enabled: true
