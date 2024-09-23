@@ -1,5 +1,5 @@
 database:
-  type: postgres72
+  type: postgres72  # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#databasetype
   url: "jdbc:postgresql://###ZARF_VAR_JIRA_DB_ENDPOINT###:5432/###ZARF_VAR_JIRA_DB_NAME###"
   driver: org.postgresql.Driver
   credentials:
