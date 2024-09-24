@@ -7,8 +7,8 @@ postgres:
     cluster-name: pg-cluster
   namespace: postgres
   port: 5432
-  username: "###ZARF_VAR_JIRA_DB_USERNAME###"
-  password: "###ZARF_VAR_JIRA_DB_PASSWORD###"
+  username: "jira"
+  password: ""
 
 sso:
   enabled: true
