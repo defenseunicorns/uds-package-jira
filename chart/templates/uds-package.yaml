@@ -57,6 +57,13 @@ spec:
         description: "SSO Internal"
 
       - direction: Egress
+        remoteGenerated: Anywhere
+        selector:
+          app.kubernetes.io/name: jira
+        port: 443
+        description: "SSO External"
+
+      - direction: Egress
         selector:
           app.kubernetes.io/name: jira
         {{- if .Values.postgres.internal }}
