@@ -47,12 +47,6 @@ spec:
         port: 80
         targetPort: 8080
     allow:
-      - direction: Ingress
-        remoteGenerated: IntraNamespace
-
-      - direction: Egress
-        remoteGenerated: IntraNamespace
-
       - direction: Egress
         remoteNamespace: keycloak
         remoteSelector:
@@ -76,10 +70,10 @@ spec:
         remoteNamespace: {{ .Values.postgres.namespace | quote }}
         remoteSelector:
           {{ .Values.postgres.selector | toYaml | nindent 10 }}
-        port: {{ .Values.postgres.port }}
         {{- else }}
         remoteGenerated: Anywhere
         {{- end }}
+        port: {{ .Values.postgres.port }}
         description: "Jira Postgres"
 
       # Custom rules for unanticipated scenarios
