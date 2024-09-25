@@ -12,11 +12,9 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
-* added explicit arch setting to create package task ([8bf74d1](https://github.com/defenseunicorns/uds-package-jira/commit/8bf74d10c5e375cfdb18b5694926c1c238bd3e59))
-* Jira does not need egress to any TLS service ([8858eed](https://github.com/defenseunicorns/uds-package-jira/commit/8858eedbae164aa74514c35a5818de25dcb00608))
+* added explicit arch value to uds create package task ([8bf74d1](https://github.com/defenseunicorns/uds-package-jira/commit/8bf74d10c5e375cfdb18b5694926c1c238bd3e59))
 * removed postgre DB username var that wasn't in use ([dbb9c32](https://github.com/defenseunicorns/uds-package-jira/commit/dbb9c329148440744f3fdf58baa071da1d5e54a4))
-* reverted changes no longer desired based on review comments ([dc5b448](https://github.com/defenseunicorns/uds-package-jira/commit/dc5b4483cdb1359981668692b4d62e2d0d3d059b))
-* until clustering enabled, no need for intranamespace comms ([ed68165](https://github.com/defenseunicorns/uds-package-jira/commit/ed6816521e01676daafac7a0c64bbc609bd90846))
+* removed open intranamespace comm netpols ([ed68165](https://github.com/defenseunicorns/uds-package-jira/commit/ed6816521e01676daafac7a0c64bbc609bd90846))
 
 
 ### Miscellaneous
