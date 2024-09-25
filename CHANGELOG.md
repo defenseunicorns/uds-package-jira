@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.22.0-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.21.2-uds.0...v1.22.0-uds.0) (2024-09-25)
+
+
+### Features
+
+* enable cred secret creation w/o added downstream helper packages, also, restricted netpol ([5715d84](https://github.com/defenseunicorns/uds-package-jira/commit/5715d84daefd325751e7f8b04a849fe2775e2307))
+
+
+### Bug Fixes
+
+* added explicit arch value to uds create package task ([8bf74d1](https://github.com/defenseunicorns/uds-package-jira/commit/8bf74d10c5e375cfdb18b5694926c1c238bd3e59))
+* removed postgre DB username var that wasn't in use ([dbb9c32](https://github.com/defenseunicorns/uds-package-jira/commit/dbb9c329148440744f3fdf58baa071da1d5e54a4))
+* removed open intranamespace comm netpols ([ed68165](https://github.com/defenseunicorns/uds-package-jira/commit/ed6816521e01676daafac7a0c64bbc609bd90846))
+
+
+### Miscellaneous
+
+* added digital salmon to codeowners ([ba1811d](https://github.com/defenseunicorns/uds-package-jira/commit/ba1811df90a30543ec1dcc681855ea56d07e07db))
+* **deps:** update jira package dependencies ([37579f5](https://github.com/defenseunicorns/uds-package-jira/commit/37579f5748ac9d6065f517798d0e3ebcb53a6022))
+* **deps:** update jira support dependencies ([1b29eb6](https://github.com/defenseunicorns/uds-package-jira/commit/1b29eb65ad925fbc785ee8a71cf375501e9e020a))
+
 ## [1.21.2-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.21.1-uds.0...v1.21.2-uds.0) (2024-09-09)
 
 
