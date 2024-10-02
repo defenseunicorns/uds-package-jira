@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.22.0-uds.1](https://github.com/defenseunicorns/uds-package-jira/compare/v1.22.0-uds.0...v1.22.0-uds.1) (2024-10-02)
+
+
+### Bug Fixes
+
+* validate package with full resource name ([a1c4d04](https://github.com/defenseunicorns/uds-package-jira/commit/a1c4d04b7cd7223ad39b3a5b1addee4688e94b8b))
+
+
+### Miscellaneous
+
+* **docs:** update codeowners ([cf9c8c0](https://github.com/defenseunicorns/uds-package-jira/commit/cf9c8c0a5e914af447aae30c8fd3e93a1be01cc4))
+* **docs:** update codeowners ([cf9c8c0](https://github.com/defenseunicorns/uds-package-jira/commit/cf9c8c0a5e914af447aae30c8fd3e93a1be01cc4))
+* **docs:** update codeowners ([6653507](https://github.com/defenseunicorns/uds-package-jira/commit/66535076be94c6fa1d0bb96b4652aacc701ad1b2))
+
 ## [1.22.0-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.21.2-uds.0...v1.22.0-uds.0) (2024-09-25)
 
 
