@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: jira-service
+spec:
+  hosts:
+  - jira.uds.dev
+  http:
+  - route:
+    - destination:
+        host: jira.jira.svc.cluster.local
+        port:
+          number: 80
+    headers:
+      request:
+        add:
+          cookie: "seraph.rememberme.cookie"
+  - route:
+    - destination:
+        host: jira.jira.svc.cluster.local
+        port:
+          number: 80
+    headers:
+      request:
+        add:
+          cookie: "JSESSIONID"

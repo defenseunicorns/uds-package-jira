@@ -1,0 +1,13 @@
+{{ if .Values.clustering.enabled }}
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: "jira-exception-clustering"
+  namespace: {{ .Release.Namespace }}
+spec:
+  mtls:
+    mode: DISABLE
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: jira
+{{ end }}

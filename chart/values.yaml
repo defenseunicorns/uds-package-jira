@@ -1,5 +1,11 @@
 domain: "###ZARF_VAR_DOMAIN###"
 
+clustering:
+  enabled: true
+  sessionAffinity:
+    cookieName: JSESSIONID
+    TTL: 0s  # Ignored unless you substitute in a custom named cookie (that Istio creates)
+
 postgres:
   # Set to false to use external postgres
   internal: true

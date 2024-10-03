@@ -21,6 +21,10 @@ volumes:
         requests:
           storage: 10Gi
   sharedHome:
+    persistentVolumeClaim:
+      create: true
+      accessModes:
+        - ReadWriteOnce
     nfsPermissionFixer:
       enabled: false
 
@@ -55,3 +59,14 @@ jira:
         - ALL
     runAsUser: 2001
     runAsGroup: 2001
+  clustering:
+    enabled: true
+  service:
+    annotations:
+      traffic.sidecar.istio.io/excludeOutboundIPRanges: 10.43.60.232
+    sessionAffinity: ClientIP
+    sessionAffinityConfig:
+      clientIP:
+        timeoutSeconds: 10800
+
+replicaCount: 1

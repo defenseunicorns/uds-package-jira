@@ -1,0 +1,14 @@
+{{ if .Values.clustering.enabled }}
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: jira-destination-rule-clustering
+spec:
+  host: jira.{{ .Release.Namespace }}.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: JSESSIONID
+          ttl: 0s  # TTL only matters if Istio is creating the session cookie.
+{{ end }}

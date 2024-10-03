@@ -1,0 +1,31 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: jira-headless
+  namespace: jira
+spec:
+  clusterIP: None
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: http
+  - port: 40001
+    appProtocol: http
+    name: ehcache
+    protocol: TCP
+    targetPort: ehcache
+  - port: 40011
+    appProtocol: TCP
+    name: ehcacheobject
+    protocol: TCP
+    targetPort: ehcacheobject
+  selector:
+    app.kubernetes.io/instance: jira
+    app.kubernetes.io/name: jira
+status:
+  loadBalancer: {}
