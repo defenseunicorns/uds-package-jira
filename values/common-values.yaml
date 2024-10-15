@@ -63,7 +63,7 @@ jira:
     runAsUser: 2001
     runAsGroup: 2001
   clustering:
-    enabled: true
+    enabled: false
   service:
     annotations:
       traffic.sidecar.istio.io/excludeOutboundIPRanges: 10.43.60.232

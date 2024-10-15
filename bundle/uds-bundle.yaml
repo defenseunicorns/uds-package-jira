@@ -36,7 +36,14 @@ packages:
     # x-release-please-end
     overrides:
       jira:
+        uds-jira-config:
+          values:
+            # Values to enable clustering
+            - path: clustering.enabled
+              value: false # Set to true for clustering
         jira:
           values:
             - path: database.credentials.secretName
               value: jira.jira.pg-cluster.credentials.postgresql.acid.zalan.do
+            - path: jira.clustering.enabled
+              value: false # Set to true for clustering

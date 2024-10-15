@@ -4,7 +4,7 @@
 domain: "###ZARF_VAR_DOMAIN###"
 
 clustering:
-  enabled: true
+  enabled: false
 
 postgres:
   # Set to false to use external postgres
