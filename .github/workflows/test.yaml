@@ -33,101 +33,34 @@ concurrency:
 
 permissions:
   contents: read
+  id-token: write
   packages: read
 
 jobs:
-  flavor-test:
-    name: Test-Flavor
-    runs-on: ubuntu-latest
+  check-flavor:
+    runs-on: uds-marketplace-ubuntu-big-boy-8-core
     steps:
       - name: Checkout repository
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
 
       - name: test-flavor
-        uses: defenseunicorns/uds-common/.github/actions/test-flavor@e3008473beab00b12a94f9fcc7340124338d5c08 # v0.13.1
+        uses: defenseunicorns/uds-common/.github/actions/test-flavor@f0164622ffc2007e96a0e1deaa3f5064db04b148 # v1.1.0
         id: test-flavor
     outputs:
       upgrade-flavors: ${{ steps.test-flavor.outputs.upgrade-flavors }}
 
-  deploy-test:
-    # TODO: need to fix how actions work in uds-common before this can be used
-    # needs: flavor-test
-    # permissions: write-all
-    # uses: defenseunicorns/uds-common/.github/workflows/test-deploy.yaml@callable_workflow_fix  #@24c8a2a48eeb33773b76b3587c489cb17496c9e0 # v0.12.0
-    # with:
-    #   upgrade-flavors: ${{ needs.flavor-test.outputs.upgrade-flavors }}
-    #   flavor: ${{ matrix.flavor }}
-    #   type: ${{ matrix.type }}
-    #   runs-on: ubuntu-latest
-    #   clean-runner: false
-    #   upload-reports: playwright
-    #   timeout: 25
-    # secrets: inherit # Inherits all secrets from the parent workflow.
-    # strategy:
-    #   fail-fast: true
-    #   matrix:
-    #     type: [install, upgrade]
-    #     flavor: [upstream, registry1]
-
-
-    name: ${{ matrix.type }} ${{ matrix.flavor }}
-    runs-on: uds-marketplace-ubuntu-big-boy-4-core
-    timeout-minutes: 25
+  validate:
+    needs: check-flavor
     strategy:
+      fail-fast: false
       matrix:
-        flavor: [upstream, registry1]
         type: [install, upgrade]
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-
-      - name: Environment setup
-        uses: defenseunicorns/uds-common/.github/actions/setup@e3008473beab00b12a94f9fcc7340124338d5c08 # v0.13.1
-        with:
-          registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
-          registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
-          ghToken: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Test
-        uses: defenseunicorns/uds-common/.github/actions/test-deploy@e3008473beab00b12a94f9fcc7340124338d5c08 # v0.13.1
-        with:
-          upgrade-flavors: ${{ needs.flavor-test.outputs.upgrade-flavors }}
-          flavor: ${{ matrix.flavor }}
-          type: ${{ matrix.type }}
-
-      - name: Save logs
-        if: always()
-        uses: defenseunicorns/uds-common/.github/actions/save-logs@e3008473beab00b12a94f9fcc7340124338d5c08 # v0.13.1
-        with:
-          suffix: ${{ matrix.type }}-${{ matrix.flavor }}-${{ github.run_id }}-${{ github.run_attempt }}
-
-      - name: Print cluster info
-        if: always()
-        shell: bash -e -o pipefail {0}
-        run: |
-          kubectl get nodes -o wide
-
-      - name: Print pod info
-        if: always()
-        shell: bash -e -o pipefail {0}
-        run: |
-          kubectl get pods -A -o wide
-
-      - name: Print service info
-        if: always()
-        shell: bash -e -o pipefail {0}
-        run: |
-          kubectl get svc -A -o wide
-
-      - name: Print events
-        if: always()
-        shell: bash -e -o pipefail {0}
-        run: |
-          kubectl get events -A -o wide
-
-      - name: Print jira pod logs
-        if: always()
-        shell: bash -e -o pipefail {0}
-        run: |
-          kubectl logs jira-0 -n jira
+        flavor: [upstream, registry1]
+    uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@f0164622ffc2007e96a0e1deaa3f5064db04b148 # v1.1.0
+    with:
+      runsOn: uds-marketplace-ubuntu-big-boy-8-core
+      upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
+      flavor: ${{ matrix.flavor }}
+      type: ${{ matrix.type }}
+      reports-path: "tests/.playwright/reports/"
+    secrets: inherit # Inherits all secrets from the parent workflow.
