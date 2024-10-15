@@ -1,3 +1,6 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
 database:
   type: postgres72  # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#databasetype
   url: "jdbc:postgresql://###ZARF_VAR_JIRA_DB_ENDPOINT###:5432/###ZARF_VAR_JIRA_DB_NAME###"
@@ -70,3 +73,8 @@ jira:
         timeoutSeconds: 10800
 
 replicaCount: 1
+
+# This allows for clustering to work
+podAnnotations:
+  traffic.sidecar.istio.io/excludeOutboundPorts: 40001,40011
+  traffic.sidecar.istio.io/excludeInboundPorts: 40001,40011

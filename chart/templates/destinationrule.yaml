@@ -1,3 +1,6 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
 {{ if .Values.clustering.enabled }}
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
@@ -9,6 +12,10 @@ spec:
     loadBalancer:
       consistentHash:
         httpCookie:
-          name: JSESSIONID
-          ttl: 0s  # TTL only matters if Istio is creating the session cookie.
+          # set a new session cookie with istio per atlassian guidelines: https://confluence.atlassian.com/enterprise/jira-data-center-load-balancer-examples-781200827.html
+          # note: this cookie is explicitly different than JSESSIONID, let jira handle that
+          name: JIRACONSISTENTHASH
+          path: /
+          ttl: 300m
+
 {{ end }}

@@ -1,10 +1,10 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
 domain: "###ZARF_VAR_DOMAIN###"
 
 clustering:
   enabled: true
-  sessionAffinity:
-    cookieName: JSESSIONID
-    TTL: 0s  # Ignored unless you substitute in a custom named cookie (that Istio creates)
 
 postgres:
   # Set to false to use external postgres
