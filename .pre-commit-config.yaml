@@ -1,3 +1,6 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
@@ -20,11 +23,7 @@ repos:
         exclude: "^kustomizations/bigbang/vendor/.*$"
         args: [--markdown-linebreak-ext=md]
       - id: check-yaml
-        exclude: |
-          (?x)^(
-            chart/templates/uds-package.yaml|
-            chart/templates/postgres-secret.yaml
-          )$
+        exclude: ^chart/templates/
         args:
           - "--allow-multiple-documents"
   - repo: https://github.com/sirosen/fix-smartquotes
