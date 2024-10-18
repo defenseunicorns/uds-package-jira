@@ -19,7 +19,7 @@ components:
       - name: jira
         namespace: jira
         url: https://atlassian.github.io/data-center-helm-charts
-        version: 1.21.3
+        version: 1.21.4
         repoName: jira
         releaseName: jira
         valuesFiles:
