@@ -41,5 +41,5 @@ jobs:
     uses: defenseunicorns/uds-common/.github/workflows/callable-publish.yaml@c52077c870a576d01f169f96d74d1b393c6488ba # v1.1.2
     with:
       flavor: ${{ matrix.flavor }}
-      runsOn: uds-marketplace-ubuntu-big-boy-4-core
+      runsOn: uds-marketplace-ubuntu-big-boy-8-core
     secrets: inherit # Inherits all secrets from the parent workflow.
