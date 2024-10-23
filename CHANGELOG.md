@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.22.0-uds.1](https://github.com/defenseunicorns/uds-package-jira/compare/v1.22.0-uds.0...v1.22.0-uds.1) (2024-10-23)
+
+
+### Features
+
+* add functioning clustering ([afa6136](https://github.com/defenseunicorns/uds-package-jira/commit/afa6136d84262b4d5d694aedd6ecc0e9ce597f87))
+* initial work towards enabling clustering ([f3c1b39](https://github.com/defenseunicorns/uds-package-jira/commit/f3c1b39cfb50a232b8395dd03b489704793d1e96))
+
+
+### Bug Fixes
+
+* validate package with full resource name ([a1c4d04](https://github.com/defenseunicorns/uds-package-jira/commit/a1c4d04b7cd7223ad39b3a5b1addee4688e94b8b))
+
+
+### Miscellaneous
+
+* **deps:** update jira package dependencies ([e2694e2](https://github.com/defenseunicorns/uds-package-jira/commit/e2694e2b77ce2b84480b472b93d2ada7d14c6ce5))
+* **deps:** update jira support dependencies ([123673e](https://github.com/defenseunicorns/uds-package-jira/commit/123673eb8d1741280d9a133c8ec83f65dc5a75d4))
+* **docs:** update codeowners ([cf9c8c0](https://github.com/defenseunicorns/uds-package-jira/commit/cf9c8c0a5e914af447aae30c8fd3e93a1be01cc4))
+* **docs:** update codeowners ([cf9c8c0](https://github.com/defenseunicorns/uds-package-jira/commit/cf9c8c0a5e914af447aae30c8fd3e93a1be01cc4))
+* **docs:** update codeowners ([6653507](https://github.com/defenseunicorns/uds-package-jira/commit/66535076be94c6fa1d0bb96b4652aacc701ad1b2))
+
 ## [1.22.0-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.21.2-uds.0...v1.22.0-uds.0) (2024-09-25)
 
 
