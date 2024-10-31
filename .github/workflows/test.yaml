@@ -55,7 +55,7 @@ jobs:
       fail-fast: false
       matrix:
         type: [install, upgrade]
-        flavor: [upstream, registry1]
+        flavor: [upstream, registry1, unicorn]
     uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@2a5e66fceb5c506008d5f69f42abcf38ccf86b44 # v1.2.0
     with:
       runsOn: uds-marketplace-ubuntu-big-boy-8-core
