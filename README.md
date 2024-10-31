@@ -27,9 +27,10 @@ Jira is configured by default to assume the internal dependencies that are used 
 | --------- | ------------------------------------------------------ | ------------------------------------ |
 | upstream  | Uses images from docker.io within the package.         | `zarf package create . -f upstream`  |
 | registry1 | Uses images from registry1.dso.mil within the package. | `zarf package create . -f registry1` |
+| unicorn   | Uses images from registry1.dso.mil within the package. | `zarf package create . -f unicorn`   |
 
 > [!IMPORTANT]
-> **NOTE:** To create the registry1 flavor you will need to be logged into Iron Bank - you can find instructions on how to do this in the [Big Bang Zarf Tutorial](https://docs.zarf.dev/tutorials/6-big-bang/#setup).
+> **NOTE:** To create the registry1 or unicorn flavor you will need to be logged into Iron Bank - you can find instructions on how to do this in the [Big Bang Zarf Tutorial](https://docs.zarf.dev/tutorials/6-big-bang/#setup).
 
 ## Releases
 
