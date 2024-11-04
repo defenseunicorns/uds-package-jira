@@ -24,3 +24,14 @@ tasks:
             protocol: https
             address: jira.uds.dev
             code: 200
+
+  - name: ui
+    description: Jira UI Checks
+    actions:
+      - cmd: |
+          docker run --rm --ipc=host --net=host --mount type=bind,source="$(pwd)",target=/app mcr.microsoft.com/playwright:v1.47.2-jammy sh -c " \
+            cd app && \
+            npm ci && \
+            npx playwright test \
+            "
+        dir: tests
