@@ -7,7 +7,7 @@ import { test, expect } from "@playwright/test";
 import path from "path";
 
 function randomProjectName() {
-  return `uds-package-bitbucket-${Math.floor(Math.random() * 1000)}`;
+  return `uds-package-jira-${Math.floor(Math.random() * 1000)}`;
 }
 
 test("setup a project", async ({ page }) => {
