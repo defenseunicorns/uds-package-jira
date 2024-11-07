@@ -26,7 +26,7 @@ export default defineConfig({
   outputDir: `${playwrightDir}/output`,
 
   use: {
-    baseURL: process.env.BASE_URL || 'https://bitbucket.uds.dev', // for `await page.goto('/')` etc
+    baseURL: process.env.BASE_URL || 'https://jira.uds.dev', // for `await page.goto('/')` etc
     trace: 'on-first-retry', // collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer
   },
 

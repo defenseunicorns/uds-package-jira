@@ -1,5 +1,5 @@
 {
-  "name": "uds-package-bitbucket",
+  "name": "uds-package-jira",
   "license": "Apache-2.0",
   "devDependencies": {
     "@playwright/test": "^1.47.2",
