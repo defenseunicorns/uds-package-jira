@@ -20,6 +20,11 @@ tmp/
 values-*.yaml
 overlay-values-*
 
+# Tests
+node_modules/
+.playwright/
+test-results/
+
 # Terraform
 test/tf/public-ec2-instance/.test-data
 test/tf/public-ec2-instance/.terraform

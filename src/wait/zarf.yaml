@@ -19,4 +19,4 @@ components:
                 name: pg-cluster
                 condition: "'{.status.PostgresClusterStatus}'=Running"
                 namespace: postgres
-          - cmd: sleep 10s
+          - cmd: sleep 10
