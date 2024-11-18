@@ -6,7 +6,7 @@ metadata:
   name: jira-test
   description: A UDS bundle for deploying jira and it's dependencies on a development cluster
   # x-release-please-start-version
-  version: 9.12.13-uds.0
+  version: 9.12.15-uds.0
   # x-release-please-end
 
 packages:
@@ -16,7 +16,7 @@ packages:
 
   - name: postgres-operator
     repository: ghcr.io/defenseunicorns/packages/uds/postgres-operator
-    ref: 1.13.0-uds.2-upstream
+    ref: 1.13.0-uds.4-upstream
     overrides:
       postgres-operator:
         uds-postgres-config:
@@ -32,7 +32,7 @@ packages:
   - name: jira
     path: ../
     # x-release-please-start-version
-    ref: 9.12.13-uds.0
+    ref: 9.12.15-uds.0
     # x-release-please-end
     overrides:
       jira:
