@@ -7,7 +7,7 @@ metadata:
   name: jira
   description: "UDS Jira package"
   # x-release-please-start-version
-  version: "9.12.15-uds.0"
+  version: "10.1.2-uds.0"
   # x-release-please-end
 variables:
   - name: JIRA_DB_NAME
