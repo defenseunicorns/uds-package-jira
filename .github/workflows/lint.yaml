@@ -11,6 +11,6 @@ on:
     types: [milestoned, opened, edited, synchronize]
 
 jobs:
-  run:
-    uses: defenseunicorns/uds-common/.github/workflows/callable-lint.yaml@f0164622ffc2007e96a0e1deaa3f5064db04b148 # v1.1.0
+  validate:
+    uses: defenseunicorns/uds-common/.github/workflows/callable-lint.yaml@164ce64c5cc775193a563db7e8ef9750ffefcdda # v1.3.0
     secrets: inherit

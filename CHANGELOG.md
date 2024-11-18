@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [9.12.15-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v9.12.13-uds.0...v9.12.15-uds.0) (2024-11-14)
+
+
+### Features
+
+* add ability to change default scopes ([899c836](https://github.com/defenseunicorns/uds-package-jira/commit/899c8369f5e2568178d5e9e878101d148b31b8f5))
+
+
+### Miscellaneous
+
+* **deps:** update jira package dependencies ([#64](https://github.com/defenseunicorns/uds-package-jira/issues/64)) ([4cb831d](https://github.com/defenseunicorns/uds-package-jira/commit/4cb831d664aa163b0c4d7d98411a5b02a1e24367))
+* **deps:** update jira support dependencies ([#60](https://github.com/defenseunicorns/uds-package-jira/issues/60)) ([47da423](https://github.com/defenseunicorns/uds-package-jira/commit/47da423ea33e37d36ebf20db1569eda817a8f611))
+* release 9.12.15-uds.0 ([5ba0b7d](https://github.com/defenseunicorns/uds-package-jira/commit/5ba0b7d7555f2621a7bfca0dd43b7638e40fb6ea))
+
 ## [9.12.13-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v1.22.0-uds.0...v9.12.13-uds.0) (2024-10-23)
 
 
