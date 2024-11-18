@@ -6,6 +6,8 @@
 
 This package is designed to be deployed on [UDS Core](https://github.com/defenseunicorns/uds-core), and is based on the upstream [Jira](https://github.com/atlassian/data-center-helm-charts/tree/main/src/main/charts/jira) chart.
 
+> Jira software is a popular project management tool used by teams to plan, track, and manage their work. It offers features such as issue tracking, agile project management, and customizable workflows, making it a versatile solution for software development and other project-based teams.
+
 ## Pre-requisites
 
 The Jira Package expects to be deployed on top of [UDS Core](https://github.com/defenseunicorns/uds-core) with the dependencies listed below being configured prior to deployment.
