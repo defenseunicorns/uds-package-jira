@@ -4,16 +4,16 @@
 includes:
   - dependencies: ./tasks/dependencies.yaml
   - test: ./tasks/test.yaml
-  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/create.yaml
-  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/lint.yaml
-  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/pull.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/deploy.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/setup.yaml
-  - actions: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/actions.yaml
-  - badge: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/badge.yaml
-  - upgrade: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/upgrade.yaml
-  - compliance: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/compliance.yaml
-  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.2.0/tasks/publish.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/create.yaml
+  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/lint.yaml
+  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/pull.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/deploy.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/setup.yaml
+  - actions: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/actions.yaml
+  - badge: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/badge.yaml
+  - upgrade: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/upgrade.yaml
+  - compliance: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/compliance.yaml
+  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.3.0/tasks/publish.yaml
 
 tasks:
   - name: default
@@ -21,13 +21,6 @@ tasks:
     actions:
       - task: create-dev-package
       - task: setup:k3d-test-cluster
-      - task: create-deploy-test-bundle
-
-  - name: default-full
-    description: Create K3D Cluster with full UDS-Core + Jira
-    actions:
-      - task: create-dev-package
-      - task: setup:k3d-full-cluster
       - task: create-deploy-test-bundle
 
   - name: create-dev-package
@@ -40,8 +33,8 @@ tasks:
   - name: create-deploy-test-bundle
     description: Test and validate cluster is deployed with Jira
     actions:
-      - task: create-dev-package
       - task: dependencies:create
+      - task: create:package
       - task: create:test-bundle
       - task: deploy:test-bundle
       - task: setup:create-doug-user
@@ -62,6 +55,7 @@ tasks:
       - task: create-dev-package
       - task: setup:k3d-test-cluster
       - task: create-deploy-test-bundle
+      - task: compliance:validate
 
   - name: test-upgrade
     description: Test an upgrade from the latest released package to the current branch
@@ -71,7 +65,10 @@ tasks:
           dep_commands: "./uds run dependencies:create"
       - task: setup:k3d-test-cluster
       - task: deploy:test-bundle
+      - task: compliance:validate
       - task: create-deploy-test-bundle
+      - task: compliance:validate
+      - task: compliance:evaluate
 
   - name: publish-package
     description: Build and publish the packages
@@ -83,11 +80,11 @@ tasks:
         task: setup:k3d-test-cluster
 
       - description: Create deploy and test the bundle
-        task: create-deploy-test-bundle
+        task: create-and-deploy
 
       - description: Publish the packages
         task: publish:package
         with:
           # x-release-please-start-version
-          version: 9.12.13-uds.0
+          version: 1.16.1-uds.3
           # x-release-please-end
