@@ -36,7 +36,7 @@ jobs:
     if: ${{ needs.tag-new-version.outputs.release_created == 'true' }}
     strategy:
       matrix:
-        flavor: [upstream, registry1]
+        flavor: [upstream, registry1, unicorn]
         architecture: [amd64]
     uses: defenseunicorns/uds-common/.github/workflows/callable-publish.yaml@164ce64c5cc775193a563db7e8ef9750ffefcdda # v1.3.0
     with:
