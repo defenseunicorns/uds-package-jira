@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.1.2-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v9.12.15-uds.0...v10.1.2-uds.0) (2024-11-18)
+
+
+### Bug Fixes
+
+* change defaultclientscopes from map to list ([2addebf](https://github.com/defenseunicorns/uds-package-jira/commit/2addebf608c947ff68393128f3a36cbef4c61ccb))
+
+
+### Miscellaneous
+
+* **deps:** update jira support dependencies ([#72](https://github.com/defenseunicorns/uds-package-jira/issues/72)) ([a137006](https://github.com/defenseunicorns/uds-package-jira/commit/a1370067e31212cf200350b58b214458ca1eee1e))
+* **deps:** update package-deps to v1.22.0 ([#71](https://github.com/defenseunicorns/uds-package-jira/issues/71)) ([c121dfa](https://github.com/defenseunicorns/uds-package-jira/commit/c121dfa22eb47f2aa055b4066cb12caf26e53df9))
+* release 10.1.2-uds.0 ([e3576c9](https://github.com/defenseunicorns/uds-package-jira/commit/e3576c91db659d776c65e890243524d2bf96be6c))
+* update README.md ([#68](https://github.com/defenseunicorns/uds-package-jira/issues/68)) ([d838464](https://github.com/defenseunicorns/uds-package-jira/commit/d838464c09988680f68f43fc31217bb76c190d31))
+
 ## [9.12.15-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v9.12.13-uds.0...v9.12.15-uds.0) (2024-11-14)
 
 
