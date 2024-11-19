@@ -41,6 +41,13 @@ spec:
       redirectUris:
         - "https://jira.{{ .Values.domain }}/plugins/servlet/oidc/callback"
     {{- end }}
+      groups:
+        anyOf:
+        {{- if .Values.sso.requiredGroups }}
+          {{- range .Values.sso.requiredGroups }}
+            - "{{ . }}"
+          {{- end }}
+        {{- end }}
   {{- end }}
 
   monitor:
