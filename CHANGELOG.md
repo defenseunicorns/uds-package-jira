@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.2.0-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v10.1.2-uds.0...v10.2.0-uds.0) (2024-11-22)
+
+
+### Features
+
+* add ability to set user groups for access ([#74](https://github.com/defenseunicorns/uds-package-jira/issues/74)) ([dd19a6c](https://github.com/defenseunicorns/uds-package-jira/commit/dd19a6cdef3e6fbbdbafe611894bc65122a70bae))
+
+
+### Miscellaneous
+
+* **deps:** update jira package dependencies to v10.2.0 ([#77](https://github.com/defenseunicorns/uds-package-jira/issues/77)) ([5b1e779](https://github.com/defenseunicorns/uds-package-jira/commit/5b1e779f8cc404bb3a7e6de8d1a9cff4c5231399))
+* **deps:** update jira support dependencies ([#76](https://github.com/defenseunicorns/uds-package-jira/issues/76)) ([d70baee](https://github.com/defenseunicorns/uds-package-jira/commit/d70baeef8d7fd4c58fae308d3a3aeeac82469eaf))
+* release 10.2.0-uds.0 ([09e6d07](https://github.com/defenseunicorns/uds-package-jira/commit/09e6d07ba7b141ecf5fddfc3dc64c2ef86fa2d64))
+
 ## [10.1.2-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v9.12.15-uds.0...v10.1.2-uds.0) (2024-11-18)
 
 
