@@ -3,7 +3,7 @@
 
 image:
   repository: atlassian/jira-software
-  tag: "10.2.0"
+  tag: "10.3.0"
 
 monitoring:
   jmxExporterImageRepo: bitnami/jmx-exporter
