@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [10.3.0-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v10.2.0-uds.0...v10.3.0-uds.0) (2024-12-05)
+
+
+### Miscellaneous
+
+* **deps:** update jira package dependencies ([#81](https://github.com/defenseunicorns/uds-package-jira/issues/81)) ([f054a5d](https://github.com/defenseunicorns/uds-package-jira/commit/f054a5d19d1f78eff63bab775e5913569ba0834d))
+* **deps:** update jira support dependencies ([#78](https://github.com/defenseunicorns/uds-package-jira/issues/78)) ([1a29613](https://github.com/defenseunicorns/uds-package-jira/commit/1a29613acf5f8e0250178ab56354c0bf5e290f89))
+* **deps:** update jira support dependencies ([#80](https://github.com/defenseunicorns/uds-package-jira/issues/80)) ([0991b84](https://github.com/defenseunicorns/uds-package-jira/commit/0991b84b9596eb08ee2b4eb661a73ccd89dd0f76))
+* **deps:** update support-deps to v39.50.0 ([#82](https://github.com/defenseunicorns/uds-package-jira/issues/82)) ([17e6bde](https://github.com/defenseunicorns/uds-package-jira/commit/17e6bde0a57383a77e2978a653667e1f9fd89b49))
+* release 10.3.0-uds.0 ([b843938](https://github.com/defenseunicorns/uds-package-jira/commit/b843938a8202e8766e6e91af30ded2cf462e3e13))
+
 ## [10.2.0-uds.0](https://github.com/defenseunicorns/uds-package-jira/compare/v10.1.2-uds.0...v10.2.0-uds.0) (2024-11-22)
 
 
