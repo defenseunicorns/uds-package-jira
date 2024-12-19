@@ -87,7 +87,3 @@ tasks:
 
       - description: Publish the packages
         task: publish:package
-        with:
-          # x-release-please-start-version
-          version: 10.3.0-uds.0
-          # x-release-please-end

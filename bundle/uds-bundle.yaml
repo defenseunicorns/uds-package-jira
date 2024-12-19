@@ -5,9 +5,7 @@ kind: UDSBundle
 metadata:
   name: jira-test
   description: A UDS bundle for deploying jira and it's dependencies on a development cluster
-  # x-release-please-start-version
-  version: 10.3.0-uds.0
-  # x-release-please-end
+  version: dev
 
 packages:
   - name: dev-namespace
@@ -31,9 +29,7 @@ packages:
 
   - name: jira
     path: ../
-    # x-release-please-start-version
-    ref: 10.3.0-uds.0
-    # x-release-please-end
+    ref: dev
     overrides:
       jira:
         uds-jira-config:
