@@ -1,4 +1,4 @@
-/* @defenseunicorns/uds-package-maintainers @defenseunicorns/digital-salmon @Michael-Kruggel @mkborland
+* @defenseunicorns/uds-package-maintainers @Michael-Kruggel @mkborland
 
-# This repository is heavily worked by the UDS Delivery Team Digital Salmon
-/CODEOWNERS @defenseunicorns/uds-package-maintainers
+/CODEOWNERS @jeff-mccoy @daveworth
+/LICENS* @jeff-mccoy @austenbryan
