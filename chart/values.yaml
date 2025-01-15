@@ -25,29 +25,20 @@ sso:
   requiredGroups: []
 
 setup:
-  # Admin user configuration
-  admin:
-    username: "admin"
-    password: "admin"
-    email: "admin@example.com"
-    fullname: "Jira Administrator"
+  instanceDisplayName: "Jira Data Center"
+  initialAdminSecret:
+    name: jira-admin
+    usernameKey: username
+    passwordKey: password
+    emailKey: email
+    displayNameKey: displayName
 
-  # Setup job configuration
-  job:
-    image: registry.access.redhat.com/ubi9:9.4-1214.1726694543
-    resources:
-      requests:
-        cpu: 2000m
-        memory: 4Gi
-      limits:
-        cpu: 6
-        memory: 6Gi
-    backoffLimit: 6
-    activeDeadlineSeconds: 600
-    ttlSecondsAfterFinished: 100
 jira:
   license:
     secretName: jira-license
     secretKey: license_key
     stringData:
-      license_key: "###ZARF_VAR_JIRA_LICENSE_KEY###"
+      license_key: "AAAB4Q0ODAoPeNqVUk2P2jAUvOdXROqlVRUUB7JZkCx1CaZkC8luAogDFxMexAWcyHZg2V/ffICgZRepR4/tmTfz5ss4B/2Zch21dIQ6VqvTtHU3GuuWadmaK4AqlvIeVYBLxDCRgWxtyGLgEsbHDHy6A+wGoxEJXe9pqP1mgjZO92TJyt+Y+GMSvoReRDQ/3y1ABKuJBCGxgc5U5C1j4nilYxmoVZNlIl3msWqUB0OmK3WgAho0VmwPWIkctChfyFiwrBKrELKn25xezhVRwU5d4ApEDW5r6QGVCR65B7fvQtZ/d7+bi9n71DNnTh60vXCSKDLbPCXhoDn+NemSjVQTexC/Haf2epmz9uHnw+scz/HZidfDQ68XEd8YWqaD2s5j+56PSFFRTrSiW1k4AbEHUVB0iecYgdd/NUK/7RsW8rvaBo7TIrXSFHowTcd8bDaRthYAPEmzDMSd3F9yESdUwr+bvP5dRZMJJs+xEh//7eMDrY860IPLOp4Lt3p0cqt/LXeg10v4Nu/olz1pI8oKlFMe/38Zblp1Peh1U+5wfNKOc+KWFog15UzWrerBqrzVJ5zFqeBSc1OuCiVS2NhikS528Y9l/SY/PWnE6a4e4GbcCr2Z807CJ7UK/lzsD+lDVU4wLAIUDh8J3BnMCPGC9z4pMZxph+utjboCFDTa3S1umpcLoVwqWBI2JELm2ZTkX02mq"
+    
+# custom:
+#    # Notice no `remoteGenerated`
