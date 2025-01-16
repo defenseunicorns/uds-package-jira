@@ -1,0 +1,12 @@
+{{- if .Values.setup.createSecrets }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: jira-admin
+type: Opaque
+data:
+  username: {{ .Values.setup.admin.username | b64enc }}
+  password: {{ .Values.setup.admin.password | b64enc }}
+  email: {{ .Values.setup.admin.email | b64enc }}
+  fullname: {{ .Values.setup.admin.fullname | b64enc }}
+{{- end }}

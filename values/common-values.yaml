@@ -35,6 +35,9 @@ ingress:
   nginx: false
 
 jira:
+  license:
+    secretName: jira-license
+    secretKey: license_key
   tomcatConfig:
     generateByHelm: true
   seraphConfig:
@@ -78,3 +81,5 @@ replicaCount: 1
 podAnnotations:
   traffic.sidecar.istio.io/excludeOutboundPorts: 40001,40011
   traffic.sidecar.istio.io/excludeInboundPorts: 40001,40011
+
+additionalEnvironmentVariables: []

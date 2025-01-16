@@ -25,13 +25,33 @@ sso:
   requiredGroups: []
 
 setup:
-  instanceDisplayName: "Jira Data Center"
-  initialAdminSecret:
-    name: jira-admin
-    usernameKey: username
-    passwordKey: password
-    emailKey: email
-    displayNameKey: displayName
+  # Whether to create setup secrets
+  createSecrets: true
+  
+  # Admin user configuration
+  admin:
+    username: "admin"
+    password: "admin"
+    email: "admin@example.com" 
+    fullname: "Jira Administrator"
+
+  # License configuration  
+  license:
+    key: ""
+
+  # Setup job configuration
+  job:
+    image: registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.9
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+    backoffLimit: 6
+    activeDeadlineSeconds: 600
+    ttlSecondsAfterFinished: 100
 
 jira:
   license:

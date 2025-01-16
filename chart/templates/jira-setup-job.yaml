@@ -1,0 +1,83 @@
+{{- if .Values.setup.createSecrets }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jira-setup
+  labels:
+    app: jira
+    component: setup
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "0"
+    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
+spec:
+  backoffLimit: {{ .Values.setup.job.backoffLimit }}
+  activeDeadlineSeconds: {{ .Values.setup.job.activeDeadlineSeconds }}
+  ttlSecondsAfterFinished: {{ .Values.setup.job.ttlSecondsAfterFinished }}
+  template:
+    metadata:
+      labels:
+        app: jira
+        component: setup
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: setup
+          image: {{ .Values.setup.job.image }}
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              # Install Python and development tools
+              microdnf install -y python3 python3-pip python3-devel gcc
+              
+              # Create and activate virtual environment
+              python3 -m venv /tmp/venv
+              source /tmp/venv/bin/activate
+              
+              # Upgrade pip and install dependencies
+              pip install --no-cache-dir --upgrade pip
+              pip install --no-cache-dir requests beautifulsoup4
+              
+              # Run the setup script
+              python3 /scripts/test_license.py
+          env:
+            - name: JIRA_URL
+              value: "http://jira.{{ .Release.Namespace }}.svc.cluster.local"
+            - name: ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: jira-admin
+                  key: username
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jira-admin
+                  key: password
+            - name: ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: jira-admin
+                  key: email
+            - name: ADMIN_FULLNAME
+              valueFrom:
+                secretKeyRef:
+                  name: jira-admin
+                  key: fullname
+            - name: LICENSE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jira-license
+                  key: license-key
+          resources:
+            {{- toYaml .Values.setup.job.resources | nindent 12 }}
+          volumeMounts:
+            - name: script
+              mountPath: /scripts
+              readOnly: true
+      volumes:
+        - name: script
+          configMap:
+            name: jira-setup-script
+            defaultMode: 0755
+{{- end }} 

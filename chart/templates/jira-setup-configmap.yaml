@@ -1,0 +1,255 @@
+{{- if .Values.setup.createSecrets }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jira-setup-script
+data:
+  test_license.py: |
+    #!/usr/bin/env python3
+
+    import requests
+    from requests.exceptions import RequestException
+    import os
+    import sys
+    import time
+    import json
+    import logging
+    from urllib3.exceptions import InsecureRequestWarning
+    from typing import Optional, Dict, Any
+    from bs4 import BeautifulSoup
+
+    # Configure logging
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+    logger = logging.getLogger(__name__)
+
+    # Suppress only the single warning from urllib3 needed.
+    requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+
+    class Config:
+        JIRA_DOMAIN = os.getenv("JIRA_URL", "http://localhost:8080")
+        JIRA_ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
+        JIRA_ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin")
+        JIRA_ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "admin@example.com")
+        JIRA_ADMIN_FULLNAME = os.getenv("ADMIN_FULLNAME", "Admin User")
+        JIRA_LICENSE_KEY = os.getenv("LICENSE_KEY", "")
+        
+        MAX_RETRIES = 30
+        RETRY_INTERVAL = 10
+        TIMEOUT = 30
+
+        @property
+        def base_url(self) -> str:
+            return self.JIRA_DOMAIN
+        
+        @property
+        def urls(self) -> Dict[str, str]:
+            return {
+                'license': f"{self.base_url}/secure/SetupLicense!default.jspa",
+                'admin': f"{self.base_url}/secure/SetupAdminAccount!default.jspa",
+                'status': f"{self.base_url}/status"
+            }
+
+    class JiraSetup:
+        def __init__(self):
+            self.config = Config()
+            self.session = requests.Session()
+            self.session.headers.update({
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Origin": self.config.base_url,
+                "Referer": f"{self.config.base_url}/"
+            })
+            # Since we're in cluster, no need for SSL verification
+            self.session.verify = False
+
+        def _make_request(
+            self, 
+            method: str, 
+            url: str, 
+            data: Optional[Dict[str, str]] = None,
+            expected_status_codes: tuple = (200, 302)
+        ) -> requests.Response:
+            """Make HTTP request with proper error handling and logging."""
+            try:
+                response = self.session.request(
+                    method=method,
+                    url=url,
+                    data=data,
+                    timeout=self.config.TIMEOUT,
+                    allow_redirects=True
+                )
+                
+                logger.debug(f"Request to {url}: {response.status_code}")
+                logger.debug(f"Response headers: {dict(response.headers)}")
+                
+                if response.status_code not in expected_status_codes:
+                    logger.error(f"Unexpected status code: {response.status_code}")
+                    logger.error(f"Response content: {response.text}")
+                    raise RequestException(f"Unexpected status code: {response.status_code}")
+                
+                return response
+                
+            except RequestException as e:
+                logger.error(f"Request failed: {str(e)}")
+                raise
+
+        def _extract_form_token(self, html_content: str) -> str:
+            """Extract XSRF token from HTML form."""
+            soup = BeautifulSoup(html_content, 'html.parser')
+            token_input = soup.find('input', {'name': 'atl_token'})
+            if not token_input or 'value' not in token_input.attrs:
+                raise ValueError("Could not find XSRF token in form")
+            return token_input['value']
+
+        def wait_for_availability(self) -> None:
+            """Wait for Jira to become available."""
+            logger.info("Waiting for Jira to become available...")
+            for attempt in range(self.config.MAX_RETRIES):
+                try:
+                    response = self._make_request("GET", self.config.urls['status'])
+                    state = response.json().get("state", "")
+                    if state in ["FIRST_RUN", "RUNNING"]:
+                        logger.info("Jira is available!")
+                        return
+                    logger.info(f"Jira state is {state}, waiting...")
+                except Exception as e:
+                    logger.debug(f"Attempt {attempt + 1} failed: {str(e)}")
+                
+                time.sleep(self.config.RETRY_INTERVAL)
+            
+            raise TimeoutError("Jira did not become available in time")
+
+        def setup_license(self) -> None:
+            """Set up Jira license."""
+            logger.info("Setting up license...")
+            
+            # First get the license page to obtain the form token
+            response = self._make_request("GET", self.config.urls['license'])
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Extract form details
+            form = soup.find('form', {'id': 'jira-setupwizard'}) or soup.find('form', {'id': 'setupLicenseForm'})
+            if not form:
+                logger.error("Could not find license setup form")
+                logger.debug(f"Page content: {response.text}")
+                raise ValueError("License setup form not found")
+                
+            token = self._extract_form_token(response.text)
+            logger.debug(f"Found token: {token}")
+            
+            # Get the form action URL
+            form_action = form.get('action', 'SetupLicense!default.jspa')
+            if not form_action.startswith('http'):
+                form_action = f"{self.config.base_url}/secure/{form_action}"
+            
+            logger.debug(f"Submitting license to: {form_action}")
+            
+            # Submit license with the correct token
+            payload = {
+                "setupLicenseKey": self.config.JIRA_LICENSE_KEY,
+                "atl_token": token,
+                "next": "Next"
+            }
+            
+            logger.debug(f"Submitting payload: {payload}")
+            response = self._make_request("POST", form_action, data=payload)
+            
+            # Check for error messages in the response
+            soup = BeautifulSoup(response.text, 'html.parser')
+            error_msgs = soup.find_all(class_=['error', 'aui-message-error'])
+            if error_msgs:
+                for error in error_msgs:
+                    logger.error(f"Form error: {error.get_text()}")
+                raise RequestException("License submission failed due to form errors")
+                
+            # Check if we're still on the license page
+            if "SetupLicense" in response.url:
+                logger.error("Still on license page after submission")
+                logger.debug(f"Response content: {response.text}")
+                raise RequestException("License submission did not advance to next step")
+                
+            logger.info("License setup completed")
+
+        def setup_admin(self) -> None:
+            """Set up admin account."""
+            logger.info("Setting up admin account...")
+            
+            # Get admin setup page and extract token
+            response = self._make_request("GET", self.config.urls['admin'])
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Extract form details
+            form = soup.find('form', {'class': 'aui'})
+            if not form:
+                logger.error("Could not find admin setup form")
+                logger.debug(f"Page content: {response.text}")
+                raise ValueError("Admin setup form not found")
+                
+            token = self._extract_form_token(response.text)
+            
+            # Get the form action URL
+            form_action = form.get('action', 'SetupAdminAccount.jspa')
+            if not form_action.startswith('http'):
+                form_action = f"{self.config.base_url}/secure/{form_action}"
+                
+            logger.debug(f"Submitting admin details to: {form_action}")
+            
+            # Submit admin details
+            payload = {
+                "fullname": self.config.JIRA_ADMIN_FULLNAME,
+                "email": self.config.JIRA_ADMIN_EMAIL,
+                "username": self.config.JIRA_ADMIN_USERNAME,
+                "password": self.config.JIRA_ADMIN_PASSWORD,
+                "confirm": self.config.JIRA_ADMIN_PASSWORD,
+                "atl_token": token,
+                "next": "Next"
+            }
+            
+            logger.debug(f"Submitting payload: {payload}")
+            response = self._make_request("POST", form_action, data=payload)
+            
+            # Now handle the mail notifications page
+            soup = BeautifulSoup(response.text, 'html.parser')
+            token = self._extract_form_token(response.text)
+            
+            # Submit the skip email setup
+            mail_form_action = f"{self.config.base_url}/secure/SetupMailNotifications.jspa"
+            payload = {
+                "atl_token": token,
+                "noemail": "true",
+                "finish": "Finish"
+            }
+            
+            logger.debug(f"Skipping email setup: {mail_form_action}")
+            response = self._make_request("POST", mail_form_action, data=payload)
+            
+            logger.info("Admin account setup completed")
+
+        def verify_setup(self) -> None:
+            """Verify Jira setup completion."""
+            logger.info("Verifying setup...")
+            response = self._make_request("GET", self.config.urls['status'])
+            state = response.json().get("state", "UNKNOWN")
+            
+            if state not in ["RUNNING", "FIRST_RUN"]:
+                raise RuntimeError(f"Unexpected Jira state after setup: {state}")
+            logger.info(f"Setup verified successfully! Jira state: {state}")
+
+    def main():
+        try:
+            setup = JiraSetup()
+            setup.wait_for_availability()
+            setup.setup_license()
+            setup.setup_admin()
+            setup.verify_setup()
+            logger.info("Jira setup completed successfully!")
+            sys.exit(0)
+        except Exception as e:
+            logger.error(f"Setup failed: {str(e)}")
+            sys.exit(1)
+
+    if __name__ == "__main__":
+        main()
+{{- end }} 
