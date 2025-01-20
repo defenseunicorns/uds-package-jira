@@ -1,6 +1,19 @@
 # Copyright 2024 Defense Unicorns
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
+setup:
+  createSecrets: true
+  admin:
+    username: "admin"
+    password: "admin"
+    email: "admin@example.com"
+    fullname: "Jira Administrator"
+  job:
+    image: registry.access.redhat.com/ubi9:9.4-1214.1726694543
+    backoffLimit: 3
+    activeDeadlineSeconds: 180
+    ttlSecondsAfterFinished: 100
+
 database:
   type: postgres72  # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#databasetype
   url: "jdbc:postgresql://###ZARF_VAR_JIRA_DB_ENDPOINT###:5432/###ZARF_VAR_JIRA_DB_NAME###"
@@ -45,13 +58,13 @@ jira:
   resources:
     container:
       requests:
-        cpu: "500m"
-        memory: "2Gi"
+        cpu: "2000m"
+        memory: "4Gi"
       limits:
         cpu: "6"
         memory: "6Gi"
     jvm:
-      maxHeap: "4g"
+      maxHeap: "4200m"
   securityContext:
     fsGroup: 2001
     runAsNonRoot: true

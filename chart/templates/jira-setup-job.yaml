@@ -3,13 +3,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: jira-setup
-  labels:
-    app: jira
-    component: setup
-  annotations:
-    "helm.sh/hook": post-install,post-upgrade
-    "helm.sh/hook-weight": "0"
-    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
 spec:
   backoffLimit: {{ .Values.setup.job.backoffLimit }}
   activeDeadlineSeconds: {{ .Values.setup.job.activeDeadlineSeconds }}
@@ -19,65 +12,93 @@ spec:
       labels:
         app: jira
         component: setup
+      annotations:
+        sidecar.istio.io/inject: "false"
     spec:
       restartPolicy: OnFailure
+      initContainers:
+        - name: wait-for-jira
+          image: {{ .Values.setup.job.image }}
+          command: ['sh', '-c']
+          args:
+            - |
+              echo "Waiting 60 seconds for Jira to become responsive..."
+              sleep 60
+              until curl -sk https://jira.uds.dev/status | tee /dev/stderr | grep -q '"state":"FIRST_RUN"'; do
+                echo "Waiting for Jira to be ready..."
+                sleep 10
+              done
+              sleep 90
+              echo "Proceeding with setup..."
       containers:
         - name: setup
           image: {{ .Values.setup.job.image }}
           imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 0
           command: ["/bin/bash", "-c"]
           args:
             - |
-              # Install Python and development tools
-              microdnf install -y python3 python3-pip python3-devel gcc
+              set -ex
+              dnf install -y --allowerasing python3 python3-pip curl
               
               # Create and activate virtual environment
-              python3 -m venv /tmp/venv
-              source /tmp/venv/bin/activate
+              python3 -m venv /setup/venv
+              source /setup/venv/bin/activate
               
-              # Upgrade pip and install dependencies
-              pip install --no-cache-dir --upgrade pip
+              # Install packages in the virtual environment
               pip install --no-cache-dir requests beautifulsoup4
               
-              # Run the setup script
+              # Make venv accessible to main container
+              chmod -R 755 /setup/venv            
+              source /setup/venv/bin/activate
               python3 /scripts/test_license.py
           env:
-            - name: JIRA_URL
-              value: "http://jira.{{ .Release.Namespace }}.svc.cluster.local"
-            - name: ADMIN_USERNAME
+            - name: JIRA_DOMAIN
+              value: "jira.uds.dev"
+            - name: JIRA_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: jira-admin
                   key: username
-            - name: ADMIN_PASSWORD
+            - name: JIRA_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: jira-admin
                   key: password
-            - name: ADMIN_EMAIL
+            - name: JIRA_ADMIN_EMAIL
               valueFrom:
                 secretKeyRef:
                   name: jira-admin
                   key: email
-            - name: ADMIN_FULLNAME
+            - name: JIRA_ADMIN_FULLNAME
               valueFrom:
                 secretKeyRef:
                   name: jira-admin
                   key: fullname
-            - name: LICENSE_KEY
+            - name: JIRA_LICENSE_KEY
               valueFrom:
                 secretKeyRef:
                   name: jira-license
                   key: license-key
           resources:
-            {{- toYaml .Values.setup.job.resources | nindent 12 }}
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
           volumeMounts:
             - name: script
               mountPath: /scripts
               readOnly: true
+            - name: setup
+              mountPath: /setup
       volumes:
         - name: script
           configMap:
             name: jira-setup-script
             defaultMode: 0755
+        - name: setup
+          emptyDir: {}
 {{- end }} 

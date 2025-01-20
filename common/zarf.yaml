@@ -27,6 +27,21 @@ components:
     actions:
       onDeploy:
         after:
+          - description: Wait for Jira StatefulSet
+            wait:
+              cluster:
+                kind: StatefulSet
+                name: jira
+                namespace: jira
+            maxTotalSeconds: 300
+          - wait:
+              cluster:
+                kind: Job
+                name: jira-setup
+                condition: "'{.status.succeeded}'=1"
+                namespace: jira
+            maxTotalSeconds: 300
+            description: Jira Setup job succeeded
           - description: Validate Jira Package
             maxTotalSeconds: 300
             wait:
