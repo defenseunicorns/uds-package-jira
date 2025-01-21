@@ -5,6 +5,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: jira-setup
+  labels:
+    app.kubernetes.io/name: jira
 spec:
   backoffLimit: {{ .Values.setup.job.backoffLimit }}
   activeDeadlineSeconds: {{ .Values.setup.job.activeDeadlineSeconds }}
@@ -12,10 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: jira
-        component: setup
-      annotations:
-        sidecar.istio.io/inject: "false"
+        app.kubernetes.io/name: jira
     spec:
       restartPolicy: OnFailure
       initContainers:
