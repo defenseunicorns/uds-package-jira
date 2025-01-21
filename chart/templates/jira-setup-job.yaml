@@ -1,4 +1,3 @@
-{{- if .Values.setup.createSecrets }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -24,6 +23,9 @@ spec:
             - |
               sleep 10
               echo "Proceeding with setup..."
+          env:
+            - name: JIRA_DOMAIN
+              value: jira.{{ .Values.domain }}
       containers:
         - name: setup
           image: {{ .Values.setup.job.image }}
@@ -49,7 +51,7 @@ spec:
               python3 /scripts/test_license.py
           env:
             - name: JIRA_DOMAIN
-              value: "jira.uds.dev"
+              value: jira.{{ .Values.domain }}
             - name: JIRA_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -73,8 +75,8 @@ spec:
             - name: JIRA_LICENSE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: jira-license
-                  key: license-key
+                  name: {{ .Values.jira.license.secretName }}
+                  key: license_key
           resources:
             requests:
               cpu: 500m
@@ -95,4 +97,3 @@ spec:
             defaultMode: 0755
         - name: setup
           emptyDir: {}
-{{- end }} 

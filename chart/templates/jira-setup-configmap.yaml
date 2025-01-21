@@ -1,4 +1,3 @@
-{{- if .Values.setup.createSecrets }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -29,12 +28,12 @@ data:
     requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
     class Config:
-        JIRA_DOMAIN = os.getenv("JIRA_DOMAIN", "jira.uds.dev")
-        JIRA_ADMIN_USERNAME = os.getenv("JIRA_ADMIN_USERNAME", "admin")
-        JIRA_ADMIN_PASSWORD = os.getenv("JIRA_ADMIN_PASSWORD", "admin")
-        JIRA_ADMIN_EMAIL = os.getenv("JIRA_ADMIN_EMAIL", "admin@uds.dev")
-        JIRA_ADMIN_FULLNAME = os.getenv("JIRA_ADMIN_FULLNAME", "Admin User")
-        JIRA_LICENSE_KEY = os.getenv("JIRA_LICENSE_KEY", "AAAB4Q0ODAoPeNqVUk2P2jAUvOdXROqlVRUUB7JZkCx1CaZkC8luAogDFxMexAWcyHZg2V/ffICgZRepR4/tmTfz5ss4B/2Zch21dIQ6VqvTtHU3GuuWadmaK4AqlvIeVYBLxDCRgWxtyGLgEsbHDHy6A+wGoxEJXe9pqP1mgjZO92TJyt+Y+GMSvoReRDQ/3y1ABKuJBCGxgc5U5C1j4nilYxmoVZNlIl3msWqUB0OmK3WgAho0VmwPWIkctChfyFiwrBKrELKn25xezhVRwU5d4ApEDW5r6QGVCR65B7fvQtZ/d7+bi9n71DNnTh60vXCSKDLbPCXhoDn+NemSjVQTexC/Haf2epmz9uHnw+scz/HZidfDQ68XEd8YWqaD2s5j+56PSFFRTrSiW1k4AbEHUVB0iecYgdd/NUK/7RsW8rvaBo7TIrXSFHowTcd8bDaRthYAPEmzDMSd3F9yESdUwr+bvP5dRZMJJs+xEh//7eMDrY860IPLOp4Lt3p0cqt/LXeg10v4Nu/olz1pI8oKlFMe/38Zblp1Peh1U+5wfNKOc+KWFog15UzWrerBqrzVJ5zFqeBSc1OuCiVS2NhikS528Y9l/SY/PWnE6a4e4GbcCr2Z807CJ7UK/lzsD+lDVU4wLAIUDh8J3BnMCPGC9z4pMZxph+utjboCFDTa3S1umpcLoVwqWBI2JELm2ZTkX02mq")
+        JIRA_DOMAIN = os.getenv("JIRA_DOMAIN", "")
+        JIRA_ADMIN_USERNAME = os.getenv("JIRA_ADMIN_USERNAME", "")
+        JIRA_ADMIN_PASSWORD = os.getenv("JIRA_ADMIN_PASSWORD", "")
+        JIRA_ADMIN_EMAIL = os.getenv("JIRA_ADMIN_EMAIL", "")
+        JIRA_ADMIN_FULLNAME = os.getenv("JIRA_ADMIN_FULLNAME", "")
+        JIRA_LICENSE_KEY = os.getenv("JIRA_LICENSE_KEY", "")
         
         MAX_RETRIES = 30
         RETRY_INTERVAL = 10
@@ -398,5 +397,3 @@ data:
 
     if __name__ == "__main__":
         main() 
-
-{{- end }} 

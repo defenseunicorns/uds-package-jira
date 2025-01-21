@@ -24,10 +24,7 @@ sso:
   defaultClientScopes: []
   requiredGroups: []
 
-setup:
-  # Whether to create setup secrets
-  createSecrets: true
-  
+setup:  
   # Admin user configuration
   admin:
     username: "admin"
@@ -35,9 +32,9 @@ setup:
     email: "admin@example.com" 
     fullname: "Jira Administrator"
 
-  # License configuration  
-  license:
-    key: ""
+  # # License configuration  
+  # license:
+  #   key: ""
 
   # Setup job configuration
   job:

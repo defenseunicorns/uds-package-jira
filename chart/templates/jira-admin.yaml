@@ -1,4 +1,3 @@
-{{- if .Values.setup.createSecrets }}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -9,4 +8,3 @@ data:
   password: {{ .Values.setup.admin.password | b64enc }}
   email: {{ .Values.setup.admin.email | b64enc }}
   fullname: {{ .Values.setup.admin.fullname | b64enc }}
-{{- end }}

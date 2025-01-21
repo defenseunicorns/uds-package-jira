@@ -1,19 +1,6 @@
 # Copyright 2024 Defense Unicorns
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
-setup:
-  createSecrets: true
-  admin:
-    username: "admin"
-    password: "admin"
-    email: "admin@example.com"
-    fullname: "Jira Administrator"
-  job:
-    image: registry.access.redhat.com/ubi9:9.4-1214.1726694543
-    backoffLimit: 3
-    activeDeadlineSeconds: 180
-    ttlSecondsAfterFinished: 100
-
 database:
   type: postgres72  # https://atlassian.github.io/data-center-helm-charts/userguide/CONFIGURATION/#databasetype
   url: "jdbc:postgresql://###ZARF_VAR_JIRA_DB_ENDPOINT###:5432/###ZARF_VAR_JIRA_DB_NAME###"
@@ -48,9 +35,6 @@ ingress:
   nginx: false
 
 jira:
-  license:
-    secretName: jira-license
-    secretKey: license_key
   tomcatConfig:
     generateByHelm: true
   seraphConfig:
