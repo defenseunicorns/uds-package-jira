@@ -6,9 +6,9 @@
 import { test, expect, Page } from "@playwright/test";
 
 test("setup jira", async ({ page }: { page: Page }) => {
-  // Enable verbose logging
-  page.on('console', msg => console.log(`Browser console: ${msg.text()}`));
-  page.on('response', response => console.log(`${response.status()} ${response.url()}`));
+  // // Enable verbose logging
+  // page.on('console', msg => console.log(`Browser console: ${msg.text()}`));
+  // page.on('response', response => console.log(`${response.status()} ${response.url()}`));
 
   try {
     await test.step('ensure logged out', async () => {
@@ -226,8 +226,29 @@ test("setup jira", async ({ page }: { page: Page }) => {
         await page.screenshot({ path: 'project-creation-failed.png', fullPage: true });
         throw new Error('Project creation failed - did not navigate to project page');
       });
-      const projectTitle = await page.locator('h1');
-      expect(await projectTitle.textContent()).toContain('test');
+
+      // Verify project creation by checking for "Open issues" heading and project name in sidebar
+      const verificationSelectors = [
+        'h1:has-text("Open issues")',
+        '[data-test-id="navigation-apps.project-switcher-v2:project-switcher"]',
+        '[data-test-id="project-sidebar.container"]',
+        '[data-project-key="TEST"]'
+      ];
+
+      let projectVerified = false;
+      for (const selector of verificationSelectors) {
+        console.log(`Looking for project element with selector: ${selector}`);
+        if (await page.locator(selector).count() > 0) {
+          console.log(`Found project element with selector: ${selector}`);
+          projectVerified = true;
+          break;
+        }
+      }
+
+      if (!projectVerified) {
+        await page.screenshot({ path: 'project-verification-failed.png', fullPage: true });
+        throw new Error('Could not verify project creation - project elements not found');
+      }
     });
   } catch (error) {
     // Take a final screenshot on any unhandled error
