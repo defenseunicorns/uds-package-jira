@@ -1,0 +1,421 @@
+{
+  "config": {
+    "configFile": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/playwright.config.ts",
+    "rootDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": ".playwright/reports",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": ".playwright/reports/test-results.json",
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/.playwright/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/.*\\.setup\\.ts/"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/.playwright/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/.playwright/output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.47.2",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "jira.setup.ts",
+      "file": "jira.setup.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "setup jira",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "setup",
+              "projectName": "setup",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "timedOut",
+                  "duration": 30007,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/jira.setup.ts",
+                        "column": 58,
+                        "line": 35
+                      },
+                      "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('textarea[name=\"licenseString\"]')\u001b[22m\n\n\n\u001b[0m \u001b[90m 33 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Setting up license...'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mconst\u001b[39m licenseKey \u001b[33m=\u001b[39m process\u001b[33m.\u001b[39menv\u001b[33m.\u001b[39m\u001b[33mJIRA_LICENSE\u001b[39m \u001b[33m?\u001b[39m\u001b[33m?\u001b[39m \u001b[32m\"\"\u001b[39m\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'textarea[name=\"licenseString\"]'\u001b[39m)\u001b[33m.\u001b[39mfill(licenseKey)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button[name=\"next\"]'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'License submitted'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/jira.setup.ts:35:58\u001b[22m\n\u001b[2m    at /home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/jira.setup.ts:32:14\u001b[22m"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "Navigating to setup page...\n"
+                    },
+                    {
+                      "text": "302 https://jira.uds.dev/\n"
+                    },
+                    {
+                      "text": "302 https://jira.uds.dev/secure/SetupDatabase!default.jspa\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/secure/SetupApplicationProperties!default.jspa\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/images/logos/light/jira-generic.png\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:marionette/jira.webresources:marionette.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:backbone-1.0.0/jira.webresources:backbone-1.0.0.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/caac566f10dc12a9df4aab0b51a08d30-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.table/com.atlassian.auiplugin:split_aui.pattern.table.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/caac566f10dc12a9df4aab0b51a08d30-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.multi-step-progress/com.atlassian.auiplugin:split_aui.pattern.multi-step-progress.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:backbone-queryparams-lib/jira.webresources:backbone-queryparams-lib.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/caac566f10dc12a9df4aab0b51a08d30-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.label/com.atlassian.auiplugin:split_aui.pattern.label.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/4ce0d70c4efd622fc41badbfd9c39eed-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:jira-setup/jira.webresources:jira-setup.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/4ce0d70c4efd622fc41badbfd9c39eed-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:a11y-overrides/jira.webresources:a11y-overrides.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.label/com.atlassian.auiplugin:split_aui.pattern.label.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.splitchunk.b31d61f755/com.atlassian.auiplugin:split_aui.splitchunk.b31d61f755.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/37ed94788fd4781c08e6e0e581d6363e-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:global-static/jira.webresources:global-static.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.multi-step-progress/com.atlassian.auiplugin:split_aui.pattern.multi-step-progress.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/caac566f10dc12a9df4aab0b51a08d30-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:jira-setup/jira.webresources:jira-setup.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/6.0.1/_/download/batch/com.atlassian.plugin.jslibs:backbone-1.0.0-factory/com.atlassian.plugin.jslibs:backbone-1.0.0-factory.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/6.0.1/_/download/batch/com.atlassian.plugin.jslibs:marionette-1.6.4-factory/com.atlassian.plugin.jslibs:marionette-1.6.4-factory.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/ddf8816d1aa3fadda906083dd9c35ac3-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:jira-setup-soy-templates/jira.webresources:jira-setup-soy-templates.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/0e77aaecde837773e859b12d3656fd32-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/css/_super/batch.css?plugins.jquery.migrate.load.disabled=false\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d0e2dd9d5908f5d1bf90bac2c5a98f4a-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/js/_super/batch.js?locale=en-US&plugins.jquery.migrate.load.disabled=false\n"
+                    },
+                    {
+                      "text": "[WRM] Client-side initialised during 'loading' state\n"
+                    },
+                    {
+                      "text": "JQMIGRATE: Migrate is installed, version 1.4.1\n"
+                    },
+                    {
+                      "text": "Use of `window.Backbone` through AUI is deprecated and will be removed in AUI 10.0.0\n"
+                    },
+                    {
+                      "text": "Use of `window._` through AUI is deprecated and will be removed in AUI 10.0.0\n"
+                    },
+                    {
+                      "text": "DEPRECATED JS - PopulateParameters has been deprecated since 9.0.0 and will be removed in 10.0.0.  \n     at HTMLDocument.<anonymous> (https://jira.uds.dev/s/d0e2dd9d5908f5d1bf90bac2c5a98f4a-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/js/_super/batch.js?locale=en-US&plugins.jquery.migrate.load.disabled=false:314:993)\n"
+                    },
+                    {
+                      "text": "DEPRECATED JS - AJS.debounce has been deprecated since 8.0.0 and will be removed in 10.0.0. Use equivalent functions from libraries like lodash / underscore instead  \n     at p.init (https://jira.uds.dev/s/d0e2dd9d5908f5d1bf90bac2c5a98f4a-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/js/_super/batch.js?locale=en-US&plugins.jquery.migrate.load.disabled=false:436:2005)\n"
+                    },
+                    {
+                      "text": "DEPRECATED undefined - AJS.params has been deprecated since 9.0.0 and will be removed in 10.0.0.  \n     at https://jira.uds.dev/s/d0e2dd9d5908f5d1bf90bac2c5a98f4a-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/js/_super/batch.js?locale=en-US&plugins.jquery.migrate.load.disabled=false:4787:6132\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/nosun/10030002/1bqcfwe/9.12.6/_/download/resources/com.atlassian.auiplugin:split_aui.splitchunk.51ee36ecdd/assets/adgs-icons.woff\n"
+                    },
+                    {
+                      "text": "503 https://jira.uds.dev/rest/wrm/2.0/resources\n"
+                    },
+                    {
+                      "text": "Failed to load resource: the server responded with a status of 503 ()\n"
+                    },
+                    {
+                      "text": "Response\n"
+                    },
+                    {
+                      "text": "301 https://www.atlassian.com/pingback?releasedInstantSetup=true&instantSetup=false&pg=_secure_SetupApplicationProperties!default.jspa&product=jira&SEN=undefined&setupSessionId=293a44bb-ba13-4c95-8148-e940f699f47c&sid=BM6O-T13P-C1T1-URCW&v=undefined\n"
+                    },
+                    {
+                      "text": "200 https://www.atlassian.com/?releasedInstantSetup=true&instantSetup=false&pg=_secure_SetupApplicationProperties!default.jspa&product=jira&SEN=undefined&setupSessionId=293a44bb-ba13-4c95-8148-e940f699f47c&sid=BM6O-T13P-C1T1-URCW&v=undefined\n"
+                    },
+                    {
+                      "text": "Refused to frame 'https://www.atlassian.com/' because an ancestor violates the following Content Security Policy directive: \"frame-ancestors 'none'\".\n\n"
+                    },
+                    {
+                      "text": "Page loaded\n"
+                    },
+                    {
+                      "text": "Setup form found\n"
+                    },
+                    {
+                      "text": "Setting up application properties...\n"
+                    },
+                    {
+                      "text": "302 https://jira.uds.dev/secure/SetupApplicationProperties.jspa\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/secure/SetupLicense!default.jspa\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/0e77aaecde837773e859b12d3656fd32-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/css/_super/batch.css?plugins.jquery.migrate.load.disabled=false\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.label/com.atlassian.auiplugin:split_aui.pattern.label.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.splitchunk.b31d61f755/com.atlassian.auiplugin:split_aui.splitchunk.b31d61f755.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/4ce0d70c4efd622fc41badbfd9c39eed-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:a11y-overrides/jira.webresources:a11y-overrides.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/37ed94788fd4781c08e6e0e581d6363e-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:global-static/jira.webresources:global-static.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.multi-step-progress/com.atlassian.auiplugin:split_aui.pattern.multi-step-progress.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/4ce0d70c4efd622fc41badbfd9c39eed-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:jira-setup/jira.webresources:jira-setup.css\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d0e2dd9d5908f5d1bf90bac2c5a98f4a-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/js/_super/batch.js?locale=en-US&plugins.jquery.migrate.load.disabled=false\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/ddf8816d1aa3fadda906083dd9c35ac3-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:jira-setup-soy-templates/jira.webresources:jira-setup-soy-templates.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/6.0.1/_/download/batch/com.atlassian.plugin.jslibs:backbone-1.0.0-factory/com.atlassian.plugin.jslibs:backbone-1.0.0-factory.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:backbone-queryparams-lib/jira.webresources:backbone-queryparams-lib.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:backbone-1.0.0/jira.webresources:backbone-1.0.0.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/6.0.1/_/download/batch/com.atlassian.plugin.jslibs:marionette-1.6.4-factory/com.atlassian.plugin.jslibs:marionette-1.6.4-factory.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/d41d8cd98f00b204e9800998ecf8427e-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:marionette/jira.webresources:marionette.js\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/caac566f10dc12a9df4aab0b51a08d30-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.label/com.atlassian.auiplugin:split_aui.pattern.label.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/caac566f10dc12a9df4aab0b51a08d30-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.table/com.atlassian.auiplugin:split_aui.pattern.table.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/caac566f10dc12a9df4aab0b51a08d30-CDN/nosun/10030002/1bqcfwe/9.12.6/_/download/batch/com.atlassian.auiplugin:split_aui.pattern.multi-step-progress/com.atlassian.auiplugin:split_aui.pattern.multi-step-progress.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/caac566f10dc12a9df4aab0b51a08d30-CDN/nosun/10030002/1bqcfwe/1.0/_/download/batch/jira.webresources:jira-setup/jira.webresources:jira-setup.js?locale=en-US\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/images/logos/light/jira-generic.png\n"
+                    },
+                    {
+                      "text": "[WRM] Client-side initialised during 'loading' state\n"
+                    },
+                    {
+                      "text": "Application properties submitted\n"
+                    },
+                    {
+                      "text": "Setting up license...\n"
+                    },
+                    {
+                      "text": "JQMIGRATE: Migrate is installed, version 1.4.1\n"
+                    },
+                    {
+                      "text": "Use of `window.Backbone` through AUI is deprecated and will be removed in AUI 10.0.0\n"
+                    },
+                    {
+                      "text": "Use of `window._` through AUI is deprecated and will be removed in AUI 10.0.0\n"
+                    },
+                    {
+                      "text": "DEPRECATED JS - PopulateParameters has been deprecated since 9.0.0 and will be removed in 10.0.0.  \n     at HTMLDocument.<anonymous> (https://jira.uds.dev/s/d0e2dd9d5908f5d1bf90bac2c5a98f4a-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/js/_super/batch.js?locale=en-US&plugins.jquery.migrate.load.disabled=false:314:993)\n"
+                    },
+                    {
+                      "text": "DEPRECATED JS - AJS.debounce has been deprecated since 8.0.0 and will be removed in 10.0.0. Use equivalent functions from libraries like lodash / underscore instead  \n     at p.init (https://jira.uds.dev/s/d0e2dd9d5908f5d1bf90bac2c5a98f4a-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/js/_super/batch.js?locale=en-US&plugins.jquery.migrate.load.disabled=false:436:2005)\n"
+                    },
+                    {
+                      "text": "200 https://jira.uds.dev/s/nosun/10030002/1bqcfwe/9.12.6/_/download/resources/com.atlassian.auiplugin:split_aui.splitchunk.51ee36ecdd/assets/adgs-icons.woff\n"
+                    },
+                    {
+                      "text": "DEPRECATED undefined - AJS.params has been deprecated since 9.0.0 and will be removed in 10.0.0.  \n     at https://jira.uds.dev/s/d0e2dd9d5908f5d1bf90bac2c5a98f4a-CDN/nosun/10030002/1bqcfwe/e50c4e746d0111170d01b4314dd134f6/_/download/contextbatch/js/_super/batch.js?locale=en-US&plugins.jquery.migrate.load.disabled=false:4787:6132\n"
+                    },
+                    {
+                      "text": "503 https://jira.uds.dev/rest/wrm/2.0/resources\n"
+                    },
+                    {
+                      "text": "Failed to load resource: the server responded with a status of 503 ()\n"
+                    },
+                    {
+                      "text": "Response\n"
+                    },
+                    {
+                      "text": "301 https://www.atlassian.com/pingback?releasedInstantSetup=true&instantSetup=false&pg=_secure_SetupLicense!default.jspa&product=jira&SEN=undefined&setupSessionId=293a44bb-ba13-4c95-8148-e940f699f47c&sid=BM6O-T13P-C1T1-URCW&v=undefined\n"
+                    },
+                    {
+                      "text": "200 https://www.atlassian.com/?releasedInstantSetup=true&instantSetup=false&pg=_secure_SetupLicense!default.jspa&product=jira&SEN=undefined&setupSessionId=293a44bb-ba13-4c95-8148-e940f699f47c&sid=BM6O-T13P-C1T1-URCW&v=undefined\n"
+                    },
+                    {
+                      "text": "Refused to frame 'https://www.atlassian.com/' because an ancestor violates the following Content Security Policy directive: \"frame-ancestors 'none'\".\n\n"
+                    },
+                    {
+                      "text": "503 https://jira.uds.dev/rest/wrm/2.0/resources\n"
+                    },
+                    {
+                      "text": "Failed to load resource: the server responded with a status of 503 ()\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "wait for database initialization",
+                      "duration": 1569
+                    },
+                    {
+                      "title": "setup application properties",
+                      "duration": 242
+                    },
+                    {
+                      "title": "setup license",
+                      "duration": 28135,
+                      "error": {
+                        "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('textarea[name=\"licenseString\"]')\u001b[22m\n",
+                        "stack": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('textarea[name=\"licenseString\"]')\u001b[22m\n\n    at /home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/jira.setup.ts:35:58\n    at /home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/jira.setup.ts:32:14",
+                        "location": {
+                          "file": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/jira.setup.ts",
+                          "column": 58,
+                          "line": 35
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 33 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'Setting up license...'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 34 |\u001b[39m     \u001b[36mconst\u001b[39m licenseKey \u001b[33m=\u001b[39m process\u001b[33m.\u001b[39menv\u001b[33m.\u001b[39m\u001b[33mJIRA_LICENSE\u001b[39m \u001b[33m?\u001b[39m\u001b[33m?\u001b[39m \u001b[32m\"\"\u001b[39m\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'textarea[name=\"licenseString\"]'\u001b[39m)\u001b[33m.\u001b[39mfill(licenseKey)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button[name=\"next\"]'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m     console\u001b[33m.\u001b[39mlog(\u001b[32m'License submitted'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m   })\u001b[33m;\u001b[39m\u001b[0m"
+                      }
+                    }
+                  ],
+                  "startTime": "2025-01-20T05:22:15.049Z",
+                  "attachments": []
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "beb5ebd58afc71e16b4a-d64850789839228a1984",
+          "file": "jira.setup.ts",
+          "line": 3,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-01-20T05:22:14.751Z",
+    "duration": 30471.627999999997,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

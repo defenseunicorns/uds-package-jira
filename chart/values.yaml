@@ -41,14 +41,14 @@ setup:
 
   # Setup job configuration
   job:
-    image: registry1.dso.mil/ironbank/redhat/ubi/ubi8-minimal:8.9
+    image: registry.access.redhat.com/ubi9:9.4-1214.1726694543
     resources:
       requests:
-        cpu: 100m
-        memory: 256Mi
+        cpu: 2000m
+        memory: 4Gi
       limits:
-        cpu: 500m
-        memory: 512Mi
+        cpu: 6
+        memory: 6Gi
     backoffLimit: 6
     activeDeadlineSeconds: 600
     ttlSecondsAfterFinished: 100

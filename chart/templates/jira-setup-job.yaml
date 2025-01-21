@@ -22,13 +22,7 @@ spec:
           command: ['sh', '-c']
           args:
             - |
-              echo "Waiting 60 seconds for Jira to become responsive..."
-              sleep 60
-              until curl -sk https://jira.uds.dev/status | tee /dev/stderr | grep -q '"state":"FIRST_RUN"'; do
-                echo "Waiting for Jira to be ready..."
-                sleep 10
-              done
-              sleep 90
+              sleep 10
               echo "Proceeding with setup..."
       containers:
         - name: setup
