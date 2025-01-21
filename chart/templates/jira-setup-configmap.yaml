@@ -144,8 +144,8 @@ data:
                         state = status_response.json().get("state", "")
                         logger.info(f"Current Jira state: {state}")
                         if state == "FIRST_RUN":
-                            logger.info("Found FIRST_RUN state! Waiting 90 seconds for initialization...")
-                            time.sleep(90)  # Match the job's 90s wait after finding FIRST_RUN
+                            logger.info("Found FIRST_RUN state! Waiting 5s seconds for initialization...")
+                            time.sleep(5)  # Match the job's 5s wait after finding FIRST_RUN
                             logger.info("Proceeding with setup...")
                             return
                         if state not in ["FIRST_RUN", "RUNNING"]:

@@ -49,6 +49,14 @@ spec:
               chmod -R 755 /setup/venv            
               source /setup/venv/bin/activate
               python3 /scripts/test_license.py
+              
+              echo "Waiting 10 seconds before updating base URL..."
+              sleep 10
+              echo "Updating base URL..."
+              curl -vvvv -k -X PUT "https://${JIRA_DOMAIN}/rest/api/2/settings/baseUrl" \
+                --user "${JIRA_ADMIN_USERNAME}:${JIRA_ADMIN_PASSWORD}" \
+                -H "Content-Type: application/json" \
+                -d "https://${JIRA_DOMAIN}"
           env:
             - name: JIRA_DOMAIN
               value: jira.{{ .Values.domain }}
