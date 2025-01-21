@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/playwright.config.ts",
-    "rootDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests",
+    "configFile": "/tests/playwright.config.ts",
+    "rootDir": "/tests",
     "forbidOnly": false,
     "fullyParallel": true,
     "globalSetup": null,
@@ -41,13 +41,13 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/.playwright/output",
+        "outputDir": "/tests/.playwright/output",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {},
         "id": "setup",
         "name": "setup",
-        "testDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests",
+        "testDir": "/tests",
         "testIgnore": [],
         "testMatch": [
           "/.*\\.setup\\.ts/"
@@ -55,13 +55,13 @@
         "timeout": 30000
       },
       {
-        "outputDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/.playwright/output",
+        "outputDir": "/tests/.playwright/output",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {},
         "id": "chromium",
         "name": "chromium",
-        "testDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests",
+        "testDir": "/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -69,13 +69,13 @@
         "timeout": 30000
       },
       {
-        "outputDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests/.playwright/output",
+        "outputDir": "/tests/.playwright/output",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {},
         "id": "firefox",
         "name": "firefox",
-        "testDir": "/home/aicluster/developer/defenseunicorns/appintegration/atlassian/uds-package-jira/tests",
+        "testDir": "/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -98,7 +98,7 @@
       "specs": [
         {
           "title": "setup jira",
-          "ok": true,
+          "ok": false,
           "tags": [],
           "tests": [
             {
@@ -110,34 +110,178 @@
               "results": [
                 {
                   "workerIndex": 0,
-                  "status": "passed",
-                  "duration": 369,
-                  "errors": [],
+                  "status": "failed",
+                  "duration": 14756,
+                  "error": {
+                    "message": "Error: Project creation failed - did not navigate to project page",
+                    "stack": "Error: Project creation failed - did not navigate to project page\n    at /tests/jira.setup.ts:227:15\n    at /tests/jira.setup.ts:225:7\n    at /tests/jira.setup.ts:131:5",
+                    "location": {
+                      "file": "/tests/jira.setup.ts",
+                      "column": 15,
+                      "line": 227
+                    },
+                    "snippet": "  225 |       await page.waitForURL(/.*\\/projects\\/TEST\\/.*$/, { timeout: 10000 }).catch(async () => {\n  226 |         await page.screenshot({ path: 'project-creation-failed.png', fullPage: true });\n> 227 |         throw new Error('Project creation failed - did not navigate to project page');\n      |               ^\n  228 |       });\n  229 |\n  230 |       // Verify project creation by checking for \"Open issues\" heading and project name in sidebar"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/tests/jira.setup.ts",
+                        "column": 15,
+                        "line": 227
+                      },
+                      "message": "Error: Project creation failed - did not navigate to project page\n\n  225 |       await page.waitForURL(/.*\\/projects\\/TEST\\/.*$/, { timeout: 10000 }).catch(async () => {\n  226 |         await page.screenshot({ path: 'project-creation-failed.png', fullPage: true });\n> 227 |         throw new Error('Project creation failed - did not navigate to project page');\n      |               ^\n  228 |       });\n  229 |\n  230 |       // Verify project creation by checking for \"Open issues\" heading and project name in sidebar\n    at /tests/jira.setup.ts:227:15\n    at /tests/jira.setup.ts:225:7\n    at /tests/jira.setup.ts:131:5"
+                    }
+                  ],
                   "stdout": [
                     {
-                      "text": "Navigated to dashboard\n"
+                      "text": "Ensuring user is logged out...\n"
+                    },
+                    {
+                      "text": "Logged out successfully\n"
+                    },
+                    {
+                      "text": "Navigating to login page...\n"
+                    },
+                    {
+                      "text": "Found input fields: [\n  \u001b[32m'id=quickSearchInput, name=searchString, type=text'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=submit'\u001b[39m,\n  \u001b[32m'id=username-field, name=username, type=null'\u001b[39m,\n  \u001b[32m'id=password-field, name=password, type=password'\u001b[39m,\n  \u001b[32m'id=rememberMe-uid1, name=rememberMe, type=checkbox'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m,\n  \u001b[32m'id=jiraConcurrentRequests, name=jira.request.concurrent.requests, type=hidden'\u001b[39m,\n  \u001b[32m'id=null, name=null, type=hidden'\u001b[39m\n]\n"
+                    },
+                    {
+                      "text": "Waiting for login form...\n"
+                    },
+                    {
+                      "text": "Trying selector: input[name=\"os_username\"]\n"
+                    },
+                    {
+                      "text": "Trying selector: #username-field\n"
+                    },
+                    {
+                      "text": "Found username field with selector: #username-field\n"
+                    },
+                    {
+                      "text": "Filled in username\n"
+                    },
+                    {
+                      "text": "Trying selector: input[name=\"os_password\"]\n"
+                    },
+                    {
+                      "text": "Trying selector: #password-field\n"
+                    },
+                    {
+                      "text": "Found password field with selector: #password-field\n"
+                    },
+                    {
+                      "text": "Filled in password\n"
+                    },
+                    {
+                      "text": "Trying selector: button#login-button\n"
+                    },
+                    {
+                      "text": "Found login button with selector: button#login-button\n"
                     },
                     {
                       "text": "Clicked login button\n"
+                    },
+                    {
+                      "text": "Waiting for navigation after login...\n"
+                    },
+                    {
+                      "text": "Creating new project...\n"
+                    },
+                    {
+                      "text": "Clicking Projects menu...\n"
+                    },
+                    {
+                      "text": "Waiting for Create project button...\n"
+                    },
+                    {
+                      "text": "Clicking Create project...\n"
+                    },
+                    {
+                      "text": "Waiting for template selection...\n"
+                    },
+                    {
+                      "text": "Looking for Basic Software Development template...\n"
+                    },
+                    {
+                      "text": "Trying selector: input[name=\"project-template\"][id=\"com.pyxis.greenhopper.jira:basic-software-development-template\"]\n"
+                    },
+                    {
+                      "text": "Found template with selector: input[name=\"project-template\"][id=\"com.pyxis.greenhopper.jira:basic-software-development-template\"]\n"
+                    },
+                    {
+                      "text": "Waiting for Next button...\n"
+                    },
+                    {
+                      "text": "Clicking Next button...\n"
+                    },
+                    {
+                      "text": "Waiting for Select button...\n"
+                    },
+                    {
+                      "text": "Clicking Select button...\n"
+                    },
+                    {
+                      "text": "Waiting for project details form...\n"
+                    },
+                    {
+                      "text": "Filling in project details...\n"
+                    },
+                    {
+                      "text": "Submitting project form...\n"
                     }
                   ],
                   "stderr": [],
                   "retry": 0,
                   "steps": [
                     {
-                      "title": "navigate to dashboard",
-                      "duration": 173
+                      "title": "ensure logged out",
+                      "duration": 1246
+                    },
+                    {
+                      "title": "navigate to login",
+                      "duration": 1366
+                    },
+                    {
+                      "title": "fill in username",
+                      "duration": 16
+                    },
+                    {
+                      "title": "fill in password",
+                      "duration": 10
                     },
                     {
                       "title": "click login button",
-                      "duration": 103
+                      "duration": 64
+                    },
+                    {
+                      "title": "wait for navigation after login",
+                      "duration": 300
+                    },
+                    {
+                      "title": "create project",
+                      "duration": 11532,
+                      "error": {
+                        "message": "Error: Project creation failed - did not navigate to project page",
+                        "stack": "Error: Project creation failed - did not navigate to project page\n    at /tests/jira.setup.ts:227:15\n    at /tests/jira.setup.ts:225:7\n    at /tests/jira.setup.ts:131:5",
+                        "location": {
+                          "file": "/tests/jira.setup.ts",
+                          "column": 15,
+                          "line": 227
+                        },
+                        "snippet": "  225 |       await page.waitForURL(/.*\\/projects\\/TEST\\/.*$/, { timeout: 10000 }).catch(async () => {\n  226 |         await page.screenshot({ path: 'project-creation-failed.png', fullPage: true });\n> 227 |         throw new Error('Project creation failed - did not navigate to project page');\n      |               ^\n  228 |       });\n  229 |\n  230 |       // Verify project creation by checking for \"Open issues\" heading and project name in sidebar"
+                      }
                     }
                   ],
-                  "startTime": "2025-01-21T18:37:01.960Z",
-                  "attachments": []
+                  "startTime": "2025-01-21T23:54:43.502Z",
+                  "attachments": [],
+                  "errorLocation": {
+                    "file": "/tests/jira.setup.ts",
+                    "column": 15,
+                    "line": 227
+                  }
                 }
               ],
-              "status": "expected"
+              "status": "unexpected"
             }
           ],
           "id": "beb5ebd58afc71e16b4a-d64850789839228a1984",
@@ -150,11 +294,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-01-21T18:37:01.617Z",
-    "duration": 823.6780000000001,
-    "expected": 1,
+    "startTime": "2025-01-21T23:54:43.156Z",
+    "duration": 15599.625,
+    "expected": 0,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }

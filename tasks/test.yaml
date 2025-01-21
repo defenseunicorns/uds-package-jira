@@ -6,6 +6,7 @@ tasks:
     actions:
       - task: health-check
       - task: ingress
+      - task: create-project
 
   - name: health-check
     actions:
@@ -24,3 +25,14 @@ tasks:
             protocol: https
             address: jira.uds.dev
             code: 200
+
+  - name: create-project
+    description: Create a project in Jira
+    actions:
+      - cmd: |
+          docker run --rm --ipc=host --net=host --mount type=bind,source="$(pwd)",target=/tests mcr.microsoft.com/playwright:v1.49.1-jammy sh -c " \
+            cd tests && \
+            npm ci && \
+            npx playwright test \
+            "
+        dir: tests
