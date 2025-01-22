@@ -5,11 +5,7 @@
 
 import { test, expect, Page } from "@playwright/test";
 
-test("setup jira", async ({ page }: { page: Page }) => {
-  // // Enable verbose logging
-  // page.on('console', msg => console.log(`Browser console: ${msg.text()}`));
-  // page.on('response', response => console.log(`${response.status()} ${response.url()}`));
-
+test("initial jira setup", async ({ page }: { page: Page }) => {
   try {
     await test.step('ensure logged out', async () => {
       console.log('Ensuring user is logged out...');
@@ -128,71 +124,61 @@ test("setup jira", async ({ page }: { page: Page }) => {
       await page.waitForNavigation();
     });
 
-    await test.step('create project', async () => {
-      console.log('Creating new project...');
+    await test.step('navigate to setup', async () => {
+      console.log('Navigating to initial setup...');
       await page.goto('/');
       await page.waitForLoadState('networkidle');
-      await page.waitForTimeout(2000); // Give the UI time to stabilize
+    });
 
-      // Click Projects menu with more selector options and longer timeout
-      console.log('Clicking Projects menu...');
-      const projectMenuSelectors = [
-        'a#browse_link',
-        '[data-testid="browse-projects-button"]',
-        'button:has-text("Projects")',
-        '[aria-label="Projects"]',
-        '#navigation-app-sidebar [href="/browse"]'
+    await test.step('language selection', async () => {
+      console.log('Selecting language...');
+      // English (United States) is usually pre-selected as default
+      const continueButton = page.locator('input#next[value="Continue"]');
+      if (await continueButton.count() > 0) {
+        console.log('Clicking Continue on language selection...');
+        await continueButton.click();
+      }
+    });
+
+    await test.step('avatar setup', async () => {
+      console.log('Handling avatar setup...');
+      
+      // Try multiple selectors for the Next button
+      const nextButtonSelectors = [
+        'button:has-text("Next")',
+        'input[value="Next"]',
+        'button.next-button',
+        'button[type="submit"]',
+        '[data-testid="next-button"]'
       ];
 
-      let menuClicked = false;
-      for (const selector of projectMenuSelectors) {
-        try {
-          console.log(`Trying to click Projects menu with selector: ${selector}`);
-          await page.waitForSelector(selector, { timeout: 5000 });
-          await page.click(selector);
-          menuClicked = true;
-          console.log(`Successfully clicked Projects menu with selector: ${selector}`);
+      let nextButtonFound = false;
+      for (const selector of nextButtonSelectors) {
+        console.log(`Trying Next button selector: ${selector}`);
+        const nextButton = page.locator(selector);
+        if (await nextButton.count() > 0) {
+          console.log(`Found Next button with selector: ${selector}`);
+          await nextButton.click();
+          nextButtonFound = true;
           break;
-        } catch (error: any) {
-          console.log(`Failed to click with selector ${selector}:`, error.message);
         }
       }
 
-      if (!menuClicked) {
-        await page.screenshot({ path: 'projects-menu-not-found.png', fullPage: true });
-        throw new Error('Could not click Projects menu with any known selector');
+      if (!nextButtonFound) {
+        console.log('Taking screenshot of avatar setup failure...');
+        await page.screenshot({ path: 'avatar-setup-failed.png', fullPage: true });
+        throw new Error('Could not find Next button on avatar setup page');
       }
 
-      // Wait longer for the menu to appear and stabilize
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(2000); // Wait for transition
+    });
 
-      // Wait for and click Create project with more selector options
-      console.log('Waiting for Create project button...');
-      const createProjectSelectors = [
-        'li#project_template_create_link a',
-        '[data-testid="create-project-button"]',
-        'button:has-text("Create project")',
-        '[aria-label="Create project"]',
-        'a:has-text("Create project")'
-      ];
-
-      let createButtonClicked = false;
-      for (const selector of createProjectSelectors) {
-        try {
-          console.log(`Trying to click Create project with selector: ${selector}`);
-          await page.waitForSelector(selector, { timeout: 5000 });
-          await page.click(selector);
-          createButtonClicked = true;
-          console.log(`Successfully clicked Create project with selector: ${selector}`);
-          break;
-        } catch (error: any) {
-          console.log(`Failed to click with selector ${selector}:`, error.message);
-        }
-      }
-
-      if (!createButtonClicked) {
-        await page.screenshot({ path: 'create-project-not-found.png', fullPage: true });
-        throw new Error('Could not click Create project with any known selector');
+    await test.step('create first project', async () => {
+      console.log('Starting project creation...');
+      const createProjectButton = page.locator('button#emptyProject.add-project-trigger');
+      if (await createProjectButton.count() > 0) {
+        console.log('Clicking Create new project...');
+        await createProjectButton.click();
       }
 
       // Wait for template selection with multiple possible selectors
@@ -267,32 +253,19 @@ test("setup jira", async ({ page }: { page: Page }) => {
         throw new Error('Project creation failed - did not navigate to project page');
       });
 
-      // Verify project creation by checking for "Open issues" heading and project name in sidebar
-      const verificationSelectors = [
-        'h1:has-text("Open issues")',
-        '[data-test-id="navigation-apps.project-switcher-v2:project-switcher"]',
-        '[data-test-id="project-sidebar.container"]',
-        '[data-project-key="TEST"]'
-      ];
-
-      let projectVerified = false;
-      for (const selector of verificationSelectors) {
-        console.log(`Looking for project element with selector: ${selector}`);
-        if (await page.locator(selector).count() > 0) {
-          console.log(`Found project element with selector: ${selector}`);
-          projectVerified = true;
-          break;
-        }
-      }
-
-      if (!projectVerified) {
-        await page.screenshot({ path: 'project-verification-failed.png', fullPage: true });
-        throw new Error('Could not verify project creation - project elements not found');
-      }
+      // Verify project creation by checking for "Open issues" search
+      console.log('Verifying project creation...');
+      const openIssuesHeading = page.locator('h1:has-text("Open issues")');
+      const switchFilter = page.locator('button:has-text("Switch filter")');
+      
+      await expect(openIssuesHeading).toBeVisible({ timeout: 5000 });
+      await expect(switchFilter).toBeVisible({ timeout: 5000 });
+      
+      console.log('Project creation verified successfully');
     });
   } catch (error) {
     // Take a final screenshot on any unhandled error
     await page.screenshot({ path: `error-${Date.now()}.png`, fullPage: true });
     throw error;
   }
-});
+}); 

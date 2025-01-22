@@ -97,7 +97,7 @@
       "line": 0,
       "specs": [
         {
-          "title": "setup jira",
+          "title": "initial jira setup",
           "ok": false,
           "tags": [],
           "tests": [
@@ -111,25 +111,25 @@
                 {
                   "workerIndex": 0,
                   "status": "failed",
-                  "duration": 14756,
+                  "duration": 5285,
                   "error": {
-                    "message": "Error: Project creation failed - did not navigate to project page",
-                    "stack": "Error: Project creation failed - did not navigate to project page\n    at /tests/jira.setup.ts:227:15\n    at /tests/jira.setup.ts:225:7\n    at /tests/jira.setup.ts:131:5",
+                    "message": "Error: Could not find Next button on avatar setup page",
+                    "stack": "Error: Could not find Next button on avatar setup page\n    at /tests/jira.setup.ts:170:15\n    at /tests/jira.setup.ts:143:5",
                     "location": {
                       "file": "/tests/jira.setup.ts",
                       "column": 15,
-                      "line": 227
+                      "line": 170
                     },
-                    "snippet": "  225 |       await page.waitForURL(/.*\\/projects\\/TEST\\/.*$/, { timeout: 10000 }).catch(async () => {\n  226 |         await page.screenshot({ path: 'project-creation-failed.png', fullPage: true });\n> 227 |         throw new Error('Project creation failed - did not navigate to project page');\n      |               ^\n  228 |       });\n  229 |\n  230 |       // Verify project creation by checking for \"Open issues\" heading and project name in sidebar"
+                    "snippet": "  168 |         console.log('Taking screenshot of avatar setup failure...');\n  169 |         await page.screenshot({ path: 'avatar-setup-failed.png', fullPage: true });\n> 170 |         throw new Error('Could not find Next button on avatar setup page');\n      |               ^\n  171 |       }\n  172 |\n  173 |       await page.waitForTimeout(2000); // Wait for transition"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "/tests/jira.setup.ts",
                         "column": 15,
-                        "line": 227
+                        "line": 170
                       },
-                      "message": "Error: Project creation failed - did not navigate to project page\n\n  225 |       await page.waitForURL(/.*\\/projects\\/TEST\\/.*$/, { timeout: 10000 }).catch(async () => {\n  226 |         await page.screenshot({ path: 'project-creation-failed.png', fullPage: true });\n> 227 |         throw new Error('Project creation failed - did not navigate to project page');\n      |               ^\n  228 |       });\n  229 |\n  230 |       // Verify project creation by checking for \"Open issues\" heading and project name in sidebar\n    at /tests/jira.setup.ts:227:15\n    at /tests/jira.setup.ts:225:7\n    at /tests/jira.setup.ts:131:5"
+                      "message": "Error: Could not find Next button on avatar setup page\n\n  168 |         console.log('Taking screenshot of avatar setup failure...');\n  169 |         await page.screenshot({ path: 'avatar-setup-failed.png', fullPage: true });\n> 170 |         throw new Error('Could not find Next button on avatar setup page');\n      |               ^\n  171 |       }\n  172 |\n  173 |       await page.waitForTimeout(2000); // Wait for transition\n    at /tests/jira.setup.ts:170:15\n    at /tests/jira.setup.ts:143:5"
                     }
                   ],
                   "stdout": [
@@ -185,49 +185,31 @@
                       "text": "Waiting for navigation after login...\n"
                     },
                     {
-                      "text": "Creating new project...\n"
+                      "text": "Navigating to initial setup...\n"
                     },
                     {
-                      "text": "Clicking Projects menu...\n"
+                      "text": "Selecting language...\n"
                     },
                     {
-                      "text": "Waiting for Create project button...\n"
+                      "text": "Handling avatar setup...\n"
                     },
                     {
-                      "text": "Clicking Create project...\n"
+                      "text": "Trying Next button selector: button:has-text(\"Next\")\n"
                     },
                     {
-                      "text": "Waiting for template selection...\n"
+                      "text": "Trying Next button selector: input[value=\"Next\"]\n"
                     },
                     {
-                      "text": "Looking for Basic Software Development template...\n"
+                      "text": "Trying Next button selector: button.next-button\n"
                     },
                     {
-                      "text": "Trying selector: input[name=\"project-template\"][id=\"com.pyxis.greenhopper.jira:basic-software-development-template\"]\n"
+                      "text": "Trying Next button selector: button[type=\"submit\"]\n"
                     },
                     {
-                      "text": "Found template with selector: input[name=\"project-template\"][id=\"com.pyxis.greenhopper.jira:basic-software-development-template\"]\n"
+                      "text": "Trying Next button selector: [data-testid=\"next-button\"]\n"
                     },
                     {
-                      "text": "Waiting for Next button...\n"
-                    },
-                    {
-                      "text": "Clicking Next button...\n"
-                    },
-                    {
-                      "text": "Waiting for Select button...\n"
-                    },
-                    {
-                      "text": "Clicking Select button...\n"
-                    },
-                    {
-                      "text": "Waiting for project details form...\n"
-                    },
-                    {
-                      "text": "Filling in project details...\n"
-                    },
-                    {
-                      "text": "Submitting project form...\n"
+                      "text": "Taking screenshot of avatar setup failure...\n"
                     }
                   ],
                   "stderr": [],
@@ -235,11 +217,11 @@
                   "steps": [
                     {
                       "title": "ensure logged out",
-                      "duration": 1246
+                      "duration": 1230
                     },
                     {
                       "title": "navigate to login",
-                      "duration": 1366
+                      "duration": 1379
                     },
                     {
                       "title": "fill in username",
@@ -251,40 +233,48 @@
                     },
                     {
                       "title": "click login button",
-                      "duration": 64
+                      "duration": 62
                     },
                     {
                       "title": "wait for navigation after login",
-                      "duration": 300
+                      "duration": 697
                     },
                     {
-                      "title": "create project",
-                      "duration": 11532,
+                      "title": "navigate to setup",
+                      "duration": 1575
+                    },
+                    {
+                      "title": "language selection",
+                      "duration": 9
+                    },
+                    {
+                      "title": "avatar setup",
+                      "duration": 97,
                       "error": {
-                        "message": "Error: Project creation failed - did not navigate to project page",
-                        "stack": "Error: Project creation failed - did not navigate to project page\n    at /tests/jira.setup.ts:227:15\n    at /tests/jira.setup.ts:225:7\n    at /tests/jira.setup.ts:131:5",
+                        "message": "Error: Could not find Next button on avatar setup page",
+                        "stack": "Error: Could not find Next button on avatar setup page\n    at /tests/jira.setup.ts:170:15\n    at /tests/jira.setup.ts:143:5",
                         "location": {
                           "file": "/tests/jira.setup.ts",
                           "column": 15,
-                          "line": 227
+                          "line": 170
                         },
-                        "snippet": "  225 |       await page.waitForURL(/.*\\/projects\\/TEST\\/.*$/, { timeout: 10000 }).catch(async () => {\n  226 |         await page.screenshot({ path: 'project-creation-failed.png', fullPage: true });\n> 227 |         throw new Error('Project creation failed - did not navigate to project page');\n      |               ^\n  228 |       });\n  229 |\n  230 |       // Verify project creation by checking for \"Open issues\" heading and project name in sidebar"
+                        "snippet": "  168 |         console.log('Taking screenshot of avatar setup failure...');\n  169 |         await page.screenshot({ path: 'avatar-setup-failed.png', fullPage: true });\n> 170 |         throw new Error('Could not find Next button on avatar setup page');\n      |               ^\n  171 |       }\n  172 |\n  173 |       await page.waitForTimeout(2000); // Wait for transition"
                       }
                     }
                   ],
-                  "startTime": "2025-01-21T23:54:43.502Z",
+                  "startTime": "2025-01-22T03:51:55.731Z",
                   "attachments": [],
                   "errorLocation": {
                     "file": "/tests/jira.setup.ts",
                     "column": 15,
-                    "line": 227
+                    "line": 170
                   }
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "beb5ebd58afc71e16b4a-d64850789839228a1984",
+          "id": "beb5ebd58afc71e16b4a-5dd37fd8e1cd5262b90d",
           "file": "jira.setup.ts",
           "line": 8,
           "column": 5
@@ -294,8 +284,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-01-21T23:54:43.156Z",
-    "duration": 15599.625,
+    "startTime": "2025-01-22T03:51:55.386Z",
+    "duration": 6170.994,
     "expected": 0,
     "skipped": 0,
     "unexpected": 1,
