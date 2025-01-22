@@ -3,48 +3,48 @@
 
 name: Test
 
-# This workflow is triggered on pull requests to the main branch.
 on:
+  # This workflow is triggered on pull requests to the main branch.
   pull_request:
-    branches: [main]
-    types: [milestoned, opened, synchronize]
+    # milestoned is added here so that a PR can be re-triggered if it is milestoned.
+    types: [milestoned, opened, reopened, synchronize]
     paths-ignore:
       - "**.md"
       - "**.jpg"
       - "**.png"
       - "**.gif"
       - "**.svg"
-      - "adr/**"
-      - "docs/**"
-      - ".gitignore"
-      - "renovate.json"
-      - ".release-please-config.json"
-      - "release-please-config.json"
-      - "oscal-component.yaml"
-      - "CODEOWNERS"
-      - "LICENSE"
-      - "CONTRIBUTING.md"
-      - "SECURITY.md"
+      - adr/**
+      - docs/**
+      - .gitignore
+      - renovate.json
+      - .release-please-config.json
+      - release-please-config.json
+      - CODEOWNERS
+      - LICENSE
+      - CONTRIBUTING.md
+      - SECURITY.md
+
+# Permissions for the GITHUB_TOKEN used by the workflow.
+permissions:
+  contents: read # Allows reading the content of the repository.
+  packages: read # Allows reading the content of the repository's packages.
+  id-token: write
 
 # Abort prior jobs in the same workflow / PR
 concurrency:
   group: test-${{ github.ref }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
-  id-token: write
-  packages: read
-
 jobs:
   check-flavor:
-    runs-on: uds-marketplace-ubuntu-big-boy-8-core
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: test-flavor
-        uses: defenseunicorns/uds-common/.github/actions/test-flavor@7826099a1ceb4657f9cd502968dea8e0e7753ac6 # v1.7.0
+        uses: defenseunicorns/uds-common/.github/actions/test-flavor@664946ed5f6a5fe6a19f4ba6fcdc909981aefbe4 # v1.6.2
         id: test-flavor
     outputs:
       upgrade-flavors: ${{ steps.test-flavor.outputs.upgrade-flavors }}
@@ -55,12 +55,12 @@ jobs:
       fail-fast: false
       matrix:
         type: [install, upgrade]
-        flavor: [upstream, registry1]
-    uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@7826099a1ceb4657f9cd502968dea8e0e7753ac6 # v1.7.0
+        flavor: [upstream, unicorn]
+    uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@664946ed5f6a5fe6a19f4ba6fcdc909981aefbe4 # v1.6.2
     with:
+      timeout: 30
       runsOn: uds-marketplace-ubuntu-big-boy-8-core
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
-      reports-path: "tests/.playwright/reports/"
     secrets: inherit # Inherits all secrets from the parent workflow.

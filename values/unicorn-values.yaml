@@ -8,4 +8,3 @@ image:
 monitoring:
   jmxExporterImageRepo: bitnami/jmx-exporter
   jmxExporterImageTag: 1.1.0
-

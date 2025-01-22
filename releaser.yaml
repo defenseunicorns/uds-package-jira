@@ -8,3 +8,6 @@ flavors:
   - name: registry1
     # renovate-uds: datasource=docker depName=registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node
     version: 10.3.2-uds.0
+  - name: unicorn
+    # renovate-uds: datasource=docker depName=atlassian/jira-software
+    version: 10.3.2-uds.0
