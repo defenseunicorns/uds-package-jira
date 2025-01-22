@@ -98,7 +98,7 @@
       "specs": [
         {
           "title": "initial jira setup",
-          "ok": false,
+          "ok": true,
           "tags": [],
           "tests": [
             {
@@ -110,28 +110,9 @@
               "results": [
                 {
                   "workerIndex": 0,
-                  "status": "failed",
-                  "duration": 5285,
-                  "error": {
-                    "message": "Error: Could not find Next button on avatar setup page",
-                    "stack": "Error: Could not find Next button on avatar setup page\n    at /tests/jira.setup.ts:170:15\n    at /tests/jira.setup.ts:143:5",
-                    "location": {
-                      "file": "/tests/jira.setup.ts",
-                      "column": 15,
-                      "line": 170
-                    },
-                    "snippet": "  168 |         console.log('Taking screenshot of avatar setup failure...');\n  169 |         await page.screenshot({ path: 'avatar-setup-failed.png', fullPage: true });\n> 170 |         throw new Error('Could not find Next button on avatar setup page');\n      |               ^\n  171 |       }\n  172 |\n  173 |       await page.waitForTimeout(2000); // Wait for transition"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "/tests/jira.setup.ts",
-                        "column": 15,
-                        "line": 170
-                      },
-                      "message": "Error: Could not find Next button on avatar setup page\n\n  168 |         console.log('Taking screenshot of avatar setup failure...');\n  169 |         await page.screenshot({ path: 'avatar-setup-failed.png', fullPage: true });\n> 170 |         throw new Error('Could not find Next button on avatar setup page');\n      |               ^\n  171 |       }\n  172 |\n  173 |       await page.waitForTimeout(2000); // Wait for transition\n    at /tests/jira.setup.ts:170:15\n    at /tests/jira.setup.ts:143:5"
-                    }
-                  ],
+                  "status": "passed",
+                  "duration": 14308,
+                  "errors": [],
                   "stdout": [
                     {
                       "text": "Ensuring user is logged out...\n"
@@ -191,25 +172,73 @@
                       "text": "Selecting language...\n"
                     },
                     {
+                      "text": "Trying Continue button selector: input#next[value=\"Continue\"]\n"
+                    },
+                    {
+                      "text": "Found Continue button with selector: input#next[value=\"Continue\"]\n"
+                    },
+                    {
                       "text": "Handling avatar setup...\n"
                     },
                     {
-                      "text": "Trying Next button selector: button:has-text(\"Next\")\n"
+                      "text": "Avatar setup page found: false\n"
                     },
                     {
-                      "text": "Trying Next button selector: input[value=\"Next\"]\n"
+                      "text": "Trying Next/Skip button selector: button:has-text(\"Next\")\n"
                     },
                     {
-                      "text": "Trying Next button selector: button.next-button\n"
+                      "text": "Trying Next/Skip button selector: button:has-text(\"Skip\")\n"
                     },
                     {
-                      "text": "Trying Next button selector: button[type=\"submit\"]\n"
+                      "text": "Trying Next/Skip button selector: input[value=\"Next\"]\n"
                     },
                     {
-                      "text": "Trying Next button selector: [data-testid=\"next-button\"]\n"
+                      "text": "Found Next/Skip button with selector: input[value=\"Next\"]\n"
                     },
                     {
-                      "text": "Taking screenshot of avatar setup failure...\n"
+                      "text": "Starting project creation...\n"
+                    },
+                    {
+                      "text": "Clicking Create new project...\n"
+                    },
+                    {
+                      "text": "Waiting for template selection...\n"
+                    },
+                    {
+                      "text": "Looking for Basic Software Development template...\n"
+                    },
+                    {
+                      "text": "Trying selector: input[name=\"project-template\"][id=\"com.pyxis.greenhopper.jira:basic-software-development-template\"]\n"
+                    },
+                    {
+                      "text": "Found template with selector: input[name=\"project-template\"][id=\"com.pyxis.greenhopper.jira:basic-software-development-template\"]\n"
+                    },
+                    {
+                      "text": "Waiting for Next button...\n"
+                    },
+                    {
+                      "text": "Clicking Next button...\n"
+                    },
+                    {
+                      "text": "Waiting for Select button...\n"
+                    },
+                    {
+                      "text": "Clicking Select button...\n"
+                    },
+                    {
+                      "text": "Waiting for project details form...\n"
+                    },
+                    {
+                      "text": "Filling in project details...\n"
+                    },
+                    {
+                      "text": "Submitting project form...\n"
+                    },
+                    {
+                      "text": "Verifying project creation...\n"
+                    },
+                    {
+                      "text": "Project creation verified successfully\n"
                     }
                   ],
                   "stderr": [],
@@ -217,61 +246,50 @@
                   "steps": [
                     {
                       "title": "ensure logged out",
-                      "duration": 1230
+                      "duration": 2497
                     },
                     {
                       "title": "navigate to login",
-                      "duration": 1379
+                      "duration": 1446
                     },
                     {
                       "title": "fill in username",
-                      "duration": 16
+                      "duration": 17
                     },
                     {
                       "title": "fill in password",
-                      "duration": 10
-                    },
-                    {
-                      "title": "click login button",
-                      "duration": 62
-                    },
-                    {
-                      "title": "wait for navigation after login",
-                      "duration": 697
-                    },
-                    {
-                      "title": "navigate to setup",
-                      "duration": 1575
-                    },
-                    {
-                      "title": "language selection",
                       "duration": 9
                     },
                     {
+                      "title": "click login button",
+                      "duration": 69
+                    },
+                    {
+                      "title": "wait for navigation after login",
+                      "duration": 345
+                    },
+                    {
+                      "title": "navigate to setup",
+                      "duration": 1110
+                    },
+                    {
+                      "title": "language selection",
+                      "duration": 2041
+                    },
+                    {
                       "title": "avatar setup",
-                      "duration": 97,
-                      "error": {
-                        "message": "Error: Could not find Next button on avatar setup page",
-                        "stack": "Error: Could not find Next button on avatar setup page\n    at /tests/jira.setup.ts:170:15\n    at /tests/jira.setup.ts:143:5",
-                        "location": {
-                          "file": "/tests/jira.setup.ts",
-                          "column": 15,
-                          "line": 170
-                        },
-                        "snippet": "  168 |         console.log('Taking screenshot of avatar setup failure...');\n  169 |         await page.screenshot({ path: 'avatar-setup-failed.png', fullPage: true });\n> 170 |         throw new Error('Could not find Next button on avatar setup page');\n      |               ^\n  171 |       }\n  172 |\n  173 |       await page.waitForTimeout(2000); // Wait for transition"
-                      }
+                      "duration": 4080
+                    },
+                    {
+                      "title": "create first project",
+                      "duration": 2566
                     }
                   ],
-                  "startTime": "2025-01-22T03:51:55.731Z",
-                  "attachments": [],
-                  "errorLocation": {
-                    "file": "/tests/jira.setup.ts",
-                    "column": 15,
-                    "line": 170
-                  }
+                  "startTime": "2025-01-22T16:22:02.477Z",
+                  "attachments": []
                 }
               ],
-              "status": "unexpected"
+              "status": "expected"
             }
           ],
           "id": "beb5ebd58afc71e16b4a-5dd37fd8e1cd5262b90d",
@@ -284,11 +302,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-01-22T03:51:55.386Z",
-    "duration": 6170.994,
-    "expected": 0,
+    "startTime": "2025-01-22T16:22:02.126Z",
+    "duration": 15116.909,
+    "expected": 1,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 0,
     "flaky": 0
   }
 }
