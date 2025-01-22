@@ -132,28 +132,68 @@ test("setup jira", async ({ page }: { page: Page }) => {
       console.log('Creating new project...');
       await page.goto('/');
       await page.waitForLoadState('networkidle');
+      await page.waitForTimeout(2000); // Give the UI time to stabilize
 
-      // Click Projects menu with retry
+      // Click Projects menu with more selector options and longer timeout
       console.log('Clicking Projects menu...');
-      await Promise.race([
-        page.click('a#browse_link'),
-        page.click('[data-testid="browse-projects-button"]')
-      ]).catch(e => console.log('Initial project menu click failed:', e));
+      const projectMenuSelectors = [
+        'a#browse_link',
+        '[data-testid="browse-projects-button"]',
+        'button:has-text("Projects")',
+        '[aria-label="Projects"]',
+        '#navigation-app-sidebar [href="/browse"]'
+      ];
 
-      // Wait for and click Create project with retry
+      let menuClicked = false;
+      for (const selector of projectMenuSelectors) {
+        try {
+          console.log(`Trying to click Projects menu with selector: ${selector}`);
+          await page.waitForSelector(selector, { timeout: 5000 });
+          await page.click(selector);
+          menuClicked = true;
+          console.log(`Successfully clicked Projects menu with selector: ${selector}`);
+          break;
+        } catch (error: any) {
+          console.log(`Failed to click with selector ${selector}:`, error.message);
+        }
+      }
+
+      if (!menuClicked) {
+        await page.screenshot({ path: 'projects-menu-not-found.png', fullPage: true });
+        throw new Error('Could not click Projects menu with any known selector');
+      }
+
+      // Wait longer for the menu to appear and stabilize
+      await page.waitForTimeout(2000);
+
+      // Wait for and click Create project with more selector options
       console.log('Waiting for Create project button...');
-      await page.waitForSelector('li#project_template_create_link a, [data-testid="create-project-button"]', 
-        { timeout: 15000 }).catch(async (e) => {
-          console.log('Create project button not found:', e);
-          await page.screenshot({ path: 'create-project-not-found.png', fullPage: true });
-          throw e;
-      });
-      
-      console.log('Clicking Create project...');
-      await Promise.race([
-        page.click('li#project_template_create_link a'),
-        page.click('[data-testid="create-project-button"]')
-      ]);
+      const createProjectSelectors = [
+        'li#project_template_create_link a',
+        '[data-testid="create-project-button"]',
+        'button:has-text("Create project")',
+        '[aria-label="Create project"]',
+        'a:has-text("Create project")'
+      ];
+
+      let createButtonClicked = false;
+      for (const selector of createProjectSelectors) {
+        try {
+          console.log(`Trying to click Create project with selector: ${selector}`);
+          await page.waitForSelector(selector, { timeout: 5000 });
+          await page.click(selector);
+          createButtonClicked = true;
+          console.log(`Successfully clicked Create project with selector: ${selector}`);
+          break;
+        } catch (error: any) {
+          console.log(`Failed to click with selector ${selector}:`, error.message);
+        }
+      }
+
+      if (!createButtonClicked) {
+        await page.screenshot({ path: 'create-project-not-found.png', fullPage: true });
+        throw new Error('Could not click Create project with any known selector');
+      }
 
       // Wait for template selection with multiple possible selectors
       console.log('Waiting for template selection...');
