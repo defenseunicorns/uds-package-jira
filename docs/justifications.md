@@ -7,3 +7,6 @@ Details about the Jira package and requirements of [badging](https://github.com/
 
 ## Image Flavors
 - Unicorn Flavor currently uses Upstream and Registry1 images, as a Chainguard image does not exist.
+
+## Exemptions
+- Container image needs pepr exemption to run the python setup job
