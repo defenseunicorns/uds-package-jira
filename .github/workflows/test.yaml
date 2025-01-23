@@ -51,6 +51,7 @@ jobs:
 
   validate:
     needs: check-flavor
+    environment: test
     strategy:
       fail-fast: false
       matrix:
