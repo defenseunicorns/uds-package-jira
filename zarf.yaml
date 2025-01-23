@@ -15,7 +15,6 @@ variables:
   - name: DOMAIN
     default: "uds.dev"
   - name: JIRA_LICENSE_KEY
-    required: true
     sensitive: true
 
 components:
