@@ -63,4 +63,6 @@ jobs:
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
-    secrets: inherit # Inherits all secrets from the parent workflow.
+      env: |
+        JIRA_LICENSE_KEY=${{ secrets.JIRA_LICENSE_KEY }}
+    secrets: inherit
