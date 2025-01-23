@@ -5,11 +5,11 @@ image:
   repository: atlassian/jira-software
   tag: "10.3.2"
 
-  - repository: bitnami/jmx-exporter
-    tag: 1.1.0
-
-  - repository: registry.access.redhat.com/ubi9
-    tag: 9.4-1214.1726694543
+  repository: bitnami/jmx-exporter
+  tag: 1.1.0
+  
+  repository: registry.access.redhat.com/ubi9
+  tag: 9.4-1214.1726694543
 
 monitoring:
   jmxExporterImageRepo: bitnami/jmx-exporter
