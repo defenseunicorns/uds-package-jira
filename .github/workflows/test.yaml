@@ -55,7 +55,7 @@ jobs:
       fail-fast: false
       matrix:
         type: [install, upgrade]
-        flavor: [upstream, unicorn]
+        flavor: [upstream, registry1, unicorn]
     uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@664946ed5f6a5fe6a19f4ba6fcdc909981aefbe4 # v1.6.2
     with:
       timeout: 30
