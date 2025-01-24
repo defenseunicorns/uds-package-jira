@@ -65,3 +65,4 @@ jobs:
       type: ${{ matrix.type }}
       options: "--set JIRA_LICENSE_KEY=${{ vars.JIRA_LICENSE_KEY }}"
     secrets: inherit
+
