@@ -30,7 +30,7 @@ components:
         valuesFiles:
           - values/upstream-values.yaml
     images:
-      - atlassian/jira-software:10.3.2
+      - atlassian/jira-software:10.4.0
       - bitnami/jmx-exporter:1.1.0
       - registry.access.redhat.com/ubi9:9.4-1214.1726694543
 
