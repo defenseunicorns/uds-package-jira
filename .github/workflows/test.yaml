@@ -63,5 +63,5 @@ jobs:
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
-      required_license: true
+      requires_license: true
     secrets: inherit # Inherits all secrets from the parent workflow.
