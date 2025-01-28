@@ -58,7 +58,6 @@ jobs:
         flavor: [upstream, registry1, unicorn]
     uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@add-license-keys # v1.7.3
     with:
-      timeout: 30
       runsOn: uds-marketplace-ubuntu-big-boy-8-core
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
