@@ -55,12 +55,13 @@ jobs:
       fail-fast: false
       matrix:
         type: [install, upgrade]
-        flavor: [upstream, registry1]
-    uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@f922776396f05f743055f2751fe19ec0160968ae # v1.7.3
+        flavor: [upstream, registry1, unicorn]
+    uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@add-license-secret # v1.7.3
     with:
       timeout: 30
       runsOn: uds-marketplace-ubuntu-big-boy-8-core
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
+      required_license: true
     secrets: inherit # Inherits all secrets from the parent workflow.
