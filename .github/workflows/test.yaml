@@ -63,5 +63,5 @@ jobs:
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
-      options: '--set JIRA_LICENSE_KEY="${{ secrets.JIRA_LICENSE_KEY }}"'
+      requires_license: true
     secrets: inherit
