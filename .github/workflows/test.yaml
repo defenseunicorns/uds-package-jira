@@ -56,13 +56,14 @@ jobs:
       matrix:
         type: [install, upgrade]
         flavor: [upstream, registry1, unicorn]
-    uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@664946ed5f6a5fe6a19f4ba6fcdc909981aefbe4 # v1.6.2
+    uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@bb2db1ab149d0d48592cbe287486c7329f25d71f # (test license key)
     with:
       timeout: 30
       runsOn: uds-marketplace-ubuntu-big-boy-8-core
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
-      options: "--set JIRA_LICENSE_KEY=${{ vars.JIRA_LICENSE_KEY }}"
+      options: "--set JIRA_LICENSE_KEY=${{ secrets.JIRA_LICENSE_KEY }}"
     secrets: inherit
+
 
