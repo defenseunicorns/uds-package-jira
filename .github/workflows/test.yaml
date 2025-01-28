@@ -56,8 +56,9 @@ jobs:
       matrix:
         type: [install, upgrade]
         flavor: [upstream, registry1, unicorn]
-    uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@bb2db1ab149d0d48592cbe287486c7329f25d71f # (test license key)
+    uses: defenseunicorns/uds-common/.github/workflows/callable-test.yaml@add-license-key # (test license key)
     with:
+
       runsOn: uds-marketplace-ubuntu-big-boy-8-core
       upgrade-flavors: ${{ needs.check-flavor.outputs.upgrade-flavors }}
       flavor: ${{ matrix.flavor }}
