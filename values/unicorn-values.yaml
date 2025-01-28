@@ -1,16 +1,17 @@
 # Copyright 2024 Defense Unicorns
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
-image:
-  repository: atlassian/jira-software
-  tag: "10.3.2"
-
-  - repository: bitnami/jmx-exporter
-    tag: 1.1.0
-
-  - repository: registry.access.redhat.com/ubi9
-    tag: 9.4-1214.1726694543
+images:
+  jira:
+    repository: atlassian/jira-software
+    tag: "10.3.2"
+  jmxExporter:
+    repository: bitnami/jmx-exporter
+    tag: "1.1.0"
+  ubi:
+    repository: registry.access.redhat.com/ubi9
+    tag: "9.4-1214.1726694543"
 
 monitoring:
   jmxExporterImageRepo: bitnami/jmx-exporter
-  jmxExporterImageTag: 1.1.0
+  jmxExporterImageTag: "1.1.0"
