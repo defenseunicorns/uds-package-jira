@@ -14,7 +14,7 @@ variables:
     default: "postgres"
   - name: DOMAIN
     default: "uds.dev"
-  - name: JIRA_LICENSE_KEY
+  - name: LICENSE_KEY
     default: ""
 
 components:

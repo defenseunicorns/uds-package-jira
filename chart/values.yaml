@@ -52,4 +52,4 @@ jira:
     secretName: jira-license
     secretKey: license_key
     stringData:
-      license_key: "###ZARF_VAR_JIRA_LICENSE_KEY###"
+      license_key: "###ZARF_VAR_LICENSE_KEY###"

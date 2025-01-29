@@ -34,7 +34,7 @@ packages:
       jira:
         uds-jira-config:
           variables:
-            - name: JIRA_LICENSE_KEY
+            - name: LICENSE_KEY
               path: jira.license.licenseKeyData
               description: Jira license data base64 encoded
               default: ""
