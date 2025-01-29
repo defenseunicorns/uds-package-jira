@@ -32,15 +32,15 @@ packages:
     ref: dev
     overrides:
       jira:
-        uds-jira-config:
-          variables:
-            - name: LICENSE_KEY
-              path: jira.license.licenseKeyData
-              description: Jira license data base64 encoded
-              default: ""
         jira:
           values:
             - path: database.credentials.secretName
               value: jira.jira.pg-cluster.credentials.postgresql.acid.zalan.do
             - path: clustering.enabled
               value: false # Set to true for clustering
+        uds-jira-config:
+          variables:
+            - name: LICENSE_KEY
+              path: jira.license.stringData.license_key
+              description: Jira license data base64 encoded
+              default: ""

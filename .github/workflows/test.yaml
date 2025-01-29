@@ -63,4 +63,5 @@ jobs:
       flavor: ${{ matrix.flavor }}
       type: ${{ matrix.type }}
       requires_license: true
+      options: "--set LICENSE_KEY=${{ secrets.LICENSE_KEY }}"
     secrets: inherit # Inherits all secrets from the parent workflow.
