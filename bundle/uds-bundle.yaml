@@ -36,11 +36,11 @@ packages:
           values:
             # Values to enable clustering
             - path: clustering.enabled
-              value: false # Set to true for clustering
+              value: false
           variables:
             - name: LICENSE_KEY
               path: jira.license.stringData.license_key
-              description: Jira license data base64 encoded
+              description: Confluence license data base64 encoded
               default: ""              
         jira:
           values:
