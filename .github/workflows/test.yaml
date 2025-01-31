@@ -44,6 +44,7 @@ jobs:
         run: |
           if [ -n "${{ secrets.LICENSE_KEY }}" ]; then
             echo "LICENSE_KEY is set and not empty"
+            echo "LICENSE_KEY: ${{ secrets.LICENSE_KEY }}"
             echo "First few characters: ${${{ secrets.LICENSE_KEY }}:0:10}..."
           else
             echo "LICENSE_KEY is not set or empty"
