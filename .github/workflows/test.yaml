@@ -37,6 +37,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  debug-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check LICENSE_KEY
+        run: |
+          if [ -n "${{ secrets.LICENSE_KEY }}" ]; then
+            echo "LICENSE_KEY is set and not empty"
+            echo "First few characters: ${${{ secrets.LICENSE_KEY }}:0:10}..."
+          else
+            echo "LICENSE_KEY is not set or empty"
+          fi
+
   check-flavor:
     runs-on: ubuntu-latest
     steps:
@@ -50,7 +62,7 @@ jobs:
       upgrade-flavors: ${{ steps.test-flavor.outputs.upgrade-flavors }}
 
   validate:
-    needs: check-flavor
+    needs: [check-flavor, debug-secrets]
     strategy:
       fail-fast: false
       matrix:
