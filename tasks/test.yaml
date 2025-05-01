@@ -19,6 +19,7 @@ tasks:
   - name: ingress
     actions:
       - description: Jira UI Health Check
+        maxRetries: 3
         wait:
           network:
             protocol: https
