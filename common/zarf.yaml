@@ -26,6 +26,12 @@ components:
           - ../values/common-values.yaml
     actions:
       onDeploy:
+        before:
+          - description: Remove istio-injection label if needed
+            cmd: |-
+              if kubectl get namespace jira; then
+                kubectl label namespace jira istio-injection-
+              fi
         after:
           - description: Validate Jira Package
             maxTotalSeconds: 300
