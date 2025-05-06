@@ -25,6 +25,9 @@ test.describe('Jira', () => {
     console.log('🔄 Navigating to Jira setup page...');
     await page.goto(baseURL);
 
+    console.log('🛑 Wait for 10 seconds...');
+    await page.waitForTimeout(10000);
+
     // Wait for the <h1 id="logo"> element
     console.log('⏳ Waiting for the setup page to be visible...');
     const logoHeader = await page.locator('h1#logo');
