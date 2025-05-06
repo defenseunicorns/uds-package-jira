@@ -27,12 +27,7 @@ test.describe('Jira', () => {
 
     // Wait for the <h1 id="logo"> element
     console.log('⏳ Waiting for the setup page to be visible...');
-    const logoHeader = await page.locator('h1#logo');
-    await expect(logoHeader).toBeVisible({ timeout: 300000 });
-
-    // Ensure it contains the expected <img> with alt="Jira"
-    const logoImg = logoHeader.locator('img[alt="Jira"]');
-    await expect(logoImg).toBeVisible({ timeout: 300000 });
+    await expect(page.getByText('Set up application properties')).toBeVisible({ timeout: 300000 });
 
     console.log('📸 Taking screenshot of setup page...');
     let screenshotPath = getUniqueScreenshotPath('1.setup-page');
