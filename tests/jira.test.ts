@@ -25,9 +25,8 @@ test.describe('Jira', () => {
     console.log('🔄 Navigating to Jira setup page...');
     await page.goto(baseURL);
 
-    // Wait for the <h1 id="logo"> element
     console.log('⏳ Waiting for the setup page to be visible...');
-    await expect(page.getByText('Set up application properties')).toBeVisible({ timeout: 300000 });
+    await expect(page.getByText('Set up application properties')).toBeVisible({ timeout: 10000 });
 
     console.log('📸 Taking screenshot of setup page...');
     let screenshotPath = getUniqueScreenshotPath('1.setup-page');
@@ -35,5 +34,5 @@ test.describe('Jira', () => {
 
     console.log('🎉 Successfully reached Jira setup page!');
 
-  });
+  }).retries(3);
 });
