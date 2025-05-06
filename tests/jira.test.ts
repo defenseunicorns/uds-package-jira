@@ -25,8 +25,8 @@ test.describe('Jira', () => {
     console.log('🔄 Navigating to Jira setup page...');
     await page.goto(baseURL);
 
-    console.log('🛑 Wait for 10 seconds...');
-    await page.waitForTimeout(10000);
+    console.log('🛑 Wait for 60 seconds for Jira to fully come up');
+    await page.waitForTimeout(60000);
 
     // Wait for the <h1 id="logo"> element
     console.log('⏳ Waiting for the setup page to be visible...');
