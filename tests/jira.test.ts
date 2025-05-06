@@ -34,5 +34,5 @@ test.describe('Jira', () => {
 
     console.log('🎉 Successfully reached Jira setup page!');
 
-  }).retries(3);
+  });
 });
