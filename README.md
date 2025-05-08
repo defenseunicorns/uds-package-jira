@@ -14,6 +14,9 @@ The Jira Package expects to be deployed on top of [UDS Core](https://github.com/
 
 Jira is configured by default to assume the internal dependencies that are used for testing (see postgres in the [bundle](bundle/uds-bundle.yaml)).
 
+> [!IMPORTANT]
+> **NOTE #1:** This package has been migrated to use Istio Ambient. Minimum version of uds-core required is `0.40.x`
+
 #### Database
 
 - A Postgres database is running on port `5432` and accessible to the cluster via the `JIRA_DB_ENDPOINT` Zarf var.
