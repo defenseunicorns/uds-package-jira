@@ -1,0 +1,14 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
+tasks:
+  - name: create
+    description: Create the Dev Dependency Zarf Packages
+    inputs:
+      options:
+        description: For setting create time variables and flags
+      architecture:
+        description: The architecture of the package to create
+        default: ${UDS_ARCH}
+    actions:
+      - cmd: echo "Jira has no dependencies"
