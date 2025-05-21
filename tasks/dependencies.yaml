@@ -11,4 +11,4 @@ tasks:
         description: The architecture of the package to create
         default: ${UDS_ARCH}
     actions:
-      - cmd: echo "Jira has no dependencies"
+      - cmd: ./uds zarf package create src/wait/ --confirm --no-progress --architecture=${{ .inputs.architecture }} --skip-sbom ${{ .inputs.options }}

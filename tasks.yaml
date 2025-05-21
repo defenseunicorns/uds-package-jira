@@ -44,6 +44,7 @@ tasks:
     description: Test and validate cluster is deployed with Jira
     actions:
       - task: create-dev-package
+      - task: dependencies:create
       - task: create:test-bundle
       - task: deploy:test-bundle
       - task: setup:create-doug-user
