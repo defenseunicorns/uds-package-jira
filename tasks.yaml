@@ -2,18 +2,17 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
 includes:
-  - dependencies: ./tasks/dependencies.yaml
   - test: ./tasks/test.yaml
-  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/create.yaml
-  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/lint.yaml
-  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/pull.yaml
-  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/deploy.yaml
-  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/setup.yaml
-  - actions: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/actions.yaml
-  - badge: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/badge.yaml
-  - upgrade: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/upgrade.yaml
-  - compliance: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/compliance.yaml
-  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.2/tasks/publish.yaml
+  - create: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/create.yaml
+  - lint: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/lint.yaml
+  - pull: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/pull.yaml
+  - deploy: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/deploy.yaml
+  - setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/setup.yaml
+  - actions: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/actions.yaml
+  - badge: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/badge.yaml
+  - upgrade: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/upgrade.yaml
+  - compliance: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/compliance.yaml
+  - publish: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.14.5/tasks/publish.yaml
 
 tasks:
   - name: default
@@ -44,7 +43,6 @@ tasks:
     description: Test and validate cluster is deployed with Jira
     actions:
       - task: create-dev-package
-      - task: dependencies:create
       - task: create:test-bundle
       - task: deploy:test-bundle
       - task: setup:create-doug-user
@@ -70,8 +68,6 @@ tasks:
     description: Test an upgrade from the latest released package to the current branch
     actions:
       - task: upgrade:create-latest-tag-bundle
-        with:
-          dep_commands: "./uds run dependencies:create"
       - task: setup:k3d-test-cluster
       - task: deploy:test-bundle
       - task: create-deploy-test-bundle
