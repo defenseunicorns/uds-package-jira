@@ -65,8 +65,6 @@ jira:
   clustering:
     enabled: false
   service:
-    annotations:
-      traffic.sidecar.istio.io/excludeOutboundIPRanges: 10.43.60.232
     sessionAffinity: ClientIP
     sessionAffinityConfig:
       clientIP:

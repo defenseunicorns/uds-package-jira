@@ -99,6 +99,7 @@ spec:
         remoteNamespace: {{ .Values.postgres.namespace | quote }}
         remoteSelector:
           {{ .Values.postgres.selector | toYaml | nindent 10 }}
+        port: {{ .Values.postgres.port }}
         {{- else }}
         remoteGenerated: Anywhere
         {{- end }}
