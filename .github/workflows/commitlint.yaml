@@ -10,6 +10,11 @@ on:
     # milestoned is added here so that a PR can be re-triggered if it is milestoned.
     types: [milestoned, opened, edited, synchronize]
 
+permissions:
+  contents: read # Allows reading the content of the repository.
+  pull-requests: read # Allows reading pull requests
+
+
 jobs:
   run:
     uses: defenseunicorns/uds-common/.github/workflows/callable-commitlint.yaml@79cc329c0fff5801a67edc2588193381ff78dc41 # v1.14.5
