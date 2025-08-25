@@ -30,7 +30,7 @@ components:
         valuesFiles:
           - values/upstream-values.yaml
     images:
-      - atlassian/jira-software:10.7.4
+      - atlassian/jira-software:11.0.0
       - bitnami/jmx-exporter:1.3.0
 
   - name: jira
