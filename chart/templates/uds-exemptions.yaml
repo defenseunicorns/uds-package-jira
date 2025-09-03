@@ -1,0 +1,17 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
+apiVersion: uds.dev/v1alpha1
+kind: Exemption
+metadata:
+  name: jira-exemptions
+  namespace: uds-policy-exemptions
+spec:
+  exemptions:
+    - description: exempt istio exclusions
+      matcher:
+        kind: pod
+        name: ^jira-*
+        namespace: jira
+      policies:
+        - RestrictIstioTrafficOverrides
