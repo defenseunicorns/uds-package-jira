@@ -71,8 +71,3 @@ jira:
         timeoutSeconds: 10800
 
 replicaCount: 1
-
-# This allows for clustering to work
-podAnnotations:
-  traffic.sidecar.istio.io/excludeOutboundPorts: 40001,40011
-  traffic.sidecar.istio.io/excludeInboundPorts: 40001,40011

@@ -52,6 +52,7 @@ tasks:
   - name: dev
     description: Create and deploy the bundle on an existing cluster (for iteration/dev speed)
     actions:
+      - task: dependencies:create
       - task: create-dev-package
       - task: create:test-bundle
       - task: deploy:test-bundle
