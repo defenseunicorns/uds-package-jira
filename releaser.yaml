@@ -4,7 +4,7 @@
 flavors:
   - name: upstream
     # renovate-uds: datasource=docker depName=atlassian/jira-software versioning=docker
-    version: 11.1.1-uds.0
+    version: 11.2.0-uds.0
   - name: registry1
     # renovate-uds: datasource=docker depName=registry1.dso.mil/ironbank/atlassian/jira-data-center/jira-node versioning=docker
-    version: 11.1.1-uds.0
+    version: 11.2.0-uds.0
